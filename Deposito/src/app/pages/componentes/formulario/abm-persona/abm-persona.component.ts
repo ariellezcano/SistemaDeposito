@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { persona } from 'src/app/modelo/persona';
-import { PersonaService } from 'src/app/servicio/persona.service';
+import { Persona } from 'src/app/modelo/index.models';
+import { PersonaService } from 'src/app/servicio/index.service';
 
 @Component({
   selector: 'app-abm-persona',
@@ -11,7 +11,7 @@ import { PersonaService } from 'src/app/servicio/persona.service';
 export class AbmPersonaComponent implements OnInit {
 
 
-  item!: persona;
+  item!: Persona;
 
   constructor(private wsdl: PersonaService) { }
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { persona } from 'src/app/modelo/persona';
-import { PersonaService } from 'src/app/servicio/persona.service';
+import { Persona } from 'src/app/modelo/index.models';
+import { PersonaService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 
 @Component({
@@ -11,7 +11,7 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 export class FilPersonaComponent implements OnInit {
 
   @Output()
-  filter: EventEmitter<persona[]> = new EventEmitter<persona[]>();
+  filter: EventEmitter<Persona[]> = new EventEmitter<Persona[]>();
 
   proccess: Boolean;
   public search: String | undefined;

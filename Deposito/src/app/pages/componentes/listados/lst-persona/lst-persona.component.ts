@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { persona } from 'src/app/modelo/persona';
-import { PersonaService } from 'src/app/servicio/persona.service';
+import { Persona } from 'src/app/modelo/index.models';
+import { PersonaService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
 import { FilPersonaComponent } from '../../Filtro/fil-persona/fil-persona.component';
@@ -20,13 +20,13 @@ export class LstPersonaComponent implements OnInit {
 
   entity = 'persona';
 
-  items: persona[];
-  item: persona;
+  items: Persona[];
+  item: Persona;
 
   proccess: Boolean | undefined;
 
   constructor(private wsdl: PersonaService, private router: Router) {
-    this.item = new persona();
+    this.item = new Persona();
     this.items = [];
   }
 
@@ -35,15 +35,15 @@ export class LstPersonaComponent implements OnInit {
   }
 
   preNew() {
-    this.item = new persona();
+    this.item = new Persona();
   }
 
-  select(item: persona) {
+  select(item: Persona) {
     this.item = item;
   }
 
   cancel() {
-    this.item = new persona();
+    this.item = new Persona();
     this.fil.list();
   }
 
@@ -61,8 +61,8 @@ export class LstPersonaComponent implements OnInit {
     this.fil.list();
   }
 
-  preDelete(item: persona) {
-    this.item = new persona();
+  preDelete(item: Persona) {
+    this.item = new Persona();
     this.item = item;
 
     Swal.fire({
@@ -102,7 +102,7 @@ export class LstPersonaComponent implements OnInit {
     this.proccess = false;
   }
 
-  doFound(event: persona[]) {
+  doFound(event: Persona[]) {
     this.items = event;
     console.log (event)
 

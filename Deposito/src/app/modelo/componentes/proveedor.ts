@@ -1,9 +1,9 @@
-import {persona} from "./persona"
+import {Persona} from "./persona"
 export class Proveedor{
 
     id!: Number;
     nombre!: string;//razon social
-    persona: persona;
+    persona: Persona;
     direccion!: string; //direccion comercial
     telefono!: string;
     Celular!:string;
@@ -12,6 +12,6 @@ export class Proveedor{
     cuit!:string;
 
     constructor(){
-       this.persona=new persona();
+       this.persona=new Persona();
     }
 }
