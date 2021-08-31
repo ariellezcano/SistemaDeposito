@@ -74,7 +74,7 @@ export class LstPersonaComponent implements OnInit {
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-    }).then((result) => {
+    }).then((result: any) => {
       if (result.value) {
        // this.delete();
        

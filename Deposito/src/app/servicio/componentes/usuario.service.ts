@@ -1,16 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UturuncoUtils } from '../utils/uturuncoUtils';
+import { UturuncoUtils } from '../../utils/uturuncoUtils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService {
+export class UsuarioService {
   other_header:any;
     api;
 
     constructor(private http: HttpClient) {
-        this.api = UturuncoUtils.URL + "personal/";
+        this.api = UturuncoUtils.URL + "usuario/";
     }
 
 
