@@ -6,3 +6,4 @@ export { PersonaService } from './componentes/persona.service';
 export { ProveedorService } from './componentes/proveedor.service';
 export { TipoEquipamientoService } from './componentes/tipoEquipamiento.service';
 export { UsuarioService } from './componentes/usuario.service';
+export { UserxsService } from './componentes/userxs.service';

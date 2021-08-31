@@ -1,68 +1,80 @@
-import { HttpHeaders } from "@angular/common/http";
-export class UturuncoUtils{
+import { HttpHeaders } from '@angular/common/http';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
-    static URL = "http://10.125.31.241:3001/" /*ip de Gonzalo */
+export class UturuncoUtils {
+  
+  /* servidor de produccion */
+  // static URL = "http://policiadigital.chaco.gob.ar:7654/";
+  // static URLPOLD = "http://policiadigital.chaco.gob.ar:3000/";
 
-  //  static URL = "http://10.125.31.150:3001/" /*ip servidor interno */
+  /* servidor local */
+  // static URL = "http://10.125.31.150:3001/";
+  // static URLPOLD = "http://10.125.31.150:3000/";
 
-  //  static URL = "http://policiadigital.chaco.gov.ar:3001/" /*ip internet */
+  /* servidor de testing (PRUEBA) */
+  static URL = 'http://10.125.31.241:3001/';
+  static URLPOLD = 'http://10.125.31.150:3000/';
+  
+  
+  // static loc = window.sessionStorage;
 
-    static logueado: boolean=false;
-    
-    public static setSession(key: string, data: string) {
-        localStorage.setItem("estaLogueado", "1")
-        localStorage.setItem(key, data);
-        sessionStorage.setItem(key, data)
+  public static setSession(key: string, data: string) {
+    localStorage.setItem(key, data);
+  }
 
-    }
+  public static getSession(key: string | any) {
+    return localStorage.getItem(key);
+  }
 
-    public static autenticacion() {
-        try {
-            return parseInt(localStorage.getItem("estaLogueado")!) == 1;
-        } catch (error) {
-            return false
-        }
+  public static getToken() {
+    return localStorage.getItem('loginAuth');
+  }
 
-    }
+  public static setToken(token: any) {
+    localStorage.setItem('loginAuth', token);
+  }
 
-
-    public static getSession(key: string) {
-        return localStorage.getItem(key);
-    }
-
-    public static getToken() {
-        return localStorage.getItem("loginAuth");
-    }
-
-    public static setToken(token: any) {
-        localStorage.setItem("loginAuth", token);
-    }
-
-    public static clearSession() {
-        localStorage.clear();
-        /*
+  public static clearSession() {
+    localStorage.clear();
+    /*
         for (let i = 0; i < localStorage.length; i++) {
           let key = this.loc.key(i);
           let value = this.loc.getItem(key);
           console.log(key, value);
         }
         */
-    }
+  }
 
-    public static getHeader() {
-        let uid = "";
-        try {
-            uid = JSON.parse(localStorage.getItem("user")!).uid
-        } catch (error) {
+  public static getHeader() {
+    let uid = '';
+    try {
+      uid = JSON.parse('' + localStorage.getItem('user')).uid;
+    } catch (error) {}
+    const header = new HttpHeaders({
+      'X-Auth-Token': '' + localStorage.getItem('loginAuth'),
+      uid: uid,
+    });
 
-        }
-        const header = new HttpHeaders(
-            {
-                "X-Auth-Token": "" + localStorage.getItem("loginAuth"),
-                //"uid": uid
-            }
-        );
+    return header;
+  }
 
-        return header;
-    }
+    public static showToas(msg: String, type: SweetAlertIcon) {
+      const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+          },
+      });
+
+      Toast.fire({
+          icon: type,
+          title: msg
+
+      });
+  }
 }

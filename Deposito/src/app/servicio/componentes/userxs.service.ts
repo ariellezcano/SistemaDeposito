@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UturuncoUtils } from '../../utils/uturuncoUtils';
-
-
 
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class UsuarioService {
-
+export class UserxsService {
   other_header: any;
   api;
 
   constructor(private http: HttpClient) {
-    this.api = UturuncoUtils.URLPOLD + "usuario/";
+    this.api = UturuncoUtils.URLPOLD + "exe/";
   }
+
 
   /* particularidad de la entidad */
 
@@ -75,47 +72,26 @@ export class UsuarioService {
       });
   }
 
-  doLogin(dni: any, clave: any) {
+  doLogin(dni: string | number) {
+
     this.other_header = UturuncoUtils.getHeader();
-    let criteria = {
-      user: dni,
-      pass: clave
-    }
-
-
+    console.log(dni)
     return this.http
-      .post(this.api + "login/", criteria, this.other_header)
+      .post(this.api + "login/" + dni, {}, this.other_header)
+      .toPromise().catch(err => {
+        console.log(err)
+      });
+  }
+  doLogin111(dni: string | number) {
+
+    this.other_header = UturuncoUtils.getHeader();
+    console.log(dni)
+    return this.http
+      .post(this.api + "login/" + dni, {}, this.other_header)
       .toPromise().catch(err => {
         console.log(err)
       });
   }
 
-  doRestorePass(dni: any, credencial: any, fecha: any) {
-    this.other_header = UturuncoUtils.getHeader();
-    let body = {
-      dni: dni,
-      credencial: credencial,
-      fecha: fecha
-    }
-    return this.http
-      .post(this.api + "restore/", body, this.other_header)
-      .toPromise().catch(err => {
-        console.log(err)
-      });
-  }
-
-  doChangePass(id: any, oldClave: any, newClave: any) {
-    this.other_header = UturuncoUtils.getHeader();
-    let body = {
-      id: id,
-      oldPassword: oldClave,
-      newPassword: newClave
-    }
-    return this.http
-      .post(this.api + "change/", body, this.other_header)
-      .toPromise().catch(err => {
-        console.log(err)
-      });
-  }
 
 }
