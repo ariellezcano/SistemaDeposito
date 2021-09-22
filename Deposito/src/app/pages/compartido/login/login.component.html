@@ -20,20 +20,27 @@
 </ng-template>
 <ng-template #elseBlock>
     <div class="container login-container">
-
         <div class="row">
             <div class="col-md-6 ads">
+                <div class="row">
+                    <div id="laureles" class="col-md-6">
+                        <img src="assets/img/laureles1.png" alt="profile_img" height="170px" width="170px">
+                    </div>
+                    <div id="laureles" class="col-md-6">
+                        <img src="assets/img/laureles2.png" alt="profile_img" height="170px" width="170px">
+                    </div>
+                </div>
                 <h1><span id="fl">Policía </span><span id="sl">Chaco</span></h1>
-                <p>Sistema Departamento Logística </p>
-                <img src="assets/img/logopol.png" alt="profile_img" height="140px" width="140px;">
+                <p>DPTO. COMUNICACIONES E INFORMATICA </p>
+                <img src="assets/img/logopol.png" alt="profile_img" height="150px" width="150px;">
                 <br>
             </div>
             <div class="col-md-6 login-form">
                 <div class="profile-img">
-                    <img src="assets/img/guardia.png" alt="profile_img" height="140px" width="140px;">
+                    <img src="assets/img/logocom.png" alt="profile_img" height="140px" width="140px;">
 
                 </div>
-                <h3>Inicie Sesión</h3>
+                <h3 id="sesion">Inicie Sesión</h3>
                 <form #f="ngForm" class="was-validated">
                     <div class="form-group">
                         <input required (keydown.enter)="login()" [disabled]="isUser" #usercuit type="number"
@@ -64,5 +71,6 @@
                 </form>
             </div>
         </div>
+        
     </div>
 </ng-template>

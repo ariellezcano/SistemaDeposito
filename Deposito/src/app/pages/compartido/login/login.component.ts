@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import Swal from 'sweetalert2'
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserxsService } from 'src/app/servicio/index.service';
-import { UsuarioService } from 'src/app/servicio/index.service';
+
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
+import { UserxsService, UsuarioService } from 'src/app/servicio/index.service';
 
 
 @Component({
@@ -211,7 +211,7 @@ export class LoginComponent implements OnInit {
         UturuncoUtils.setSession("user", JSON.stringify(res.data));
         UturuncoUtils.setSession("personal", JSON.stringify(res.policial));
 
-        this.route.navigate(["/tablero"]);
+        this.route.navigate(["/principal"]);
 
       } else {
         Swal.fire('Oops...', res.msg, 'error')

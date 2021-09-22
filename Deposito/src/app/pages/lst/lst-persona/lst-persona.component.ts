@@ -4,7 +4,7 @@ import { Persona } from 'src/app/modelo/index.models';
 import { PersonaService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
-import { FilPersonaComponent } from '../../Filtro/fil-persona/fil-persona.component';
+import { FilPersonaComponent } from '../../filtros/fil-persona/fil-persona.component';
 
 @Component({
   selector: 'app-lst-persona',

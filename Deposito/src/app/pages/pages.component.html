@@ -1,2 +1,14 @@
-
-<router-outlet></router-outlet>
+<div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div id="main-panel" class="col-md-10 main-panel">
+        <app-nav></app-nav>
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>

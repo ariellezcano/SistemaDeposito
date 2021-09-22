@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
 import { PagesComponent } from "./pages.component";
 import { Routes, RouterModule} from '@angular/router'
-import { LstPersonaComponent } from "./componentes/listados/lst-persona/lst-persona.component";
-import { AbmPersonaComponent } from "./componentes/formulario/abm-persona/abm-persona.component";
+import { LstPersonaComponent } from "./lst/lst-persona/lst-persona.component";
+import { AbmPersonaComponent } from "./frm-abm/abm-persona/abm-persona.component";
+import { SidebarComponent } from "./compartido/sidebar/sidebar.component";
 
 const routes: Routes = [
     {
         path: "", component: PagesComponent, children: [
-        {path: "persona", component: LstPersonaComponent}, 
-         {path: "abm", component: AbmPersonaComponent}
+        {path: "principal", component: SidebarComponent},
         ]
     }
 ];

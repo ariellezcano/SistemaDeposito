@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './compartido/login/login.component';
+import { LoginComponent } from './pages/compartido/login/login.component';
+
 
 const routes: Routes = [{
     path:"",component:LoginComponent,

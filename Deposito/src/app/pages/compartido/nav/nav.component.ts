@@ -22,6 +22,6 @@ export class NavComponent implements OnInit {
   }
   cerrar() {
     UturuncoUtils.clearSession();
-    this.route.navigate(["/login"]);
+    this.route.navigate([""]);
   }
 }

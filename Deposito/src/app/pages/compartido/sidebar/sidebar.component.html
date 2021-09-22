@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="sidebar" data-color="red">
+    <div class="logo">
+      <a class="simple-text logo-mini">
+        <div class="logo-img">
+          <img src="./assets/img/logopol.png" />
+        </div>
+      </a>
+      <a class="simple-text logo-normal"> Dpto. Com. e Informática </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav text-center">
+        <li
+          routerLinkActive="active"
+          *ngFor="let menuItem of menuItems"
+          class="{{ menuItem.class }} nav-item"
+        >
+          <a [routerLink]="[menuItem.path]">
+            <i class="now-ui-icons {{ menuItem.icon }}"></i>
+            <p>
+              <i class="fas fa-angle-double-right"></i>
+              {{ menuItem.title }}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br />
+  <!-- imagen -->
+  <div class="panel-default">
+    <div class="row text-center">
+      <!-- <div id="panel" class="col-md-12">
+        <span><h1 id="h1sidebar">Bienvenidos al Sistema</h1></span>
+      </div> -->
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div align="center" class="col-md-6">
+        <img id="logopolicia" src="./assets/img/logopolicia.png" />
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
