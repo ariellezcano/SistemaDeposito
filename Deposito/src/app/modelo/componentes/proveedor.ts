@@ -3,6 +3,7 @@ export class Proveedor{
 
     id!: Number;
     nombre!: string;//razon social
+    responsable!: string;
     persona: Persona;
     direccion!: string; //direccion comercial
     telefono!: string;

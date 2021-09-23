@@ -14,6 +14,11 @@ import { WgCargandoComponent } from './wg-cargando/wg-cargando.component';
 import { WgPaginateComponent } from './wg-paginate/wg-paginate.component';
 import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
 import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
+import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
+import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
+import { ComboModeloComponent } from './componentes/combo-modelo/combo-modelo.component';
+import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
+import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
 
 @NgModule({
     declarations:[
@@ -28,6 +33,11 @@ import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
         WgPaginateComponent,
         LstMarcaComponent,
         AbmMarcaComponent,
+        LstModeloComponent,
+        AbmModeloComponent,
+        ComboModeloComponent,
+        LstProveedorComponent,
+        AbmProveedorComponent,
     ], 
     exports: [],
     imports:[

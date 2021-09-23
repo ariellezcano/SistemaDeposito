@@ -196,6 +196,7 @@ export class LoginComponent implements OnInit {
       let data = await this.wsdlu.doLogin(this.cuit, this.pass).then();
       let res = JSON.parse(JSON.stringify(data));
 
+     
       if (res.code === 200) {
         const Toast = Swal.mixin({
           toast: true,

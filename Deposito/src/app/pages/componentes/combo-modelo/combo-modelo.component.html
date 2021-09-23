@@ -1,0 +1,12 @@
+<div class="col-lg-12">
+    <div class="control-group">
+        <div class="form-group controls">
+            <label>Seleccione marca</label>
+            <select (ngModelChange)="capturar($event)" name="marca" required [(ngModel)]="item" [compareWith]="compareFnPer"
+                class="form-control form-sm" required>
+                <option *ngFor="let item of items" [ngValue]="item">{{item.nombre}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>

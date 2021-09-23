@@ -4,6 +4,8 @@ import { Routes, RouterModule} from '@angular/router'
 import { SidebarComponent } from "./compartido/sidebar/sidebar.component";
 import { TipoEquipamientoComponent } from "./lst/tipo-equipamiento/tipo-equipamiento.component";
 import { LstMarcaComponent } from "./lst/lst-marca/lst-marca.component";
+import { LstModeloComponent } from "./lst/lst-modelo/lst-modelo.component";
+import { LstProveedorComponent } from "./lst/lst-proveedor/lst-proveedor.component";
 
 const routes: Routes = [
     {
@@ -11,6 +13,8 @@ const routes: Routes = [
         {path: "principal", component: SidebarComponent},
         {path: "principal/tipoEquipamiento", component: TipoEquipamientoComponent},
         {path: "principal/marca", component: LstMarcaComponent},
+        {path: "principal/modelo", component: LstModeloComponent},
+        {path: "principal/proveedor", component: LstProveedorComponent},
         ]
     }
 ];

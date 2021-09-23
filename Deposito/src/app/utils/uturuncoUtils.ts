@@ -16,6 +16,7 @@ export class UturuncoUtils {
   static URLPOLD = 'http://10.125.31.150:3000/';
   
   
+  
   // static loc = window.sessionStorage;
 
   public static setSession(key: string, data: string) {
