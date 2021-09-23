@@ -12,6 +12,8 @@ import { FooterComponent } from './compartido/footer/footer.component';
 import { NavComponent } from './compartido/nav/nav.component';
 import { WgCargandoComponent } from './wg-cargando/wg-cargando.component';
 import { WgPaginateComponent } from './wg-paginate/wg-paginate.component';
+import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
+import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
 
 @NgModule({
     declarations:[
@@ -24,6 +26,8 @@ import { WgPaginateComponent } from './wg-paginate/wg-paginate.component';
         FooterComponent,
         WgCargandoComponent,
         WgPaginateComponent,
+        LstMarcaComponent,
+        AbmMarcaComponent,
     ], 
     exports: [],
     imports:[

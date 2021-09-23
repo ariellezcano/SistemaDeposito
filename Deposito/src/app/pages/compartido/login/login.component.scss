@@ -21,13 +21,8 @@
   }
   
   #fl {
-    font-weight: 600;
+    font-weight: 100 !important;;
     color: black !important;
-  }
-  
-  #sl {
-    font-weight: 100 !important;
-    color:black !important;
   }
   
   .profile-img {
@@ -67,5 +62,8 @@
   }
   #sesion{
     color: black;
+  }
+  h1{
+    font-size: 50px !important;
   }
   
