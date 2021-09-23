@@ -14,6 +14,7 @@ export class LstMarcaComponent implements OnInit {
   item!: Marca;
   items!: Marca[];
 
+  
   @ViewChild('close')
   cerrar!: ElementRef;
 
