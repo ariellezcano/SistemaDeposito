@@ -1,0 +1,30 @@
+<form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="title">Nombre del modelo</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="4"
+          id="nombre"
+          name="nombre"
+          placeholder="Ingrese nombre del proveedor"
+          [(ngModel)]="item.nombre"
+          required
+        />
+      </div>
+  
+      <div class="col-lg-6">
+        
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </form>
+  
