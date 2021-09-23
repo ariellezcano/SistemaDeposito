@@ -90,13 +90,15 @@
           </button>
         </div>
         <div class="modal-body">
-            <app-abm-marca></app-abm-marca>
+          
+              <app-abm-marca (finalizado)="evento($event)"></app-abm-marca>
+            
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
+          <!-- #close hace referencia desde el ts a la vista para cerrrar el formulario -->
+          <button #close type="button" class="btn btn-secondary" data-dismiss="modal">
+            Salir
           </button>
-          <button type="button" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
