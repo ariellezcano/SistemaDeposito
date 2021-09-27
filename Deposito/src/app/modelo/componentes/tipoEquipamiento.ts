@@ -4,8 +4,9 @@ export class TipoEquipamiento{
 
     id!: Number;
     nombre!: string;
-    activo!: Boolean;
     modelo:Modelo;
+    activo!: Boolean;
+    
 
     constructor(){
        this.modelo=new Modelo();

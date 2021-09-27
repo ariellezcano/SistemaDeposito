@@ -32,14 +32,16 @@
                   <th>#</th>
                   <th>Marca</th>
                   <th>Modelo</th>
+                  <th>Estado</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td scope="row">{{ id }}</td>
-                  <td>{{ marca | uppercase }}</td>
-                  <td>{{ modelo |uppercase }}</td>
+                <tr *ngFor="let item of items">
+                  <td scope="row">{{ item.id }}</td>
+                  <td>{{ item.marca.nombre| uppercase }}</td>
+                  <td>{{ item.nombre | uppercase }}</td>
+                  <td>{{ item.activo ? "Activo" : "No activo"}}</td>
                   <td>
                     
                     <button

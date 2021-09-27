@@ -19,6 +19,9 @@ import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
 import { ComboModeloComponent } from './componentes/combo-modelo/combo-modelo.component';
 import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
 import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
+import { AbmTipoEquipamientoComponent } from './frm-abm/abm-tipo-equipamiento/abm-tipo-equipamiento.component';
+import { LstTipoequipamientoComponent } from './lst/lst-tipoequipamiento/lst-tipoequipamiento.component';
+import { ComboTipoequipamientoComponent } from './componentes/combo-tipoequipamiento/combo-tipoequipamiento.component';
 
 @NgModule({
     declarations:[
@@ -38,8 +41,13 @@ import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.com
         ComboModeloComponent,
         LstProveedorComponent,
         AbmProveedorComponent,
+        AbmTipoEquipamientoComponent,
+        LstTipoequipamientoComponent,
+        ComboTipoequipamientoComponent,
     ], 
-    exports: [],
+    exports: [
+        AbmTipoEquipamientoComponent,
+    ],
     imports:[
         BrowserModule,
         FormsModule,

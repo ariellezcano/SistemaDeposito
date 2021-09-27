@@ -2,12 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TipoEquipamiento } from 'src/app/modelo/index.models';
 
 @Component({
-  selector: 'app-tipo-equipamiento',
-  templateUrl: './tipo-equipamiento.component.html',
-  styleUrls: ['./tipo-equipamiento.component.scss']
+  selector: 'app-lst-tipoequipamiento',
+  templateUrl: './lst-tipoequipamiento.component.html',
+  styleUrls: ['./lst-tipoequipamiento.component.scss']
 })
-export class TipoEquipamientoComponent implements OnInit {
-  
+export class LstTipoequipamientoComponent implements OnInit {
+
   entity = "Listado de tipos de equipos"
 
 
