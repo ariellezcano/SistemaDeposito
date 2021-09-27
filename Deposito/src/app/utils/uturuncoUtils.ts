@@ -8,12 +8,12 @@ export class UturuncoUtils {
   // static URLPOLD = "http://policiadigital.chaco.gob.ar:3000/";
 
   /* servidor local */
-  // static URL = "http://10.125.31.150:3001/";
-  // static URLPOLD = "http://10.125.31.150:3000/";
+  static URL = "http://10.125.31.150:3001/";
+  static URLPOLD = "http://10.125.31.150:3000/";
 
   /* servidor de testing (PRUEBA) */
-  static URL = 'http://10.125.31.241:3001/';
-  static URLPOLD = 'http://10.125.31.150:3000/';
+  // static URL = 'http://10.125.31.241:3001/';
+  // static URLPOLD = 'http://10.125.31.150:3000/';
   
   
   

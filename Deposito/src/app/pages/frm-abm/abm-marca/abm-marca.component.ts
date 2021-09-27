@@ -28,7 +28,7 @@ export class AbmMarcaComponent implements OnInit {
   accion(f:NgForm){
     if (f.invalid) {
       this.form.ngSubmit;
-      //alert("asa");
+      
       return;
     }
     if (this.item.id > 0){
