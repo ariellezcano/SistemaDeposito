@@ -6,9 +6,10 @@ export class OrdenCompra{
     nroOrden!: string;
     activo!: Boolean;
     proveedor: Proveedor;
+    fechaCompra!: Date;
 
     constructor(){
        this.proveedor=new Proveedor();
-       
+       this.fechaCompra = new Date();       
     }
 }

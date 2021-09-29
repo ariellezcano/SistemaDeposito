@@ -26,12 +26,12 @@ export class ComboTipoequipamientoComponent implements OnInit {
   constructor(private wsdlM: ModeloService) {
     this.item = new Modelo();
     this.items = [];
-    this.listarmarca();
+    this.listar();
    // this.opcionseleccionada = "";
   }
 
   ngOnInit(): void {
-    this.listarmarca();
+    this.listar();
   }
   //captura el dato del combo
 
@@ -46,7 +46,7 @@ export class ComboTipoequipamientoComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
-  listarmarca() {
+  listar() {
     this.wsdlM.getList(1, 100).then((data: any) => {
       this.items = data.data;
       this.items.sort((x: any, y: any) => {

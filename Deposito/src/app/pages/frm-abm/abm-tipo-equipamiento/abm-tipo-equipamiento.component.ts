@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Modelo, TipoEquipamiento } from 'src/app/modelo/index.models';
+import { TipoEquipo, Modelo } from 'src/app/modelo/index.models';
 import { TipoEquipamientoService } from 'src/app/servicio/index.service';
 
 @Component({
@@ -12,11 +12,11 @@ export class AbmTipoEquipamientoComponent implements OnInit {
   @Output()
   finalizado = new EventEmitter<Boolean>();
 
-  item!: TipoEquipamiento;
+  item!: TipoEquipo;
   form!: NgForm;
 
   constructor(private wsdl: TipoEquipamientoService) {
-    this.item = new TipoEquipamiento();
+    this.item = new TipoEquipo();
   }
 
   ngOnInit(): void {}
@@ -45,8 +45,8 @@ export class AbmTipoEquipamientoComponent implements OnInit {
     //     }
   }
 
-  seleccionoMarca(event: Modelo) {
-    this.item.modelo = event;
-    console.log('soy el papa', this.item.modelo);
-  }
+  // seleccionoMarca(event: Modelo) {
+  //   this.item.modelo = event;
+  //   console.log('soy el papa', this.item.modelo);
+  // }
 }

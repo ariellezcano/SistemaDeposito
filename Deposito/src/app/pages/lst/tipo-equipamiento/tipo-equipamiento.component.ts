@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TipoEquipamiento } from 'src/app/modelo/index.models';
+import { TipoEquipo } from 'src/app/modelo/index.models';
 
 @Component({
   selector: 'app-tipo-equipamiento',
@@ -16,18 +16,16 @@ export class TipoEquipamientoComponent implements OnInit {
   cerrar!: ElementRef;
 
 
-  item!: TipoEquipamiento;
-  items!: TipoEquipamiento[];
+  item!: TipoEquipo;
+  items!: TipoEquipo[];
 
   constructor() {
     this.items = []
     for (let index = 0; index < 5; index++) {
-      this.item = new TipoEquipamiento();
+      this.item = new TipoEquipo();
 
       this.item.id = index + 1 ;
       this.item.nombre = "IMPRESORA " + index + 1;
-      this.item.modelo.marca.nombre = "HP" + index+1;
-      this.item.modelo.nombre = "Laserjet 1102" + index+1;
       this.item.activo = true
       this.items.push(this.item)
    }

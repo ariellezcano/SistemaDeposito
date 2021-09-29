@@ -4,5 +4,14 @@ export { Modelo } from './componentes/modelo';
 export { OrdenCompra } from './componentes/ordenCompra';
 export { Persona } from './componentes/persona';
 export { Proveedor } from './componentes/proveedor';
-export { TipoEquipamiento } from './componentes/tipoEquipamiento';
-export { Usuario } from './componentes/usuario'
+export { TipoEquipo } from './componentes/tipoEquipo';
+export { Usuario } from './componentes/usuario';
+export { Equipo } from './componentes/equipo';
+export { EntregaEquipo } from './componentes/entregaEquipo';
+export { EstadoEquipo } from './componentes/estadoEquipo'
+export { Jerarquia } from './componentes/jerarquia';
+export { Unidad } from './componentes/unidad';
+export { DatoPolicial } from './componentes/datoPolicial';
+export { Regional } from './componentes/regional';
+export { Escalafon } from './componentes/escalafon';
+export { Roles } from './componentes/roles';
