@@ -9,9 +9,9 @@ export class Proveedor{
     telefono!: string;
     Celular!:string;
     correo!: string;
-    activo!: Boolean;
     cuit!:string;
-
+    activo!: Boolean;
+    
     constructor(){
        this.persona=new Persona();
     }

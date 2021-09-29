@@ -31,7 +31,9 @@ export class Equipo {
     this.estado = new EstadoEquipo();
     this.modelo = new Modelo();
     this.tipoEquipo = new TipoEquipo();
-
+    this.fechaAlta = new Date();
+    this.fechaAsignacion = new Date();
+  
   }
 
 }

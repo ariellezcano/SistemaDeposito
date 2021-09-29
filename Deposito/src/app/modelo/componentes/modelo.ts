@@ -4,8 +4,8 @@ export class Modelo{
 
     id!: Number;
     nombre!: string;
-    activo!: Boolean;
     marca: Marca;
+    activo!: Boolean;
 
     constructor(){
        this.marca=new Marca();

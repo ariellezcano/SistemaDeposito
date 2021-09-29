@@ -9,19 +9,17 @@ export class EntregaEquipo{
     unidad!: Unidad;
     personalRecibe!: Persona;
     personalEntrega!: Persona;
-    personalRetira!: Persona;
     fechaEntrega!: Date;
-    fechaRecepcion!: Date;
+    fechaDevolucion!: Date;
     observaciones!: string;
     activo!: boolean;
 
     constructor(){
         this.personalRecibe = new Persona;
-        this.personalRetira = new Persona;
         this.personalEntrega = new Persona;
         this.equipo = new Equipo;
         this.unidad = new Unidad;
         this.fechaEntrega = new Date;
-        this.fechaRecepcion = new Date;
+        this.fechaDevolucion = new Date;
         }
 }
