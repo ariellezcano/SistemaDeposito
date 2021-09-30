@@ -7,6 +7,7 @@ import { LstModeloComponent } from "./lst/lst-modelo/lst-modelo.component";
 import { LstProveedorComponent } from "./lst/lst-proveedor/lst-proveedor.component";
 import { LstTipoequipamientoComponent } from "./lst/lst-tipoequipamiento/lst-tipoequipamiento.component";
 import { LstEstadoEquipoComponent } from "./lst/lst-estado-equipo/lst-estado-equipo.component";
+import { LstEquipoComponent } from "./lst/lst-equipo/lst-equipo.component";
 
 const routes: Routes = [
     {
@@ -17,6 +18,8 @@ const routes: Routes = [
         {path: "principal/modelo", component: LstModeloComponent},
         {path: "principal/proveedor", component: LstProveedorComponent},
         {path: "principal/estado", component: LstEstadoEquipoComponent},
+        {path: "principal/equipo", component: LstEquipoComponent},
+
         ]
     }
 ];

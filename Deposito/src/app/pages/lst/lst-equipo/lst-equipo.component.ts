@@ -8,7 +8,7 @@ import { Equipo } from 'src/app/modelo/index.models';
 })
 export class LstEquipoComponent implements OnInit {
 
-  entity = 'Listado de marcas';
+  entity = 'Lista de equipos';
 
   item!: Equipo;
   items!: Equipo[];

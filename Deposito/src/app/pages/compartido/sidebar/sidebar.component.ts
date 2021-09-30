@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
   { path: 'proveedor', title: 'proveedor',  icon:'ui-1_bell-53', class: '' },
 
   { path: 'estado', title: 'Estado',  icon:'users_single-02', class: '' },
-  { path: 'nombre/path', title: 'link 6',  icon:'design_bullet-list-67', class: '' },
+  { path: 'equipo', title: 'Equipo',  icon:'design_bullet-list-67', class: '' },
   { path: 'nombre/path', title: 'link 7',  icon:'text_caps-small', class: '' },
   { path: 'nombre/path', title: 'link 8',  icon:'objects_spaceship', class: '' }
 
