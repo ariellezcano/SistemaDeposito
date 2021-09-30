@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AbmEquipoComponent } from './abm-equipo.component';
+import { ComboModeloEquipoComponent } from './combo-modelo-equipo.component';
 
-describe('AbmEquipoComponent', () => {
-  let component: AbmEquipoComponent;
-  let fixture: ComponentFixture<AbmEquipoComponent>;
+describe('ComboModeloEquipoComponent', () => {
+  let component: ComboModeloEquipoComponent;
+  let fixture: ComponentFixture<ComboModeloEquipoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AbmEquipoComponent ]
+      declarations: [ ComboModeloEquipoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AbmEquipoComponent);
+    fixture = TestBed.createComponent(ComboModeloEquipoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

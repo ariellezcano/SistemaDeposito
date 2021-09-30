@@ -28,6 +28,9 @@ import { LstEquipoComponent } from './lst/lst-equipo/lst-equipo.component';
 import { AbmEquipoComponent } from './frm-abm/abm-equipo/abm-equipo.component';
 import { DetalleCompraComponent } from './lst/detalle-compra/detalle-compra.component';
 import { OrdenCompraComponent } from './lst/orden-compra/orden-compra.component';
+import { ComboProveedorComponent } from './componentes/combo-proveedor/combo-proveedor.component';
+import { ComboEstadoComponent } from './componentes/combo-estado/combo-estado.component';
+import { ComboModeloEquipoComponent } from './componentes/combo-modelo-equipo/combo-modelo-equipo.component';
 
 @NgModule({
     declarations:[
@@ -56,6 +59,9 @@ import { OrdenCompraComponent } from './lst/orden-compra/orden-compra.component'
         AbmEquipoComponent,
         DetalleCompraComponent,
         OrdenCompraComponent,
+        ComboProveedorComponent,
+        ComboEstadoComponent,
+        ComboModeloEquipoComponent,
     ], 
     exports: [
         AbmTipoEquipamientoComponent,

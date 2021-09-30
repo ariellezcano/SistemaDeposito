@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Equipo } from 'src/app/modelo/index.models';
+import { Equipo, EstadoEquipo, Modelo, Proveedor } from 'src/app/modelo/index.models';
 import { EquipoService } from 'src/app/servicio/index.service';
 
 @Component({
@@ -19,9 +19,22 @@ export class AbmEquipoComponent implements OnInit {
   constructor(private wsdl: EquipoService) { 
     this.item = new Equipo();
   }
-
-  
   ngOnInit(): void {
+  }
+  
+  seleccionProveedor(event: Proveedor){
+    this.item.proveedor = event;
+    console.log("soy el papa" , this.item.proveedor)
+  }
+
+  seleccionestado(event: EstadoEquipo){
+    this.item.estado = event;
+    console.log("soy el papa" , this.item.estado)
+  }
+
+  seleccionmodelo(event: Modelo){
+    this.item.modelo = event;
+    console.log("soy el papa" , this.item.modelo)
   }
 
   accion(f:NgForm){

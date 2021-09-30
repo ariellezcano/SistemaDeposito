@@ -1,5 +1,6 @@
 <form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
   <div class="row">
+    <!-- identificacion policial -->
     <div class="form-group col-md-6">
       <label for="title">Identificación Policial</label>
       <input
@@ -14,6 +15,7 @@
         [(ngModel)]="item.idPolicial"
       />
     </div>
+    <!-- numero serie -->
     <div class="form-group col-md-6">
       <label for="title">Número Serie</label>
       <input
@@ -31,9 +33,12 @@
     </div>
   </div>
   <div class="row">
+    <!-- select tipo alta -->
     <div class="form-group col-md-6">
       <label for="title">Tipo adquisición</label>
       <select
+      class="form-control"
+        data-style="btn-primary"
         oninvalid="setCustomValidity('El campo es obligatorio')"
         oninput="setCustomValidity('')"
         [(ngModel)]="item.tipoAlta"
@@ -41,10 +46,62 @@
         id="tipoAlta"
         required
       >
-        <option value="Adquisicion Policial">Adquisicion Policial</option>
+        <option value="Adquisición Policial">Adquisición Policial</option>
         <option value="Donación">Donación</option>
         <option value="Secuestro">Secuestro</option>
       </select>
+    </div>
+    <!-- fecha alta equipo -->
+    <div class="form-group col-md-6">
+      <label for="title">Fecha alta equipo</label>
+      <input
+        class="form-control"
+        type="date"
+        oninvalid="setCustomValidity('El campo es obligatorio')"
+        oninput="setCustomValidity('')"
+        id="fechaAlta"
+        name="fechaAlta"
+        [(ngModel)]="item.fechaAlta"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <app-combo-proveedor
+        [dibujar]="item.proveedor"
+        (emity)="seleccionProveedor($event)"
+      ></app-combo-proveedor>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="title">Garantía</label>
+      <input
+        class="form-control"
+        type="number"
+        oninvalid="setCustomValidity('El campo es obligatorio')"
+        oninput="setCustomValidity('')"
+        min="0"
+        id="garantia"
+        name="garantia"
+        placeholder="Ingrese garantia"
+        [(ngModel)]="item.garantia"
+        required
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <app-combo-estado
+        [dibujar]="item.estado"
+        (emity)="seleccionestado($event)"
+      ></app-combo-estado>
+    </div>
+    <div class="col-lg-6">
+      <app-combo-modelo-equipo
+        [dibujar]="item.modelo"
+        (emity)="seleccionmodelo($event)"
+      ></app-combo-modelo-equipo>
     </div>
   </div>
   <div class="row">
