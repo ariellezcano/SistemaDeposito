@@ -3,6 +3,7 @@ import { Proveedor } from "./proveedor";
 export class OrdenCompra{
 
     id!: Number;
+    nroExpte!: string;//agregadoNuevo
     nroOrdenCompra!: string;
     nroLicitacion!: string;//agregadonuevo
     nroPreadjudicacion!:string;//agregadonuevo
@@ -14,7 +15,6 @@ export class OrdenCompra{
     fechaCompra!: Date;
     tipoCompra!: string;
     estadoCompra!: string;
-    nroExpte!: string;//agregadoNuevo
     activo!: Boolean;
 
     constructor(){
