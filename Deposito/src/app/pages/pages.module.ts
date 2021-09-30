@@ -26,6 +26,8 @@ import { LstEstadoEquipoComponent } from './lst/lst-estado-equipo/lst-estado-equ
 import { AbmEstadoEquipoComponent } from './frm-abm/abm-estado-equipo/abm-estado-equipo.component';
 import { LstEquipoComponent } from './lst/lst-equipo/lst-equipo.component';
 import { AbmEquipoComponent } from './frm-abm/abm-equipo/abm-equipo.component';
+import { DetalleCompraComponent } from './lst/detalle-compra/detalle-compra.component';
+import { OrdenCompraComponent } from './lst/orden-compra/orden-compra.component';
 
 @NgModule({
     declarations:[
@@ -52,6 +54,8 @@ import { AbmEquipoComponent } from './frm-abm/abm-equipo/abm-equipo.component';
         AbmEstadoEquipoComponent,
         LstEquipoComponent,
         AbmEquipoComponent,
+        DetalleCompraComponent,
+        OrdenCompraComponent,
     ], 
     exports: [
         AbmTipoEquipamientoComponent,

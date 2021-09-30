@@ -8,6 +8,9 @@ import { LstProveedorComponent } from "./lst/lst-proveedor/lst-proveedor.compone
 import { LstTipoequipamientoComponent } from "./lst/lst-tipoequipamiento/lst-tipoequipamiento.component";
 import { LstEstadoEquipoComponent } from "./lst/lst-estado-equipo/lst-estado-equipo.component";
 import { LstEquipoComponent } from "./lst/lst-equipo/lst-equipo.component";
+import { DetalleCompra } from "../modelo/index.models";
+import { DetalleCompraComponent } from "./lst/detalle-compra/detalle-compra.component";
+import { OrdenCompraComponent } from "./lst/orden-compra/orden-compra.component";
 
 const routes: Routes = [
     {
@@ -19,8 +22,9 @@ const routes: Routes = [
         {path: "principal/proveedor", component: LstProveedorComponent},
         {path: "principal/estado", component: LstEstadoEquipoComponent},
         {path: "principal/equipo", component: LstEquipoComponent},
-
-        ]
+        {path: "principal/detalle", component: DetalleCompraComponent},
+        {path: "principal/ordenCompra", component: OrdenCompraComponent},   
+    ]
     }
 ];
 

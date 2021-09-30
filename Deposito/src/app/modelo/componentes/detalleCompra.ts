@@ -6,7 +6,7 @@ export class DetalleCompra{
 
     id!: Number;
     ordenCompra: OrdenCompra;
-    CantidadCompra!: number;
+    cantidadCompra!: number;
     cantidadIngreso!:number;
     observaciones!: string;
     personalRecibe!: Persona;

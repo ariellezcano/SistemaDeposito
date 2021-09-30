@@ -15,8 +15,8 @@ export const ROUTES: RouteInfo[] = [
 
   { path: 'estado', title: 'Estado',  icon:'users_single-02', class: '' },
   { path: 'equipo', title: 'Equipo',  icon:'design_bullet-list-67', class: '' },
-  { path: 'nombre/path', title: 'link 7',  icon:'text_caps-small', class: '' },
-  { path: 'nombre/path', title: 'link 8',  icon:'objects_spaceship', class: '' }
+  { path: 'detalle', title: 'Detalle de Compra',  icon:'text_caps-small', class: '' },
+  { path: 'ordenCompra', title: 'Orden de Compra',  icon:'objects_spaceship', class: '' }
 
 ];
 

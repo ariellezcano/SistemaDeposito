@@ -10,9 +10,9 @@ export class OrdenCompra{
     notPreadjudicacion!:string;//agregadonuevo
     nroFactura!:string;//agregadonuevo
     ordenPago!:string;//agregadonuevo
-    fechaPagoCompra!: Date;
+    fechaPagoCompra!: any;
     proveedor: Proveedor;
-    fechaCompra!: Date;
+    fechaCompra!: any;
     tipoCompra!: string;
     estadoCompra!: string;
     activo!: Boolean;
