@@ -1,25 +1,55 @@
 <form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="title">Identificación Policial</label>
-        <input
-          class="form-control"
-          type="text"
-          oninvalid="setCustomValidity('El campo es obligatorio')"
-          oninput="setCustomValidity('')"
-          minlength="4"
-          id="idPolicial"
-          name="idPolicial"
-          placeholder="Ingrese Id. policial"
-          [(ngModel)]="item.idPolicial"
-          required
-          />
-      </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="title">Identificación Policial</label>
+      <input
+        class="form-control"
+        type="text"
+        oninvalid="setCustomValidity('El campo es obligatorio')"
+        oninput="setCustomValidity('')"
+        minlength="4"
+        id="idPolicial"
+        name="idPolicial"
+        placeholder="Ingrese Id. policial"
+        [(ngModel)]="item.idPolicial"
+      />
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
+    <div class="form-group col-md-6">
+      <label for="title">Número Serie</label>
+      <input
+        class="form-control"
+        type="text"
+        oninvalid="setCustomValidity('El campo es obligatorio')"
+        oninput="setCustomValidity('')"
+        minlength="4"
+        id="nroSerie"
+        name="nroSerie"
+        placeholder="Ingrese serie"
+        [(ngModel)]="item.nroSerie"
+        required
+      />
     </div>
-  </form>
-  
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="title">Tipo adquisición</label>
+      <select
+        oninvalid="setCustomValidity('El campo es obligatorio')"
+        oninput="setCustomValidity('')"
+        [(ngModel)]="item.tipoAlta"
+        name="tipoAlta"
+        id="tipoAlta"
+        required
+      >
+        <option value="Adquisicion Policial">Adquisicion Policial</option>
+        <option value="Donación">Donación</option>
+        <option value="Secuestro">Secuestro</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+</form>
