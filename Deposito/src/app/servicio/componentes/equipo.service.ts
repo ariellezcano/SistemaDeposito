@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class EquipoService {
   api;
 
   constructor(private http: HttpClient) {
-    this.api = UturuncoUtils.URL + 'equipo/';
+    this.api =  environment.URL  + 'equipo/';
   }
 
   /* particularidad de la entidad */

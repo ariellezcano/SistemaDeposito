@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { UturuncoUtils } from '../../utils/uturuncoUtils';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class DetalleCompraService {
     api;
 
     constructor(private http: HttpClient) {
-        this.api = UturuncoUtils.URL + "detalleCompra/";
+        this.api =  environment.URL  + "detalleCompra/";
     }
 
 

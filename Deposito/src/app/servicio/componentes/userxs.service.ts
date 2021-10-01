@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UturuncoUtils } from '../../utils/uturuncoUtils';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UserxsService {
   api;
 
   constructor(private http: HttpClient) {
-    this.api = UturuncoUtils.URLPOLD + "exe/";
+    this.api =  environment.URLPOLD  + "exe/";
   }
 
 

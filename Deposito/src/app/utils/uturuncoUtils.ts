@@ -2,22 +2,6 @@ import { HttpHeaders } from '@angular/common/http';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 export class UturuncoUtils {
-  
-  /* servidor de produccion */
-  // static URL = "http://policiadigital.chaco.gob.ar:7654/";
-  // static URLPOLD = "http://policiadigital.chaco.gob.ar:3000/";
-
-  /* servidor local */
-  static URL = "http://10.125.31.150:3001/";
-  static URLPOLD = "http://10.125.31.150:3000/";
-
-  /* servidor de testing (PRUEBA) */
-  // static URL = 'http://10.125.31.241:3001/';
-  // static URLPOLD = 'http://10.125.31.150:3000/';
-  
-  
-  
-  // static loc = window.sessionStorage;
 
   public static setSession(key: string, data: string) {
     localStorage.setItem(key, data);
