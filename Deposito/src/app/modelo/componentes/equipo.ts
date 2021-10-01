@@ -12,16 +12,13 @@ export class Equipo {
   tipoEquipo: TipoEquipo;
   modelo: Modelo;
   situacion!: String; //'A ASIGNAR',/*REASIGNAR ASIGNADO*/
-//'A ASIGNAR',/*REASIGNAR ASIGNADO*/
-  //'A ASIGNAR',/*REASIGNAR ASIGNADO*/
   idPolicial!: String;
   nroSerie!: String;
   observacion!: String;
   fechaAlta!: Date;
   garantia!: Number;
-  fechaAsignacion!: Date;
+  // fechaAsignacion!: Date;
   tipoAlta!: string; //adquisicion, donacion, secuestro
- //adquisicion, donacion, secuestro
   activo!: Boolean;
 
   constructor() {
@@ -32,7 +29,6 @@ export class Equipo {
     this.modelo = new Modelo();
     this.tipoEquipo = new TipoEquipo();
     this.fechaAlta = new Date();
-    this.fechaAsignacion = new Date();
   
   }
 

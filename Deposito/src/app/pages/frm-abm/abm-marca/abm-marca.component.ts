@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class AbmMarcaComponent implements OnInit {
 
   @Output()
-  finalizado = new EventEmitter<Boolean>();
+  finalizado = new EventEmitter<Marca>();
   
   item!: Marca;
   form!: NgForm;
@@ -43,8 +43,13 @@ async editar(){
 
 }
 async crear(){
-  this.finalizado.emit(true);
-  console.log(this.item)
+  this.item.activo = true;
+  if (this.item.nombre.length > 0){
+    this.finalizado.emit(this.item);
+  
+  }else{
+    Swal.fire("Rellene el campo obligatorio")
+  }
   // const data = await this.wsdl.doInsert(this.item).then();
   //     const res = JSON.parse(JSON.stringify(data));
   //     if (res.status === 200) {

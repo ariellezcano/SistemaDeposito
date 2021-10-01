@@ -19,25 +19,39 @@ export class LstMarcaComponent implements OnInit {
 
 
   //evento que envia los datos del abm al listado
-  evento(event: Boolean) {
+  evento(event: Marca) {
     console.log('se creo correctamente', this.item);
+    this.items.push(event)
     this.cerrar.nativeElement.click();
   }
 
   constructor() {
+    
     //incialializa el array en vacio
     this.items = [];
-    //recorre el bucle dando 5 vueltas
-    for (let index = 0; index < 5; index++) {
-      //inicializa el objeto
-      this.item = new Marca();
+   
+    // recorre el bucle dando 5 vueltas
+    //for (let index = 0; index < 5; index++) {
+      // inicializa el objeto
+      //this.item = new Marca();
       // agrega los datos del modelo
-      this.item.id = index + 1;
-      this.item.nombre = 'HP' + index + 1;
-      this.item.activo = true;
-      this.items.push(this.item);
-    }
+      // this.item.id = index + 1;
+      // this.item.nombre = 'HP' + index + 1;
+      // this.item.activo = true;
+      // this.items.push(this.item);
+   // }
   }
 
-  ngOnInit(): void {}
+  listar(){
+    for (let i of this.items) {
+      this.item = new Marca();
+      this.item.id;
+      this.item.nombre;  
+    }
+    console.log(this.items)
+  }
+
+  ngOnInit(): void {
+    this.listar();
+  }
 }

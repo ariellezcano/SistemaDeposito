@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Equipo, EstadoEquipo, Modelo, Proveedor } from 'src/app/modelo/index.models';
+import { Equipo, EstadoEquipo, Modelo, Proveedor, TipoEquipo } from 'src/app/modelo/index.models';
 import { EquipoService } from 'src/app/servicio/index.service';
 
 @Component({
@@ -35,6 +35,11 @@ export class AbmEquipoComponent implements OnInit {
   seleccionmodelo(event: Modelo){
     this.item.modelo = event;
     console.log("soy el papa" , this.item.modelo)
+  }
+
+  selecciontipoEquipo(event: TipoEquipo){
+    this.item.tipoEquipo = event;
+    console.log("soy el papa" , this.item.tipoEquipo)
   }
 
   accion(f:NgForm){
