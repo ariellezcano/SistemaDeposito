@@ -1,6 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Marca } from 'src/app/modelo/index.models';
 import { MarcaService } from 'src/app/servicio/index.service';
+import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
+import Swal from 'sweetalert2';
+import { FilMarcaComponent } from '../../filtros/fil-marca/fil-marca.component';
 
 @Component({
   selector: 'app-lst-marca',
@@ -8,50 +12,94 @@ import { MarcaService } from 'src/app/servicio/index.service';
   styleUrls: ['./lst-marca.component.scss'],
 })
 export class LstMarcaComponent implements OnInit {
-  entity = 'Listado de marcas';
-
-  item!: Marca;
-  items!: Marca[];
-
-  
+  @ViewChild(FilMarcaComponent, { static: true })
+  fil!: FilMarcaComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
 
+  entity = 'Marca';
 
-  //evento que envia los datos del abm al listado
-  evento(event: Marca) {
-    console.log('se creo correctamente', this.item);
-    this.items.push(event)
-    this.cerrar.nativeElement.click();
-  }
+  items: Marca[];
+  item: Marca;
 
-  constructor() {
-    
-    //incialializa el array en vacio
+  procesando!: Boolean;
+
+  constructor(private wsdl: MarcaService, private router: Router) {
+    this.item = new Marca();
     this.items = [];
-   
-    // recorre el bucle dando 5 vueltas
-    //for (let index = 0; index < 5; index++) {
-      // inicializa el objeto
-      //this.item = new Marca();
-      // agrega los datos del modelo
-      // this.item.id = index + 1;
-      // this.item.nombre = 'HP' + index + 1;
-      // this.item.activo = true;
-      // this.items.push(this.item);
-   // }
   }
 
-  listar(){
-    for (let i of this.items) {
-      this.item = new Marca();
-      this.item.id;
-      this.item.nombre;  
+  ngOnInit() {
+
+  }
+  /* esto sirve para cuado hay combobox */
+  select(item: Marca) {
+    this.item = item;
+  }
+
+  cancel() {
+    this.item = new Marca();
+    this.fil.list();
+  }
+
+  async setResultCancel(event: Boolean) {
+    UturuncoUtils.showToas('Operación cancelada', 'info');
+  }
+
+  setResult(event: any) {
+    this.cancel();
+  }
+
+  evento(event: Boolean) {
+    UturuncoUtils.showToas('Se creo correctamente', 'success');
+    this.cerrar.nativeElement.click();
+    this.fil.list();
+  }
+
+  preDelete(item: Marca) {
+    this.item = new Marca();
+    this.item = item;
+
+    Swal.fire({
+      title: 'Esta Seguro?',
+      text: '¡No podrás recuperar este archivo ' + item.nombre + '!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '¡Eliminar!',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.value) {
+        this.delete();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        UturuncoUtils.showToas('Tu archivo esta seguro :)', 'warning');
+      }
+    });
+  }
+
+  async delete() {
+    try {
+      this.procesando = true;
+      const res = await this.wsdl.doDelete(this.item.id).then();
+      const result = JSON.parse(JSON.stringify(res));
+      if (result.code == 200) {
+        UturuncoUtils.showToas(result.msg, 'success');
+        this.cancel();
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
     }
-    console.log(this.items)
+    this.procesando = false;
   }
 
-  ngOnInit(): void {
-    this.listar();
+  doFound(event: Marca[]) {
+    this.items = event;
+  }
+
+  linkear(id?: Number) {
+    this.router.navigateByUrl(this.entity + '/abm/' + id);
   }
 }

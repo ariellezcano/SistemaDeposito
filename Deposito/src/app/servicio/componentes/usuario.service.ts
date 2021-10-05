@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UturuncoUtils } from '../../utils/uturuncoUtils';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -15,7 +16,7 @@ export class UsuarioService {
   api;
 
   constructor(private http: HttpClient) {
-    this.api = UturuncoUtils.URLPOLD + "usuario/";
+    this.api = environment.URLPOLD + "usuario/";
   }
 
   /* particularidad de la entidad */

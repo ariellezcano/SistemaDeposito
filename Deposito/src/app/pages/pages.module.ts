@@ -14,23 +14,17 @@ import { WgCargandoComponent } from './wg-cargando/wg-cargando.component';
 import { WgPaginateComponent } from './wg-paginate/wg-paginate.component';
 import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
 import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
-import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
 import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
 import { ComboModeloComponent } from './componentes/combo-modelo/combo-modelo.component';
-import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
 import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
 import { AbmTipoEquipamientoComponent } from './frm-abm/abm-tipo-equipamiento/abm-tipo-equipamiento.component';
-import { LstTipoequipamientoComponent } from './lst/lst-tipoequipamiento/lst-tipoequipamiento.component';
-import { LstEstadoEquipoComponent } from './lst/lst-estado-equipo/lst-estado-equipo.component';
 import { AbmEstadoEquipoComponent } from './frm-abm/abm-estado-equipo/abm-estado-equipo.component';
-import { LstEquipoComponent } from './lst/lst-equipo/lst-equipo.component';
 import { AbmEquipoComponent } from './frm-abm/abm-equipo/abm-equipo.component';
-import { DetalleCompraComponent } from './lst/detalle-compra/detalle-compra.component';
-import { OrdenCompraComponent } from './lst/orden-compra/orden-compra.component';
 import { ComboProveedorComponent } from './componentes/combo-proveedor/combo-proveedor.component';
 import { ComboEstadoComponent } from './componentes/combo-estado/combo-estado.component';
 import { ComboModeloEquipoComponent } from './componentes/combo-modelo-equipo/combo-modelo-equipo.component';
 import { ComboTipoEquipoComponent } from './componentes/combo-tipo-equipo/combo-tipo-equipo.component';
+import { FilMarcaComponent } from './filtros/fil-marca/fil-marca.component';
 
 @NgModule({
     declarations:[
@@ -45,23 +39,17 @@ import { ComboTipoEquipoComponent } from './componentes/combo-tipo-equipo/combo-
         WgPaginateComponent,
         LstMarcaComponent,
         AbmMarcaComponent,
-        LstModeloComponent,
         AbmModeloComponent,
         ComboModeloComponent,
-        LstProveedorComponent,
         AbmProveedorComponent,
         AbmTipoEquipamientoComponent,
-        LstTipoequipamientoComponent,
-        LstEstadoEquipoComponent,
         AbmEstadoEquipoComponent,
-        LstEquipoComponent,
         AbmEquipoComponent,
-        DetalleCompraComponent,
-        OrdenCompraComponent,
         ComboProveedorComponent,
         ComboEstadoComponent,
         ComboModeloEquipoComponent,
         ComboTipoEquipoComponent,
+        FilMarcaComponent,
     ], 
     exports: [
         AbmTipoEquipamientoComponent,
