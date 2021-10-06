@@ -17,13 +17,13 @@ export class LstPersonaComponent implements OnInit {
   fil!: FilPersonaComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-
-  entity = 'persona';
+  entity = 'Personas';
+  entidad = 'principal/persona';
 
   items: Persona[];
   item: Persona;
 
-  proccess: Boolean | undefined;
+  procesando!: Boolean;
 
   constructor(private wsdl: PersonaService, private router: Router) {
     this.item = new Persona();
@@ -33,11 +33,7 @@ export class LstPersonaComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  preNew() {
-    this.item = new Persona();
-  }
-
+  /* esto sirve para cuado hay combobox */
   select(item: Persona) {
     this.item = item;
   }
@@ -47,8 +43,8 @@ export class LstPersonaComponent implements OnInit {
     this.fil.list();
   }
 
-  async setResultCancel(event: boolean) {
- //   UturuncoUtils.showToas('Operación cancelada', 'info');
+  async setResultCancel(event: Boolean) {
+    UturuncoUtils.showToas('Operación cancelada', 'info');
   }
 
   setResult(event: any) {
@@ -56,7 +52,7 @@ export class LstPersonaComponent implements OnInit {
   }
 
   evento(event: Boolean) {
-   alert('Se creo correctamente');
+    UturuncoUtils.showToas('Se creo correctamente', 'success');
     this.cerrar.nativeElement.click();
     this.fil.list();
   }
@@ -74,41 +70,39 @@ export class LstPersonaComponent implements OnInit {
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-    }).then((result: any) => {
+    }).then((result) => {
       if (result.value) {
-       // this.delete();
-       
+        this.delete();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-       // UturuncoUtils.showToas('Tu archivo esta seguro :)', 'warning');
+        UturuncoUtils.showToas('Tu archivo esta seguro :)', 'warning');
       }
     });
   }
 
   async delete() {
     try {
-      this.proccess = true;
+      this.procesando = true;
       const res = await this.wsdl.doDelete(this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
-      console.log(result);
       if (result.code == 200) {
-      //  UturuncoUtils.showToas(result.msg, 'success');
+        UturuncoUtils.showToas(result.msg, 'success');
         this.cancel();
       } else {
-      //  UturuncoUtils.showToas(result.msg, 'error');
+        UturuncoUtils.showToas(result.msg, 'error');
       }
-    } catch (error) {
-     // UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
     }
-    this.proccess = false;
+    this.procesando = false;
   }
 
   doFound(event: Persona[]) {
     this.items = event;
-    console.log (event)
-
   }
 
-  
+  linkear(id?: Number) {
+    this.router.navigateByUrl(this.entidad + '/abm/' + id);
+  }  
 
 
 }

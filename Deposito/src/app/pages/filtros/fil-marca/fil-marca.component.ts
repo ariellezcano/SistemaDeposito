@@ -10,6 +10,7 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 })
 export class FilMarcaComponent implements OnInit {
 
+  
   @Output()
   filter: EventEmitter<Marca[]> = new EventEmitter<Marca[]>();
 
@@ -85,6 +86,5 @@ export class FilMarcaComponent implements OnInit {
     }
 
   }
-
 
 }

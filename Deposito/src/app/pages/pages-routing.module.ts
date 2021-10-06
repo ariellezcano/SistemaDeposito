@@ -14,6 +14,8 @@ import { AbmProveedorComponent } from "./frm-abm/abm-proveedor/abm-proveedor.com
 import { LstProveedorComponent } from "./lst/lst-proveedor/lst-proveedor.component";
 import { AbmEquipoComponent } from "./frm-abm/abm-equipo/abm-equipo.component";
 import { LstEquipoComponent } from "./lst/lst-equipo/lst-equipo.component";
+import { AbmPersonaComponent } from "./frm-abm/abm-persona/abm-persona.component";
+import { LstPersonaComponent } from "./lst/lst-persona/lst-persona.component";
 
 
 const routes: Routes = [
@@ -82,6 +84,19 @@ const routes: Routes = [
               {
                 path: '',
                 component: LstEquipoComponent,
+              },
+            ],
+          },
+          {
+            path: 'principal/persona',
+            children: [
+              {
+                path: 'abm/:id',
+                component: AbmPersonaComponent,
+              },
+              {
+                path: '',
+                component: LstPersonaComponent,
               },
             ],
           },
