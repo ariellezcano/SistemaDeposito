@@ -1,11 +1,14 @@
 <div class="row">
   <div class="col-md-12">
+      <h2><b>ABM marca</b></h2>
       <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
-          <div class="form-group">
-              <label for="title">Rol</label>
+        <hr>  
+        <div class="form-group">
+              <label for="title">Nombre</label>
               <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese nombre"
                   [(ngModel)]="item.nombre" required />
           </div>
+          <hr>
           <div class="form-group">
               <button type="submit" [disabled]="procesando" name="btn"
                   class="btn btn-primary btn-lg btn-block float-left">

@@ -30,7 +30,7 @@ export class AbmMarcaComponent implements OnInit {
    */
   procesando!: Boolean;
 
- entity = 'Marca'
+ entity = 'principal/marca'
 
  id!: number;
  item: Marca;
@@ -103,7 +103,6 @@ export class AbmMarcaComponent implements OnInit {
 
      this.procesando = true;
 
-
      const res = await this.wsdl.doInsert(this.item).then();
      this.procesando = false
 
@@ -126,7 +125,7 @@ export class AbmMarcaComponent implements OnInit {
  }
 
  back() {
-   this.router.navigateByUrl(this.entity.toLowerCase() + "/lst");
+   this.router.navigateByUrl(this.entity.toLowerCase());
  }
 
 

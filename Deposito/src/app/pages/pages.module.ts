@@ -17,14 +17,24 @@ import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
 import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
 import { ComboModeloComponent } from './componentes/combo-modelo/combo-modelo.component';
 import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
-import { AbmTipoEquipamientoComponent } from './frm-abm/abm-tipo-equipamiento/abm-tipo-equipamiento.component';
-import { AbmEstadoEquipoComponent } from './frm-abm/abm-estado-equipo/abm-estado-equipo.component';
 import { AbmEquipoComponent } from './frm-abm/abm-equipo/abm-equipo.component';
 import { ComboProveedorComponent } from './componentes/combo-proveedor/combo-proveedor.component';
 import { ComboEstadoComponent } from './componentes/combo-estado/combo-estado.component';
 import { ComboModeloEquipoComponent } from './componentes/combo-modelo-equipo/combo-modelo-equipo.component';
 import { ComboTipoEquipoComponent } from './componentes/combo-tipo-equipo/combo-tipo-equipo.component';
 import { FilMarcaComponent } from './filtros/fil-marca/fil-marca.component';
+import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
+import { FilModeloComponent } from './filtros/fil-modelo/fil-modelo.component';
+import { FilTipoEquipoComponent } from './filtros/fil-tipo-equipo/fil-tipo-equipo.component';
+import { LstTipoEquipoComponent } from './lst/lst-tipo-equipo/lst-tipo-equipo.component';
+import { AbmTipoEquipoComponent } from './frm-abm/abm-tipo-equipo/abm-tipo-equipo.component';
+import { AbmEstadoEquipoComponent } from './frm-abm/abm-estado-equipo/abm-estado-equipo.component';
+import { LstEstadoEquipoComponent } from './lst/lst-estado-equipo/lst-estado-equipo.component';
+import { FilEstadoEquipoComponent } from './filtros/fil-estado-equipo/fil-estado-equipo.component';
+import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.component';
+import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
+import { LstEquipoComponent } from './lst/lst-equipo/lst-equipo.component';
+import { FilEquipoComponent } from './filtros/fil-equipo/fil-equipo.component';
 
 @NgModule({
     declarations:[
@@ -42,17 +52,26 @@ import { FilMarcaComponent } from './filtros/fil-marca/fil-marca.component';
         AbmModeloComponent,
         ComboModeloComponent,
         AbmProveedorComponent,
-        AbmTipoEquipamientoComponent,
-        AbmEstadoEquipoComponent,
         AbmEquipoComponent,
         ComboProveedorComponent,
         ComboEstadoComponent,
         ComboModeloEquipoComponent,
         ComboTipoEquipoComponent,
         FilMarcaComponent,
+        LstModeloComponent,
+        FilModeloComponent,
+        FilTipoEquipoComponent,
+        LstTipoEquipoComponent,
+        AbmTipoEquipoComponent,
+        AbmEstadoEquipoComponent,
+        LstEstadoEquipoComponent,
+        FilEstadoEquipoComponent,
+        FilProveedorComponent,
+        LstProveedorComponent,
+        LstEquipoComponent,
+        FilEquipoComponent,
     ], 
     exports: [
-        AbmTipoEquipamientoComponent,
     ],
     imports:[
         BrowserModule,

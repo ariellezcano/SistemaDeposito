@@ -1,0 +1,128 @@
+
+<form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
+    <div class="row">
+      <!-- nombre  -->
+      <div class="form-group col-md-6">
+        <label for="title">Proveedor</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="4"
+          id="nombre"
+          name="nombre"
+          placeholder="Nombre del proveedor"
+          [(ngModel)]="item.nombre"
+          required
+        />
+      </div>
+      <!-- responsable -->
+      <div class="form-group col-md-6">
+        <label for="title">Responsable</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="4"
+          id="responsable"
+          name="responsable"
+          placeholder="Responsable"
+          [(ngModel)]="item.responsable"
+          required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <!-- Direccion  -->
+      <div class="form-group col-md-6">
+        <label for="title">Dirección</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="4"
+          id="direccion"
+          name="direccion"
+          placeholder="Dirección del proveedor"
+          [(ngModel)]="item.direccion"
+          required
+        />
+      </div>
+      <!-- telefono -->
+      <div class="form-group col-md-6">
+        <label for="title">Nro. teléfono</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="6"
+          id="telefono"
+          name="telefono"
+          placeholder="Nro. teléfono del proveedor"
+          [(ngModel)]="item.telefono"
+          required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <!-- celular -->
+      <div class="form-group col-md-6">
+        <label for="title">Nro. celular</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="6"
+          id="celular"
+          name="celular"
+          placeholder="Nro. celular del proveedor"
+          [(ngModel)]="item.Celular"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="title">Correo electrónico</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="6"
+          id="correo"
+          name="correo"
+          placeholder="usuario@usuario.com"
+          [(ngModel)]="item.correo"
+          required
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="title">CUIT</label>
+        <input
+          class="form-control"
+          type="text"
+          oninvalid="setCustomValidity('El campo es obligatorio')"
+          oninput="setCustomValidity('')"
+          minlength="6"
+          id="cuit"
+          name="cuit"
+          placeholder="C.U.I.T del proveedor"
+          [(ngModel)]="item.cuit"
+          required
+        />
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </form>
+  

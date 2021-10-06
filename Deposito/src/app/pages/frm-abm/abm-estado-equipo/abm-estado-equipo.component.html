@@ -1,26 +1,32 @@
-<form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
-    <div class="row">
-      <div class="form-group col-md-12">
-        <label for="title">Ingrese estado</label>
-        <input
-          class="form-control"
-          type="text"
-          oninvalid="setCustomValidity('El campo es obligatorio')"
-          oninput="setCustomValidity('')"
-          minlength="4"
-          id="nombre"
-          name="nombre"
-          placeholder="Ingrese estado del equipo"
-          [(ngModel)]="item.nombre"
-          required
-        
-          />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </form>
+<div class="row">
+    <div class="col-md-12">
+        <h2><b>ABM estados</b></h2>
+        <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
+          <hr>  
+          <div class="form-group">
+                <label for="title">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese estado"
+                    [(ngModel)]="item.nombre" required />
+            </div>
+            <hr>
+            <div class="form-group">
+                <button type="submit" [disabled]="procesando" name="btn"
+                    class="btn btn-primary btn-lg btn-block float-left">
+                    Aceptar
+                    <i class="fa fa-spinner fa-spin" *ngIf="procesando" aria-hidden="true"></i>
+                </button>
+                &nbsp;
+                <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+                <ng-container *ngIf="id>0;then boton ">
+                </ng-container>
+                <ng-template #boton>
   
+                </ng-template>
+  
+            </div>
+        </form>
+  
+    </div>
+  </div>

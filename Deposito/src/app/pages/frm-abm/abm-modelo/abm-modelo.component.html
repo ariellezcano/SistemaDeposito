@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
+<!-- <form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
   <div class="row">
     <div class="form-group col-md-6">
       <label for="title">Nombre del modelo</label>
@@ -29,4 +29,42 @@
       <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
   </div>
-</form>
+</form> -->
+<div class="row">
+  <div class="col-md-12">
+      <h2><b>ABM modelo</b></h2>
+      <hr>
+      <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
+          <div class="form-group">
+              <label for="title">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese nombre"
+                  [(ngModel)]="item.nombre" required />
+          </div>
+          <div class="form-group">
+            <app-combo-modelo required
+              [dibujar]="item.marca"
+              (emity)="seleccionCombo($event)"
+            ></app-combo-modelo>
+          </div>
+          <hr>
+          <div class="form-group">
+              <button type="submit" [disabled]="procesando" name="btn"
+                  class="btn btn-primary btn-lg btn-block float-left">
+                  Aceptar
+                  <i class="fa fa-spinner fa-spin" *ngIf="procesando" aria-hidden="true"></i>
+              </button>
+              &nbsp;
+              <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+                  <i class="fas fa-arrow-left"></i> Volver
+              </a>
+              <ng-container *ngIf="id>0;then boton ">
+              </ng-container>
+              <ng-template #boton>
+
+              </ng-template>
+
+          </div>
+      </form>
+
+  </div>
+</div>

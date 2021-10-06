@@ -16,8 +16,8 @@ export class LstMarcaComponent implements OnInit {
   fil!: FilMarcaComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-
-  entity = 'Marca';
+  entity = 'Marcas';
+  entidad = 'principal/marca';
 
   items: Marca[];
   item: Marca;
@@ -100,6 +100,6 @@ export class LstMarcaComponent implements OnInit {
   }
 
   linkear(id?: Number) {
-    this.router.navigateByUrl(this.entity + '/abm/' + id);
+    this.router.navigateByUrl(this.entidad + '/abm/' + id);
   }
 }

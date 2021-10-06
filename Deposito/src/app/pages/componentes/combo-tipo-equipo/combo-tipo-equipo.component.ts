@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TipoEquipo } from 'src/app/modelo/index.models';
-import { TipoEquipamientoService } from 'src/app/servicio/index.service';
+import { TipoEquipoService } from 'src/app/servicio/index.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,7 +23,7 @@ export class ComboTipoEquipoComponent implements OnInit {
   @Output()
   opcionseleccionada!: TipoEquipo;
 
-  constructor(private wsdl: TipoEquipamientoService) {
+  constructor(private wsdl: TipoEquipoService) {
     this.item = new TipoEquipo();
     this.items = [];
     this.listar();
