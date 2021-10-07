@@ -6,11 +6,9 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 @Component({
   selector: 'app-fil-marca',
   templateUrl: './fil-marca.component.html',
-  styleUrls: ['./fil-marca.component.scss']
+  styleUrls: ['./fil-marca.component.scss'],
 })
 export class FilMarcaComponent implements OnInit {
-
-  
   @Output()
   filter: EventEmitter<Marca[]> = new EventEmitter<Marca[]>();
 
@@ -26,7 +24,7 @@ export class FilMarcaComponent implements OnInit {
 
   public lastPage!: Number;
   public count!: Number;
-  public limits: Number[] = [5, 10, 25, 50, 100];
+  public limits: Number[] = [10, 25, 50, 100, 150, 200];
 
   setPage(page: any) {
     this.page = page;
@@ -35,7 +33,7 @@ export class FilMarcaComponent implements OnInit {
 
   constructor(private wsdl: MarcaService) {
     this.procesando = false;
-    this.limit = 5;
+    this.limit = 10;
     this.page = 1;
   }
 
@@ -45,46 +43,52 @@ export class FilMarcaComponent implements OnInit {
 
   public async list() {
     try {
-
       this.procesando = true;
       if (this.search === undefined) {
         this.search = '';
       }
       let d = this.oldSearch !== this.search;
       if (d) {
-        this.limit = 5;
+        this.limit = 10;
         this.page = 1;
         this.oldSearch = this.search;
       }
 
       let c = this.search;
-      let data = await this.wsdl.getCriteria(c, this.page, this.limit).then();
+      // criteria, one, populate, sort, page, limit
+      const crit =
+        "(c.nombre like '%" +
+        this.search +
+        "%' or c.nombre like '%" +
+        this.search +
+        "%') AND c.activo=true";
+      let data = await this.wsdl
+        .doCriteria(crit, false, null, 'ORDER BY c.nombre ASC', this.page, this.limit)
+        .then();
 
       const result = JSON.parse(JSON.stringify(data));
+      console.log("resultado de la busqueda", result)
+      if (result.status == 200) {
+        this.filter.emit(result.data);
 
-      if (result.code == 200) {
-        this.filter.emit(result.data.docs);
-
-        this.page = parseInt(result.data.paginate.page);
-        this.lastPage = parseInt(result.data.paginate.lastPage);
-        this.nextPage = parseInt(result.data.paginate.nextPage);
-        this.prevPage = parseInt(result.data.paginate.prevPage);
-        this.count = parseInt(result.data.paginate.count);
-      } else if (result.code == 666) {
+        this.page = parseInt(result.paginate.page);
+        this.lastPage = parseInt(result.paginate.lastPage);
+        this.nextPage = parseInt(result.paginate.nextPage);
+        this.prevPage = parseInt(result.paginate.prevPage);
+        this.count = parseInt(result.paginate.count);
+      } else if (result.status == 666) {
         // logout app o refresh token
       } else {
         this.filter.emit([]);
-        console.log(result.msg)
+        console.log(result.msg);
         UturuncoUtils.showToas(result.msg, 'error');
       }
       this.procesando = false;
     } catch (error) {
       this.procesando = false;
-      UturuncoUtils.showToas("Error", 'error');
+      UturuncoUtils.showToas('Error', 'error');
     } finally {
-      this.procesando = false
+      this.procesando = false;
     }
-
   }
-
 }

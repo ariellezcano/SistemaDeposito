@@ -1,0 +1,23 @@
+<label for="title">Búsqueda de unidad</label>
+<form class="form-inline my-2 my-lg-0">
+    <input [(ngModel)]="criterio" name="criterio" class="form-control mr-sm-2" type="text" placeholder="Buscar">
+    <button (click)="buscarUnidad()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+
+<ng-container  *ngIf="items.length>0">
+
+<select
+style="width: 100%"
+required
+name="unidad"
+(ngModelChange)="seleccionaruni($event)" 
+[(ngModel)]="item"
+[compareWith]="compareFnUni"
+class="form-control form-sm"
+required
+>
+<option *ngFor="let item of items" [ngValue]="item">
+  [{{ item.nombre }}]
+</option>
+</select>
+</ng-container>

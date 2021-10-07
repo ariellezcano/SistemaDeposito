@@ -1,17 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Equipo } from 'src/app/modelo/index.models';
-import { EquipoService } from 'src/app/servicio/index.service';
+import { EntregaEquipoUnidades } from 'src/app/modelo/index.models';
+import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 
 @Component({
-  selector: 'app-fil-equipo',
-  templateUrl: './fil-equipo.component.html',
-  styleUrls: ['./fil-equipo.component.scss']
+  selector: 'app-fil-entrega-equipo-unidad',
+  templateUrl: './fil-entrega-equipo-unidad.component.html',
+  styleUrls: ['./fil-entrega-equipo-unidad.component.scss']
 })
-export class FilEquipoComponent implements OnInit {
+export class FilEntregaEquipoUnidadComponent implements OnInit {
 
   @Output()
-  filter: EventEmitter<Equipo[]> = new EventEmitter<Equipo[]>();
+  filter: EventEmitter<EntregaEquipoUnidades[]> = new EventEmitter<EntregaEquipoUnidades[]>();
 
   procesando: Boolean;
   public search!: String;
@@ -32,7 +32,7 @@ export class FilEquipoComponent implements OnInit {
     this.list();
   }
 
-  constructor(private wsdl: EquipoService) {
+  constructor(private wsdl: EntregaEquipoUnidadService) {
     this.procesando = false;
     this.limit = 10;
     this.page = 1;
@@ -58,13 +58,11 @@ export class FilEquipoComponent implements OnInit {
       let c = this.search;
       // criteria, one, populate, sort, page, limit
       const crit =
-        "(c.nroSerie like '%" +
-        this.search +
-        "%' or c.modelo.nombre like '%" +
+        "(c.unidad.nombre like '%" +
         this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
-        .doCriteria(crit, false, null, 'ORDER BY c.modelo.nombre ASC', this.page, this.limit)
+        .doCriteria(crit, false, null, 'ORDER BY c.unidad.nombre ASC', this.page, this.limit)
         .then();
 
       const result = JSON.parse(JSON.stringify(data));
