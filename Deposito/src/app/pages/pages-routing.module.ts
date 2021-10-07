@@ -14,9 +14,8 @@ import { AbmProveedorComponent } from "./frm-abm/abm-proveedor/abm-proveedor.com
 import { LstProveedorComponent } from "./lst/lst-proveedor/lst-proveedor.component";
 import { AbmEquipoComponent } from "./frm-abm/abm-equipo/abm-equipo.component";
 import { LstEquipoComponent } from "./lst/lst-equipo/lst-equipo.component";
-import { AbmPersonaComponent } from "./frm-abm/abm-persona/abm-persona.component";
-import { LstPersonaComponent } from "./lst/lst-persona/lst-persona.component";
-
+import { AbmEntregaEquipoUnidadComponent } from "./frm-abm/abm-entrega-equipo-unidad/abm-entrega-equipo-unidad.component";
+import { LstEntregaEquipoUnidadComponent } from "./lst/lst-entrega-equipo-unidad/lst-entrega-equipo-unidad.component";
 
 const routes: Routes = [
     {
@@ -88,15 +87,28 @@ const routes: Routes = [
             ],
           },
           {
-            path: 'principal/persona',
+            path: 'principal/estadoequipo',
             children: [
               {
                 path: 'abm/:id',
-                component: AbmPersonaComponent,
+                component: AbmEstadoEquipoComponent,
               },
               {
                 path: '',
-                component: LstPersonaComponent,
+                component: LstEstadoEquipoComponent,
+              },
+            ],
+          },
+          {
+            path: 'principal/entregaequipounidad',
+            children: [
+              {
+                path: 'abm/:id',
+                component: AbmEntregaEquipoUnidadComponent,
+              },
+              {
+                path: '',
+                component: LstEntregaEquipoUnidadComponent,
               },
             ],
           },

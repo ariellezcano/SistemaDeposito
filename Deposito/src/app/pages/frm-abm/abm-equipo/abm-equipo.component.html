@@ -50,9 +50,9 @@
               id="tipoAlta"
               required
             >
-              <option value="Adquisición Policial">Adquisición Policial</option>
-              <option value="Donación">Donación</option>
-              <option value="Secuestro">Secuestro</option>
+              <option value="AD">Adquisición Policial</option>
+              <option value="DO">Donación</option>
+              <option value="SE">Secuestro</option>
             </select>
           </div>
           <!-- fecha alta equipo -->
@@ -161,17 +161,16 @@
               <button type="submit" [disabled]="procesando" name="btn"
                   class="btn btn-primary btn-lg btn-block float-left">
                   Aceptar
-                  <i class="fa fa-spinner fa-spin" *ngIf="procesando" aria-hidden="true"></i>
+                  <ng-container *ngIf="getProceso();then mostrar" ></ng-container>
+                  <ng-template #mostrar>
+                    <i class="fa fa-spinner fa-spin"  aria-hidden="true"></i>
+                  </ng-template>
+                  
               </button>
               &nbsp;
               <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
                   <i class="fas fa-arrow-left"></i> Volver
               </a>
-              <ng-container *ngIf="id>0;then boton ">
-              </ng-container>
-              <ng-template #boton>
-
-              </ng-template>
 
           </div>
       </form>

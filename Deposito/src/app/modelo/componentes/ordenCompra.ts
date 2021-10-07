@@ -15,11 +15,12 @@ export class OrdenCompra{
     fechaCompra!: any;
     tipoCompra!: string;
     estadoCompra!: string;
-    activo!: Boolean;
+    activo: Boolean;
 
     constructor(){
        this.proveedor=new Proveedor();
        this.fechaCompra = new Date();
-       this.fechaPagoCompra = new Date();       
+       this.fechaPagoCompra = new Date();   
+       this.activo = true;    
     }
 }

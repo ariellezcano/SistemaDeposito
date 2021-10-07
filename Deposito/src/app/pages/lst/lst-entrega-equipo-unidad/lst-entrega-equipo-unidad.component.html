@@ -10,25 +10,32 @@
             </a>
         </div>
   
-        <app-fil-persona (filter)="doFound($event)">
-        </app-fil-persona>
+        <app-fil-entrega-equipo-unidad (filter)="doFound($event)">
+        </app-fil-entrega-equipo-unidad>
   
         <div class="row table-responsive">
             <table class="table table-striped table-inverse">
                 <thead class="thead-inverse">
                     <tr>
-                        <th>Nro. DNI</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <!-- <th>id</th> -->
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Nro.serie|Id.Pol</th>
+                        <th>Tipo Equipo</th>
+                        <th>Unidad</th>
+                        <th>Fecha Entrega</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
                         <!-- <td scope="row">{{item.id}} </td> -->
-                        <td>{{ item.norDni }}</td>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.apellido }}</td>
+                        <td>{{ item.equipo.modelo.marca.nombre }}</td>
+                        <td>{{ item.equipo.modelo.nombre }}</td>
+                        <td>{{ item.equipo.nroSerie }} - {{ item.equipo.idPolicial }}</td>
+                        <td>{{ item.equipo.tipoEquipo.nombre }}</td>
+                        <td>{{ item.unidad.nombre }}</td>
+                        <td>{{ item.fechaEntrega}}</td>
                         <td>
                             <button type="button" title="Modificar" placement="top" show-delay="10"
                                 (click)="linkear(item.id)" class="btn btn-secondary btn-sm">
@@ -59,7 +66,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- <app-abm-persona (finalizado)="evento($event)" (cancelado)="setResultCancel($event)"></app-abm-persona> -->
+                <app-abm-marca (finalizado)="evento($event)" (cancelado)="setResultCancel($event)"></app-abm-marca>
             </div>
         </div>
     </div>

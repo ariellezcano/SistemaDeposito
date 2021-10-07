@@ -7,7 +7,7 @@ export { Proveedor } from './componentes/proveedor';
 export { TipoEquipo } from './componentes/tipoEquipo';
 export { Usuario } from './componentes/usuario';
 export { Equipo } from './componentes/equipo';
-export { EntregaEquipo } from './componentes/entregaEquipo';
+export { EntregaEquipoUnidades } from './componentes/entregaEquipoUnidades';
 export { EstadoEquipo } from './componentes/estadoEquipo'
 export { Jerarquia } from './componentes/jerarquia';
 export { Unidad } from './componentes/unidad';

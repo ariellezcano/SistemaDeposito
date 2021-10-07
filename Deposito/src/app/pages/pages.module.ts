@@ -4,9 +4,6 @@ import {PagesComponent} from './pages.component';
 import {HttpClientModule} from '@angular/common/http'
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { PagesRoutingModule } from './pages-routing.module';
-import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component';
-import { LstPersonaComponent } from './lst/lst-persona/lst-persona.component';
-import { AbmPersonaComponent } from './frm-abm/abm-persona/abm-persona.component';
 import { SidebarComponent } from './compartido/sidebar/sidebar.component';
 import { FooterComponent } from './compartido/footer/footer.component';
 import { NavComponent } from './compartido/nav/nav.component';
@@ -35,14 +32,16 @@ import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.com
 import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
 import { LstEquipoComponent } from './lst/lst-equipo/lst-equipo.component';
 import { FilEquipoComponent } from './filtros/fil-equipo/fil-equipo.component';
+import { LstEntregaEquipoUnidadComponent } from './lst/lst-entrega-equipo-unidad/lst-entrega-equipo-unidad.component';
+import { AbmEntregaEquipoUnidadComponent } from './frm-abm/abm-entrega-equipo-unidad/abm-entrega-equipo-unidad.component';
+import { FilEntregaEquipoUnidadComponent } from './filtros/fil-entrega-equipo-unidad/fil-entrega-equipo-unidad.component';
+import { FiltrounidadComponent } from './filtros/filtrounidad/filtrounidad.component';
+import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.component';
 
 @NgModule({
     declarations:[
         PagesComponent,
         SidebarComponent,
-        FilPersonaComponent,
-        LstPersonaComponent,
-        AbmPersonaComponent,
         NavComponent,
         FooterComponent,
         WgCargandoComponent,
@@ -70,6 +69,11 @@ import { FilEquipoComponent } from './filtros/fil-equipo/fil-equipo.component';
         LstProveedorComponent,
         LstEquipoComponent,
         FilEquipoComponent,
+        LstEntregaEquipoUnidadComponent,
+        AbmEntregaEquipoUnidadComponent,
+        FilEntregaEquipoUnidadComponent,
+        FiltrounidadComponent,
+        FiltroEquipoComponent,
     ], 
     exports: [
     ],

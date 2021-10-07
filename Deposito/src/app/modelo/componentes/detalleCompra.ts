@@ -12,7 +12,7 @@ export class DetalleCompra{
     personalRecibe!: Persona;
     fechaRecepcion!: Date;
     equipo!: Equipo;
-    activo!: Boolean;
+    activo: Boolean;
     
 
     constructor(){
@@ -20,6 +20,7 @@ export class DetalleCompra{
        this.personalRecibe = new Persona();
        this.fechaRecepcion = new Date();
        this.equipo = new Equipo();
+       this.activo=true;
       
     }
 }

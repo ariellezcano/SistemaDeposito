@@ -8,4 +8,5 @@ export { TipoEquipoService } from './componentes/tipoEquipo.service';
 export { UsuarioService } from './componentes/usuario.service';
 export { UserxsService } from './componentes/userxs.service';
 export { EstadoEquipoService } from './componentes/estado-equipo.service';
-export { EquipoService } from './componentes/equipo.service'
+export { EquipoService } from './componentes/equipo.service';
+export { UnidadService } from './componentes/unidad.service';

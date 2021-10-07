@@ -1,38 +1,6 @@
-<!-- <form #f="ngForm" (ngSubmit)="accion(f)" ngNativeValidate class="was-validated">
-  <div class="row">
-    <div class="form-group col-md-6">
-      <label for="title">Nombre del modelo</label>
-      <input
-        class="form-control"
-        type="text"
-        oninvalid="setCustomValidity('El campo es obligatorio')"
-        oninput="setCustomValidity('')"
-        minlength="4"
-        id="nombre"
-        name="nombre"
-        placeholder="Ingrese nombre de la marca"
-        [(ngModel)]="item.nombre"
-        required
-      />
-    </div>
-
-    <div class="col-lg-6">
-      <app-combo-modelo
-        [dibujar]="item.marca"
-        (emity)="seleccionoMarca($event)"
-      ></app-combo-modelo>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-  </div>
-</form> -->
 <div class="row">
   <div class="col-md-12">
-      <h2><b>ABM modelo</b></h2>
+      <h2><b>ABM Modelo</b></h2>
       <hr>
       <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
           <div class="form-group">
@@ -51,18 +19,16 @@
               <button type="submit" [disabled]="procesando" name="btn"
                   class="btn btn-primary btn-lg btn-block float-left">
                   Aceptar
-                  <i class="fa fa-spinner fa-spin" *ngIf="procesando" aria-hidden="true"></i>
+                  <ng-container *ngIf="getProceso();then mostrar" ></ng-container>
+                  <ng-template #mostrar>
+                    <i class="fa fa-spinner fa-spin"  aria-hidden="true"></i>
+                  </ng-template>
+                  
               </button>
               &nbsp;
               <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
                   <i class="fas fa-arrow-left"></i> Volver
               </a>
-              <ng-container *ngIf="id>0;then boton ">
-              </ng-container>
-              <ng-template #boton>
-
-              </ng-template>
-
           </div>
       </form>
 

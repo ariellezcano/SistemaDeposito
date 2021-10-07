@@ -1,32 +1,32 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Persona } from 'src/app/modelo/index.models';
-import { PersonaService } from 'src/app/servicio/index.service';
+import { EntregaEquipoUnidades } from 'src/app/modelo/index.models';
+import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
-import { FilPersonaComponent } from '../../filtros/fil-persona/fil-persona.component';
+import { FilEntregaEquipoUnidadComponent } from '../../filtros/fil-entrega-equipo-unidad/fil-entrega-equipo-unidad.component';
 
 @Component({
-  selector: 'app-lst-persona',
-  templateUrl: './lst-persona.component.html',
-  styleUrls: ['./lst-persona.component.scss']
+  selector: 'app-lst-entrega-equipo-unidad',
+  templateUrl: './lst-entrega-equipo-unidad.component.html',
+  styleUrls: ['./lst-entrega-equipo-unidad.component.scss']
 })
-export class LstPersonaComponent implements OnInit {
+export class LstEntregaEquipoUnidadComponent implements OnInit {
 
-  @ViewChild(FilPersonaComponent, { static: true })
-  fil!: FilPersonaComponent;
+  @ViewChild(FilEntregaEquipoUnidadComponent, { static: true })
+  fil!: FilEntregaEquipoUnidadComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-  entity = 'Personas';
-  entidad = 'principal/persona';
+  entity = 'Entrega de equipos';
+  entidad = 'principal/entregaEquipoUnidad';
 
-  items: Persona[];
-  item: Persona;
+  items: EntregaEquipoUnidades[];
+  item: EntregaEquipoUnidades;
 
   procesando!: Boolean;
 
-  constructor(private wsdl: PersonaService, private router: Router) {
-    this.item = new Persona();
+  constructor(private wsdl: EntregaEquipoUnidadService , private router: Router) {
+    this.item = new EntregaEquipoUnidades();
     this.items = [];
   }
 
@@ -34,12 +34,12 @@ export class LstPersonaComponent implements OnInit {
 
   }
   /* esto sirve para cuado hay combobox */
-  select(item: Persona) {
+  select(item: EntregaEquipoUnidades) {
     this.item = item;
   }
 
   cancel() {
-    this.item = new Persona();
+    this.item = new EntregaEquipoUnidades();
     this.fil.list();
   }
 
@@ -57,13 +57,13 @@ export class LstPersonaComponent implements OnInit {
     this.fil.list();
   }
 
-  preDelete(item: Persona) {
-    this.item = new Persona();
+  preDelete(item: EntregaEquipoUnidades) {
+    this.item = new EntregaEquipoUnidades();
     this.item = item;
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text: '¡No podrás recuperar este archivo ' + item.nombre + '!',
+      text: '¡No podrás recuperar este archivo ' + item.equipo.tipoEquipo.nombre + '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -96,13 +96,12 @@ export class LstPersonaComponent implements OnInit {
     this.procesando = false;
   }
 
-  doFound(event: Persona[]) {
+  doFound(event: EntregaEquipoUnidades[]) {
     this.items = event;
   }
 
   linkear(id?: Number) {
-    this.router.navigateByUrl(this.entidad + '/abm/' + id);
-  }  
-
+    this.router.navigateByUrl(this.entidad.toLowerCase() + '/abm/' + id);
+  }
 
 }

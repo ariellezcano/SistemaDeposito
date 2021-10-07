@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class EquipoService {
-    other_header: any;
+export class EntregaEquipoUnidadService {
+  other_header: any;
   api;
 
   constructor(private http: HttpClient) {
-  this.api = environment.URL + "comuEquipo/";
+  this.api = environment.URL + "comuEntregaEquipoUnidad/";
   
   }
   /* particularidad de la entidad */

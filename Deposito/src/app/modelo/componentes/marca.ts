@@ -2,9 +2,9 @@ export class Marca{
 
     id!: Number;
     nombre!: string;
-    activo!: Boolean;
+    activo: Boolean;
 
     constructor(){
-       
+        this.activo = true;
     }
 }

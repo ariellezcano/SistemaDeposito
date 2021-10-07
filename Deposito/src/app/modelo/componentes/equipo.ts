@@ -17,9 +17,9 @@ export class Equipo {
   observacion!: String;
   fechaAlta!: Date;
   garantia!: Number;
-  // fechaAsignacion!: Date;
+  fechaAsignacion!: Date;
   tipoAlta!: string; //adquisicion, donacion, secuestro
-  activo!: Boolean;
+  activo: Boolean;
 
   constructor() {
 
@@ -29,7 +29,7 @@ export class Equipo {
     this.modelo = new Modelo();
     this.tipoEquipo = new TipoEquipo();
     this.fechaAlta = new Date();
-  
+  this.activo = true;
   }
 
 }

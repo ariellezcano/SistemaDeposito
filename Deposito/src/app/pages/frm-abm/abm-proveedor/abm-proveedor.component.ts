@@ -52,7 +52,7 @@ export class AbmProveedorComponent implements OnInit {
        let data = await this.wsdl.doFind(this.id).then();
        let res = JSON.parse(JSON.stringify(data));
        if (res.code == 200) {
-         this.item = res.data;
+         this.item = res.status;
        }
      } else {
        this.item = new Proveedor();
@@ -81,10 +81,10 @@ export class AbmProveedorComponent implements OnInit {
      this.procesando = true;
      const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
      const result = JSON.parse(JSON.stringify(res));
-     if (result.code == 200) {
+     if (result.status == 200) {
        UturuncoUtils.showToas("Se actualizado correctamente", "success");
        this.finalizado.emit(true);
-     } else if (result.code == 666) {
+     } else if (result.status == 666) {
        // logout app o refresh token
      } else {
        UturuncoUtils.showToas(result.msg, "error");
@@ -105,12 +105,12 @@ export class AbmProveedorComponent implements OnInit {
 
      const result = JSON.parse(JSON.stringify(res));
 
-     if (result.code == 200) {
-       // this.item = result.data;
+     if (result.status == 200) {
+       // this.item = result.status;
        UturuncoUtils.showToas("Se creo correctemte", "success");
-
+       this.back() 
        this.finalizado.emit(true);
-     } else if (result.code == 666) {
+     } else if (result.status == 666) {
        // logout app o refresh token
      } else {
 
@@ -122,7 +122,9 @@ export class AbmProveedorComponent implements OnInit {
  }
 
  back() {
-   this.router.navigateByUrl(this.entity.toLowerCase());
+   this.router.navigateByUrl(this.entity);
  }
-
+ getProceso(){
+  return this.procesando
+}
 }

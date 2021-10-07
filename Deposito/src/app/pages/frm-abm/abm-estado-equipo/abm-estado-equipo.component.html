@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2><b>ABM estados</b></h2>
+        <h2><b>ABM Estado</b></h2>
         <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
           <hr>  
           <div class="form-group">
@@ -13,18 +13,16 @@
                 <button type="submit" [disabled]="procesando" name="btn"
                     class="btn btn-primary btn-lg btn-block float-left">
                     Aceptar
-                    <i class="fa fa-spinner fa-spin" *ngIf="procesando" aria-hidden="true"></i>
-                </button>
-                &nbsp;
-                <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
-                    <i class="fas fa-arrow-left"></i> Volver
-                </a>
-                <ng-container *ngIf="id>0;then boton ">
-                </ng-container>
-                <ng-template #boton>
-  
-                </ng-template>
-  
+                    <ng-container *ngIf="getProceso();then mostrar" ></ng-container>
+                  <ng-template #mostrar>
+                    <i class="fa fa-spinner fa-spin"  aria-hidden="true"></i>
+                  </ng-template>
+                  
+              </button>
+              &nbsp;
+              <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+                  <i class="fas fa-arrow-left"></i> Volver
+              </a>
             </div>
         </form>
   

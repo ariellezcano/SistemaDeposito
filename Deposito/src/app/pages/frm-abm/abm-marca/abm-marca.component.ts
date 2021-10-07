@@ -54,8 +54,8 @@ export class AbmMarcaComponent implements OnInit {
      if (this.id > 0) {
        let data = await this.wsdl.doFind(this.id).then();
        let res = JSON.parse(JSON.stringify(data));
-       if (res.code == 200) {
-         this.item = res.data;
+       if (res.status == 200) {
+         this.item = res.status;
        }
      } else {
        this.item = new Marca();
@@ -84,36 +84,36 @@ export class AbmMarcaComponent implements OnInit {
      this.procesando = true;
      const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
      const result = JSON.parse(JSON.stringify(res));
-     if (result.code == 200) {
+     if (result.status == 200) {
        UturuncoUtils.showToas("Se actualizado correctamente", "success");
        this.finalizado.emit(true);
-     } else if (result.code == 666) {
+     } else if (result.status == 666) {
        // logout app o refresh token
      } else {
        UturuncoUtils.showToas(result.msg, "error");
      }
    } catch (error: any) {
      UturuncoUtils.showToas("Excepción: " + error.message, "error");
+   }finally{
+    this.procesando = false;
    }
-   this.procesando = false;
  }
 
  async doCreate() {
    try {
 
      this.procesando = true;
-
+     this.item.activo=true;
      const res = await this.wsdl.doInsert(this.item).then();
-     this.procesando = false
 
      const result = JSON.parse(JSON.stringify(res));
 
-     if (result.code == 200) {
-       // this.item = result.data;
+     if (result.status == 200) {
+       // this.item = result.status;
        UturuncoUtils.showToas("Se creo correctemte", "success");
-
+      this.back() 
        this.finalizado.emit(true);
-     } else if (result.code == 666) {
+     } else if (result.status == 666) {
        // logout app o refresh token
      } else {
 
@@ -121,12 +121,19 @@ export class AbmMarcaComponent implements OnInit {
      }
    } catch (error: any) {
      UturuncoUtils.showToas("Excepción: " + error.message, "error");
+   }finally{
+    this.procesando = false
    }
+
  }
 
  back() {
    this.router.navigateByUrl(this.entity.toLowerCase());
  }
 
+
+ getProceso(){
+   return this.procesando
+ }
 
 }

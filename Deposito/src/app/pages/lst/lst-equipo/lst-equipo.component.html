@@ -31,13 +31,13 @@
                 <tbody>
                     <tr *ngFor="let item of items">
                         <!-- <td scope="row">{{item.id}} </td> -->
-                        <td>{{ item.tipoEquipo.nombre }}</td>
+                        <td>{{ item.tipoEquipo.nombre}}</td>
                         <td>{{ item.nroSerie }}</td>
-                        <td>{{ item.modelo.marca.nombre }}</td>
-                        <td>{{ item.modelo.nombre }}</td>
-                        <td>{{ item.proveedor.nombre }}</td>
+                        <td>{{ item.modelo.marca.nombre | uppercase}}</td>
+                        <td>{{ item.modelo.nombre | uppercase}}</td>
+                        <td>{{ item.proveedor.nombre | uppercase}}</td>
                         <td>{{ item.estado.nombre }}</td>
-                        <td>{{ item.tipoAlta }}</td>
+                        <td>{{ item.tipoAlta | uppercase}}</td>
                         <td>
                             <button type="button" title="Modificar" placement="top" show-delay="10"
                                 (click)="linkear(item.id)" class="btn btn-secondary btn-sm">

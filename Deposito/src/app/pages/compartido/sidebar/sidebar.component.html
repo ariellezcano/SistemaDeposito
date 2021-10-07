@@ -15,7 +15,7 @@
           *ngFor="let menuItem of menuItems"
           class="{{ menuItem.class }} nav-item"
         >
-          <a [routerLink]="[menuItem.path]">
+          <a (click)="rutas(menuItem.path)">
             <i class="now-ui-icons {{ menuItem.icon }}"></i>
             <p>
               <i class="fas fa-angle-double-right"></i>
