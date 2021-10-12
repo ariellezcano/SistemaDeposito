@@ -1,22 +1,22 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UturuncoUtils } from '../../utils/uturuncoUtils';
+import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarcaService {
+export class DatoPolicialService {
   other_header: any;
   api;
 
   constructor(private http: HttpClient) {
-  this.api = environment.URL + "comuMarca/";
+  this.api = environment.URL + "datoPolicial/";
   
   }
   /* particularidad de la entidad */
 
-  getList(page: string | number, limit: string | number) {
+  getList(page: any, limit: any) {
     this.other_header = null;
     return this.http
       .get(this.api + page + "/" + limit, { headers: this.other_header })
@@ -79,6 +79,4 @@ export class MarcaService {
             return { code: 500, msg: err.message }
         });
 }
-
-
 }

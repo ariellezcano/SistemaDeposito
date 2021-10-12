@@ -21,6 +21,7 @@ export class FiltrounidadComponent implements OnInit {
   constructor(private wsdl: UnidadService) { }
 
   ngOnInit() {
+    this.items = []
   }
 
   compareFnUni(c1: Unidad, c2: Unidad): boolean {
@@ -29,6 +30,7 @@ export class FiltrounidadComponent implements OnInit {
 
   seleccionaruni(event: Unidad) {
     this.resultado.emit(event);
+
   }
 
   async buscarUnidad() {
@@ -39,6 +41,10 @@ export class FiltrounidadComponent implements OnInit {
     // alert(JSON.stringify(data))
     if (result.status === 200) {
       this.items = result.data;
+      if (this.items.length == 1){
+        this.item = this.items[0];
+        this.resultado.emit(this.item)
+       } 
       
 
     } else if (result.status === 666) {

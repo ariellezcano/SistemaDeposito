@@ -29,23 +29,22 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
-                        <!-- <td scope="row">{{item.id}} </td> -->
-                        <td>{{ item.equipo.modelo.marca.nombre }}</td>
-                        <td>{{ item.equipo.modelo.nombre }}</td>
+                        <td>{{ item.equipo.modelo.marca.nombre | uppercase }}</td>
+                        <td>{{ item.equipo.modelo.nombre | uppercase}}</td>
                         <td>{{ item.equipo.nroSerie }} - {{ item.equipo.idPolicial }}</td>
                         <td>{{ item.equipo.tipoEquipo.nombre }}</td>
                         <td>{{ item.unidad.nombre }}</td>
-                        <td>{{ item.fechaEntrega}}</td>
+                        <td>{{ item.fechaEntrega | date: "dd/MM/yyyy"}}</td>
                         <td>
                             <button type="button" title="Modificar" placement="top" show-delay="10"
                                 (click)="linkear(item.id)" class="btn btn-secondary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
                             &nbsp;
-                            <button type="button" title="Eliminar" placement="top" show-delay="10"
+                            <!-- <button type="button" title="Eliminar" placement="top" show-delay="10"
                                 (click)="preDelete(item)" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
                 </tbody>

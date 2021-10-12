@@ -20,9 +20,11 @@ export class FiltroEquipoComponent implements OnInit {
   constructor(private wsdl: EquipoService) { }
 
   ngOnInit() {
+    this.items = []
   }
 
-  compareFnUni(c1: Equipo, c2: Equipo): boolean {
+
+  compareFnEq(c1: Equipo, c2: Equipo): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
@@ -38,7 +40,10 @@ export class FiltroEquipoComponent implements OnInit {
     // alert(JSON.stringify(data))
     if (result.status === 200) {
       this.items = result.data;
-      
+      if (this.items.length == 1){
+        this.item = this.items[0];
+        this.resultado.emit(this.item)
+       } 
 
     } else if (result.status === 666) {
       // logout app o refresh token

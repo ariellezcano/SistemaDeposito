@@ -50,8 +50,8 @@ export class AbmEstadoEquipoComponent implements OnInit {
       if (this.id > 0) {
         let data = await this.wsdl.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
-        if (res.code == 200) {
-          this.item = res.status;
+        if (res.status == 200) {
+          this.item = res.data;
         }
       } else {
         this.item = new EstadoEquipo();
@@ -78,10 +78,11 @@ export class AbmEstadoEquipoComponent implements OnInit {
     try {
  
       this.procesando = true;
-      const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
+      const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
         UturuncoUtils.showToas("Se actualizado correctamente", "success");
+        this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
         // logout app o refresh token

@@ -77,14 +77,14 @@
             <label for="title">Nro. celular</label>
             <input
               class="form-control"
-              type="number"
+              type="text"
               oninvalid="setCustomValidity('El campo es obligatorio')"
               oninput="setCustomValidity('')"
               minlength="6"
               id="celular"
               name="celular"
               placeholder="Nro. celular del proveedor"
-              [(ngModel)]="item.Celular"
+              [(ngModel)]="item.celular"
               required
             />
           </div>

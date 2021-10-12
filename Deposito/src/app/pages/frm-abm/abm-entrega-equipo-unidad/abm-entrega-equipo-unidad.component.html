@@ -1,86 +1,119 @@
 <div class="row">
-    <div class="col-md-12">
-        <h2><b>ABM Entrega de Equipo a Unidades</b></h2>
-        <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
-          <hr>  
-          <div class="row">
-            <!-- Fecha Entrega -->
-            <div class="form-group col-md-6">
-              <label for="title">Fecha Entrega</label>
-              <input
-                class="form-control"
-                type="date"
-                oninvalid="setCustomValidity('El campo es obligatorio')"
-                oninput="setCustomValidity('')"
-                id="fechaEntrega"
-                name="fechaEntrega"
-                [(ngModel)]="item.fechaEntrega"
-                required
-              />
-            </div>
-            <!-- numero de nota -->
-            <div class="form-group col-md-6">
-              <label for="title">Número nota</label>
-              <input
-                class="form-control"
-                type="text"
-                oninvalid="setCustomValidity('El campo es obligatorio')"
-                oninput="setCustomValidity('')"
-                minlength="4"
-                id="nroNota"
-                name="nroNota"
-                placeholder="Ingrese nro. de nota"
-                [(ngModel)]="item.nroNota"
-                required
-              />
-            </div>
+  <div class="col-md-12">
+    <h2><b>ABM Entrega de Equipo a Unidades</b></h2>
+    <form
+      #f="ngForm"
+      (ngSubmit)="doAction(f)"
+      ngNativeValidate
+      class="was-validated"
+    >
+      <hr />
+      <div class="row">
+        <!-- Fecha Entrega -->
+        <div class="form-group col-md-6">
+          <label for="title">Fecha Entrega</label>
+          <input
+            class="form-control"
+            type="date"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            id="fechaEntrega"
+            name="fechaEntrega"
+            [(ngModel)]="item.fechaEntrega"
+            required
+          />
+        </div>
+        <!-- numero de nota -->
+        <div class="form-group col-md-6">
+          <label for="title">Número nota</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="nroNota"
+            name="nroNota"
+            placeholder="Ingrese nro. de nota"
+            [(ngModel)]="item.nroNota"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- select tipo alta -->
+        <div class="form-group col-md-6" required>
+          <app-filtrounidad
+            (resultado)="unidadesEncontradas($event)"
+          ></app-filtrounidad>
+        </div>
+        <div class="form-group col-md-6" required>
+          <app-filtro-equipo
+            (resultado)="equiposEncontrados($event)"
+          ></app-filtro-equipo>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <app-fil-persona (resultado)="personasEncontrados($event)"></app-fil-persona>
+        </div>
+          <div class="form-group col-md-6">
+            <label for="title">Tipo Entrega</label>
+            <select
+              class="form-control"
+              data-style="btn-primary"
+              oninvalid="setCustomValidity('El campo es obligatorio')"
+              oninput="setCustomValidity('')"
+              [(ngModel)]="item.tipoEntrega"
+              name="situacion"
+              id="situacion"
+              required
+            >
+              <!-- <option selected>Seleccione una opción</option> -->
+              <option value="PP">PRESTAMO PROVISORIO</option>
+              <option value="PC">PROVISION CON CARGO</option>
+              <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
+              
+            </select>
           </div>
-          <div class="row">
-            <!-- select tipo alta -->
-            <div class="form-group col-md-6" required>
-            <app-filtrounidad (resultado)="unidadesEncontradas($event)"></app-filtrounidad>
-            </div>
-            <div class="form-group col-md-6" required>
-              <app-filtro-equipo (resultado)="equiposEncontrados($event)"></app-filtro-equipo>
-              </div>
+
+        </div>
+     
+      <div class="row">
+        <!-- Observaciones -->
+        <div class="form-group col-md-12">
+          <div class="form-floating">
+            <label for="floatingTextarea">Observaciones</label>
+            <textarea
+              [(ngModel)]="item.observaciones"
+              class="form-control"
+              name="observacion"
+              placeholder="Observaciones del equipo"
+              id="observacion"
+            ></textarea>
           </div>
-          <div class="row">
-aca va el filtro persona
-          </div>
-          <div class="row">
-              <!-- Observaciones -->
-            <div class="form-group col-md-12">
-              <div class="form-floating">
-                <label for="floatingTextarea">Observaciones</label>
-                <textarea
-                  [(ngModel)]="item.observaciones"
-                  class="form-control"
-                  name="observacion"
-                  placeholder="Observaciones del equipo"
-                  id="observacion"
-                ></textarea>
-              </div>
-            </div>
-          </div>
-        
-            <hr>
-            <div class="form-group">
-                <button type="submit" [disabled]="procesando" name="btn"
-                    class="btn btn-primary btn-lg btn-block float-left">
-                    Aceptar
-                    <ng-container *ngIf="getProceso();then mostrar" ></ng-container>
-                    <ng-template #mostrar>
-                      <i class="fa fa-spinner fa-spin"  aria-hidden="true"></i>
-                    </ng-template>
-                    
-                </button>
-                &nbsp;
-                <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
-                    <i class="fas fa-arrow-left"></i> Volver
-                </a>
-  
-            </div>
-        </form>
-  
-    </div>
+        </div>
+      </div>
+
+      <hr />
+      <div class="form-group">
+        <button
+          type="submit"
+          [disabled]="procesando"
+          name="btn"
+          class="btn btn-primary btn-lg btn-block float-left"
+        >
+          Aceptar
+          <ng-container *ngIf="getProceso(); then mostrar"></ng-container>
+          <ng-template #mostrar>
+            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          </ng-template>
+        </button>
+        &nbsp;
+        <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+          <i class="fas fa-arrow-left"></i> Volver
+        </a>
+      </div>
+    </form>
   </div>
+</div>

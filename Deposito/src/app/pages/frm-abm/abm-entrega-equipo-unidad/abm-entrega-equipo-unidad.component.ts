@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EntregaEquipoUnidades, Equipo, Unidad } from 'src/app/modelo/index.models';
+import { DatoPolicial, EntregaEquipoUnidades, Equipo, Persona, Unidad } from 'src/app/modelo/index.models';
 import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
@@ -49,8 +49,8 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       if (this.id > 0) {
         let data = await this.wsdl.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
-        if (res.code == 200) {
-          this.item = res.status;
+        if (res.status == 200) {
+          this.item = res.data;
         }
       } else {
         this.item = new EntregaEquipoUnidades();
@@ -77,10 +77,11 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
     try {
  
       this.procesando = true;
-      const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
+      const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
         UturuncoUtils.showToas("Se actualizado correctamente", "success");
+        this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
         // logout app o refresh token
@@ -143,6 +144,15 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       Swal.fire('Seleccione Equipo')
     }
     }
+
+    personasEncontrados(event: DatoPolicial) {
+      if (event.id !== undefined){
+        this.item.recibe=event;
+      }
+      else{
+        Swal.fire('Seleccione Persona')
+      }
+      }
 
   
   // seleccionProveedor(event: Proveedor){

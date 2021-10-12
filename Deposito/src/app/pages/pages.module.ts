@@ -37,6 +37,7 @@ import { AbmEntregaEquipoUnidadComponent } from './frm-abm/abm-entrega-equipo-un
 import { FilEntregaEquipoUnidadComponent } from './filtros/fil-entrega-equipo-unidad/fil-entrega-equipo-unidad.component';
 import { FiltrounidadComponent } from './filtros/filtrounidad/filtrounidad.component';
 import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.component';
+import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component';
 
 @NgModule({
     declarations:[
@@ -74,6 +75,7 @@ import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.com
         FilEntregaEquipoUnidadComponent,
         FiltrounidadComponent,
         FiltroEquipoComponent,
+        FilPersonaComponent,
     ], 
     exports: [
     ],

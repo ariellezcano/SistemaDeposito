@@ -5,7 +5,7 @@ export class Proveedor{
     responsable!: string;
     direccion!: string; //direccion comercial
     telefono!: string;
-    Celular!:string;
+    celular!:string;
     correo!: string;
     cuit!:string;
     activo: Boolean;

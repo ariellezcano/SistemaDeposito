@@ -9,131 +9,122 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-abm-marca',
   templateUrl: './abm-marca.component.html',
-  styleUrls: ['./abm-marca.component.scss']
+  styleUrls: ['./abm-marca.component.scss'],
 })
 export class AbmMarcaComponent implements OnInit {
+  /*
+   * Varaiables de control para comportamientos del componente
+   */
+  @Output()
+  finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
- /*
-    * Varaiables de control para comportamientos del componente
-    */
- @Output()
- finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Output()
+  cancelado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
- @Output()
- cancelado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-
- /*
-  * control de operaciones a realizar
-  */
- /*
+  /*
+   * control de operaciones a realizar
+   */
+  /*
    * control de operaciones a realizar
    */
   procesando!: Boolean;
 
- entity = 'principal/marca'
+  entity = 'principal/marca';
 
- id!: number;
- item: Marca;
+  id!: number;
+  item: Marca;
 
- constructor(
-   private route: ActivatedRoute,
-   private router: Router,
-   private wsdl: MarcaService) {
-   this.item = new Marca();
- }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private wsdl: MarcaService
+  ) {
+    this.item = new Marca();
+  }
 
- ngOnInit() {
-   this.procesando = false
-   this.id = this.route.snapshot.params.id;
-   this.findID();
- }
-
-
- async findID() {
-   try {
-     if (this.id > 0) {
-       let data = await this.wsdl.doFind(this.id).then();
-       let res = JSON.parse(JSON.stringify(data));
-       if (res.status == 200) {
-         this.item = res.status;
-       }
-     } else {
-       this.item = new Marca();
-     }
-
-   } catch (error) {
-     UturuncoUtils.showToas("Error inesperado", "error");
-
-   }
-
- }
-
- doAction(f: NgForm) {
-   /* validar */
-   if (this.item.id > 0) {
-     this.doEdit();
-   } else {
-     this.doCreate();
-   }
-
- }
-
- async doEdit() {
-   try {
-
-     this.procesando = true;
-     const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
-     const result = JSON.parse(JSON.stringify(res));
-     if (result.status == 200) {
-       UturuncoUtils.showToas("Se actualizado correctamente", "success");
-       this.finalizado.emit(true);
-     } else if (result.status == 666) {
-       // logout app o refresh token
-     } else {
-       UturuncoUtils.showToas(result.msg, "error");
-     }
-   } catch (error: any) {
-     UturuncoUtils.showToas("Excepción: " + error.message, "error");
-   }finally{
+  ngOnInit() {
     this.procesando = false;
-   }
- }
+    this.id = this.route.snapshot.params.id;
+    this.findID();
+  }
 
- async doCreate() {
-   try {
+  async findID() {
+    try {
+      if (this.id > 0) {
+        let data = await this.wsdl.doFind(this.id).then();
+        console.log(data);
+        let res = JSON.parse(JSON.stringify(data));
+        if (res.status == 200) {
+          this.item = res.data;
+        }
+      } else {
+        this.item = new Marca();
+      }
+    } catch (error) {
+      UturuncoUtils.showToas('Error inesperado', 'error');
+    }
+  }
 
-     this.procesando = true;
-     this.item.activo=true;
-     const res = await this.wsdl.doInsert(this.item).then();
+  doAction(f: NgForm) {
+    /* validar */
+    if (this.item.id > 0) {
+      this.doEdit();
+    } else {
+      this.doCreate();
+    }
+  }
 
-     const result = JSON.parse(JSON.stringify(res));
+  async doEdit() {
+    try {
+      this.procesando = true;
+      const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
+      const result = JSON.parse(JSON.stringify(res));
+      if (result.status == 200) {
+        UturuncoUtils.showToas('Se actualizado correctamente', 'success');
+        this.back();
+        this.finalizado.emit(true);
+      } else if (result.status == 666) {
+        // logout app o refresh token
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
+    }
+  }
 
-     if (result.status == 200) {
-       // this.item = result.status;
-       UturuncoUtils.showToas("Se creo correctemte", "success");
-      this.back() 
-       this.finalizado.emit(true);
-     } else if (result.status == 666) {
-       // logout app o refresh token
-     } else {
+  async doCreate() {
+    try {
+      this.procesando = true;
+      this.item.activo = true;
+      const res = await this.wsdl.doInsert(this.item).then();
 
-       UturuncoUtils.showToas(result.msg, "error");
-     }
-   } catch (error: any) {
-     UturuncoUtils.showToas("Excepción: " + error.message, "error");
-   }finally{
-    this.procesando = false
-   }
+      const result = JSON.parse(JSON.stringify(res));
 
- }
+      if (result.status == 200) {
+        // this.item = result.status;
+        UturuncoUtils.showToas('Se creo correctemte', 'success');
+        this.back();
+        this.finalizado.emit(true);
+      } else if (result.status == 666) {
+        // logout app o refresh token
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
+    }
+  }
 
- back() {
-   this.router.navigateByUrl(this.entity.toLowerCase());
- }
+  back() {
+    this.router.navigateByUrl(this.entity.toLowerCase());
+  }
 
-
- getProceso(){
-   return this.procesando
- }
-
+  getProceso() {
+    return this.procesando;
+  }
 }

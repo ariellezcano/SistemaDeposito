@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { Equipo, EstadoEquipo, Modelo, Proveedor, TipoEquipo } from 'src/app/modelo/index.models';
 import { EquipoService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
@@ -48,8 +49,9 @@ export class AbmEquipoComponent implements OnInit {
       if (this.id > 0) {
         let data = await this.wsdl.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
-        if (res.code == 200) {
-          this.item = res.status;
+        if (res.status == 200) {
+          this.item = res.data;
+          this.item.fechaAlta = moment(this.item.fechaAlta).format('YYYY-MM-DD');
         }
       } else {
         this.item = new Equipo();
@@ -76,10 +78,11 @@ export class AbmEquipoComponent implements OnInit {
     try {
  
       this.procesando = true;
-      const res = await this.wsdl.doUpdate(this.item.id, this.item).then();
+      const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
         UturuncoUtils.showToas("Se actualizado correctamente", "success");
+        this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
         // logout app o refresh token
@@ -96,16 +99,16 @@ export class AbmEquipoComponent implements OnInit {
     try {
  
       this.procesando = true;
-      this.item.activo = true;
+      //this.item.activo = true;
       this.item.unidad.id = 1;
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false
- 
+ console.log(res)
       const result = JSON.parse(JSON.stringify(res));
  
       if (result.status == 200) {
         // this.item = result.status;
-        UturuncoUtils.showToas("Se creo correctemte", "success");
+        UturuncoUtils.showToas("Se creo correctamente", "success");
         this.back() 
         this.finalizado.emit(true);
       } else if (result.status == 666) {

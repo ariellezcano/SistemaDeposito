@@ -45,13 +45,19 @@ export const ROUTES: RouteInfo[] = [
     icon: 'text_caps-small',
     class: '',
   },
+  // entrega equipo
   {
     path: 'entregaequipounidad',
     title: 'Listado de equipos entregados',
     icon: 'text_caps-small',
     class: '',
   },
-  // { path: 'ordenCompra', title: 'Orden de Compra',  icon:'objects_spaceship', class: '' }
+  // {
+  //   path: 'ordenCompra',
+  //   title: 'Orden de Compra',
+  //   icon: 'objects_spaceship',
+  //   class: '',
+  // },
 ];
 
 @Component({

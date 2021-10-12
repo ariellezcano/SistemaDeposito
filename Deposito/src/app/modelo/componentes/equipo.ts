@@ -15,21 +15,20 @@ export class Equipo {
   idPolicial!: String;
   nroSerie!: String;
   observacion!: String;
-  fechaAlta!: Date;
+  fechaAlta!: any;
   garantia!: Number;
-  fechaAsignacion!: Date;
+  fechaAsignacion!: any;
   tipoAlta!: string; //adquisicion, donacion, secuestro
   activo: Boolean;
 
   constructor() {
-
     this.unidad = new Unidad();
     this.proveedor = new Proveedor();
     this.estado = new EstadoEquipo();
     this.modelo = new Modelo();
     this.tipoEquipo = new TipoEquipo();
     this.fechaAlta = new Date();
-  this.activo = true;
+    this.activo = true;
+    this.fechaAsignacion = new Date();
   }
-
 }

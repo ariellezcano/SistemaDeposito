@@ -37,7 +37,7 @@ export class ComboModeloEquipoComponent implements OnInit {
   capturar(event: Modelo) {
       this.item = event;
       //Swal.fire(event.nombre)
-      console.log(event.nombre)
+      //console.log(event.nombre)
       this.emity.emit(this.item);
   }
 

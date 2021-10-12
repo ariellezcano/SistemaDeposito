@@ -37,8 +37,8 @@ export class ComboProveedorComponent implements OnInit {
 
   capturar(event: Proveedor) {
       this.item = event;
-      Swal.fire(event.nombre)
-      console.log(event.nombre)
+      //Swal.fire(event.nombre)
+      //console.log(event.nombre)
       this.emity.emit(this.item);
   }
 
