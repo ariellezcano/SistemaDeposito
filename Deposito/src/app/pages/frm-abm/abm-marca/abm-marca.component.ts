@@ -80,7 +80,7 @@ export class AbmMarcaComponent implements OnInit {
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
-        UturuncoUtils.showToas('Se actualizado correctamente', 'success');
+        UturuncoUtils.showToas('Se actualizó correctamente', 'success');
         this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
@@ -105,7 +105,7 @@ export class AbmMarcaComponent implements OnInit {
 
       if (result.status == 200) {
         // this.item = result.status;
-        UturuncoUtils.showToas('Se creo correctemte', 'success');
+        UturuncoUtils.showToas('Se creo correctamente', 'success');
         this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {

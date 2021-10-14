@@ -62,7 +62,13 @@ export class FilEquipoComponent implements OnInit {
         this.search +
         "%' or c.modelo.nombre like '%" +
         this.search +
-        "%') AND c.activo=true";
+        "%' or c.modelo.marca.nombre like '%" +
+        this.search +
+        "%' or c.proveedor.nombre like '%" +
+        this.search +
+        "%' or c.estado.nombre like '%" +
+        this.search +
+        "%' ) AND c.activo=true";
       let data = await this.wsdl
         .doCriteria(crit, false, null, 'ORDER BY c.modelo.nombre ASC', this.page, this.limit)
         .then();

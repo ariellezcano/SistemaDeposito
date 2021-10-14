@@ -38,7 +38,7 @@ export class FiltrounidadComponent implements OnInit {
     let data = await this.wsdl.doCriteria(crit, false, null, " ORDER BY c.nombre ASC", 1, 100).then();
 
     const result = JSON.parse(JSON.stringify(data));
-    // alert(JSON.stringify(data))
+    
     if (result.status === 200) {
       this.items = result.data;
       if (this.items.length == 1){

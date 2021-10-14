@@ -59,8 +59,6 @@ export class FilMarcaComponent implements OnInit {
       const crit =
         "(c.nombre like '%" +
         this.search +
-        "%' or c.nombre like '%" +
-        this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
         .doCriteria(crit, false, null, 'ORDER BY c.nombre ASC', this.page, this.limit)

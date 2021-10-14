@@ -38,7 +38,7 @@ export class FilPersonaComponent implements OnInit {
     console.log("persona encontrada", data)
     const result = JSON.parse(JSON.stringify(data));
     console.log("persona result", data)
-    // alert(JSON.stringify(data))
+    
     if (result.status === 200) {
       this.items = result.data;
      if (this.items.length == 1){

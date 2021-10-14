@@ -103,7 +103,7 @@ export class AbmModeloComponent implements OnInit {
     try {
       this.procesando = true;
       //this.item.activo=true;
-      alert(this.item)
+      
       console.log("respuesta capturada", this.item)
       const res = await this.wsdl.doInsert(this.item).then();
       console.log("respuesta",res)

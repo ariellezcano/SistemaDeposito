@@ -46,12 +46,13 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   // entrega equipo
-  {
-    path: 'entregaequipounidad',
-    title: 'Listado de equipos entregados',
-    icon: 'text_caps-small',
-    class: '',
-  },
+  // {
+  //   path: 'entregaequipounidad',
+  //   title: 'Listado de equipos entregados',
+  //   icon: 'text_caps-small',
+  //   class: '',
+  // },
+
   // {
   //   path: 'ordenCompra',
   //   title: 'Orden de Compra',
