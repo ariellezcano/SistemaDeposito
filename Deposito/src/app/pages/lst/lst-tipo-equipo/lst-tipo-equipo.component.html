@@ -14,7 +14,7 @@
         </app-fil-tipo-equipo>
   
         <div class="row table-responsive">
-            <table class="table table-striped table-inverse text-center">
+            <table *ngIf="items.length > 0" class="table table-striped table-inverse text-center">
                 <thead class="thead-inverse">
                     <tr>
                         <!-- <th>id</th> -->
@@ -41,6 +41,22 @@
                 </tbody>
             </table>
         </div>
+        <div
+      *ngIf="items.length === 0"
+      class="alert alert-primary alert-dismissible fade show"
+      role="alert"
+    >
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Salir</span>
+      </button>
+      <strong>No hay datos</strong>
+    </div>
     </div>
   </div>
   

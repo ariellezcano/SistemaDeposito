@@ -1,6 +1,12 @@
-<div *ngIf="procesando">
-    <app-spinner></app-spinner>
+<div *ngIf="cargando">
+
+    <app-wg-cargando></app-wg-cargando>
+
 </div>
+<ng-container *ngIf="!cargando;then mostrar">
+</ng-container>
+
+<ng-template #mostrar>
 <a class="label label-primary" data-toggle="collapse" href="#callapseGrupoFil" role="button" aria-expanded="false"
     aria-controls="callapseGrupoFil">
     Filtrar
@@ -49,3 +55,4 @@
         </form>
     </div>
 </div>
+</ng-template>

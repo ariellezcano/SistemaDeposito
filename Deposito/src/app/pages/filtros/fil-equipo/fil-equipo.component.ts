@@ -13,6 +13,7 @@ export class FilEquipoComponent implements OnInit {
   @Output()
   filter: EventEmitter<Equipo[]> = new EventEmitter<Equipo[]>();
 
+  cargando: Boolean = false;
   procesando: Boolean;
   public search!: String;
   public oldSearch!: String;
@@ -44,6 +45,7 @@ export class FilEquipoComponent implements OnInit {
 
   public async list() {
     try {
+      this.cargando = true;
       this.procesando = true;
       if (this.search === undefined) {
         this.search = '';
@@ -83,6 +85,7 @@ export class FilEquipoComponent implements OnInit {
         this.nextPage = parseInt(result.paginate.nextPage);
         this.prevPage = parseInt(result.paginate.prevPage);
         this.count = parseInt(result.paginate.count);
+        this.cargando = false;
       } else if (result.status == 666) {
         // logout app o refresh token
       } else {

@@ -18,6 +18,7 @@ export class LstMarcaComponent implements OnInit {
   cerrar!: ElementRef;
   entity = 'Marcas';
   entidad = 'principal/marca';
+  public load: boolean;
 
   items: Marca[];
   item: Marca;
@@ -27,6 +28,7 @@ export class LstMarcaComponent implements OnInit {
   constructor(private wsdl: MarcaService, private router: Router) {
     this.item = new Marca();
     this.items = [];
+    this.load = false;
   }
 
   ngOnInit() {

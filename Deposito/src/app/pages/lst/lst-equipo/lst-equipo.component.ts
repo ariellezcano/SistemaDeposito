@@ -13,7 +13,7 @@ import { FilEquipoComponent } from '../../filtros/fil-equipo/fil-equipo.componen
 })
 export class LstEquipoComponent implements OnInit {
 
- 
+  public load: boolean;
   @ViewChild(FilEquipoComponent, { static: true })
   fil!: FilEquipoComponent;
   @ViewChild('close')
@@ -27,6 +27,7 @@ export class LstEquipoComponent implements OnInit {
   procesando!: Boolean;
 
   constructor(private wsdl: EquipoService, private router: Router) {
+    this.load = false;
     this.item = new Equipo();
     this.items = [];
   }
