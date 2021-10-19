@@ -38,6 +38,7 @@ import { FilEntregaEquipoUnidadComponent } from './filtros/fil-entrega-equipo-un
 import { FiltrounidadComponent } from './filtros/filtrounidad/filtrounidad.component';
 import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.component';
 import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component';
+import { FilMovilComponent } from './filtros/fil-movil/fil-movil.component';
 
 @NgModule({
     declarations:[
@@ -76,6 +77,7 @@ import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component
         FiltrounidadComponent,
         FiltroEquipoComponent,
         FilPersonaComponent,
+        FilMovilComponent,
     ], 
     exports: [
     ],

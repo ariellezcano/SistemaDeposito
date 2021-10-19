@@ -11,3 +11,4 @@ export { EstadoEquipoService } from './componentes/estado-equipo.service';
 export { EquipoService } from './componentes/equipo.service';
 export { UnidadService } from './componentes/unidad.service';
 export { DatoPolicialService } from './componentes/dato-policial.service';
+export { VehiculosService } from './componentes/vehiculo.service';

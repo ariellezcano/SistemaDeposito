@@ -77,7 +77,7 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
         this.nextPage = parseInt(result.paginate.nextPage);
         this.prevPage = parseInt(result.paginate.prevPage);
         this.count = parseInt(result.paginate.count);
-        this.cargando = true;
+        this.cargando = false;
       } else if (result.status == 666) {
         // logout app o refresh token
       } else {

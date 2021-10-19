@@ -1,23 +1,35 @@
 <label for="title">Búsqueda de Personal Policial</label>
 <form class="form-inline my-2 my-lg-0">
-    <input [(ngModel)]="criterio" name="criterio" class="form-control mr-sm-2" type="text" placeholder="Buscar">
-    <button (click)="buscar()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+  <input
+    [(ngModel)]="criterio"
+    name="criterio"
+    class="form-control mr-sm-2"
+    type="text"
+    placeholder="Buscar"
+  />
+  <button
+    (click)="buscar()"
+    class="btn btn-outline-success my-2 my-sm-0"
+    type="submit"
+  >
+    Buscar
+  </button>
 </form>
 
-<ng-container  *ngIf="items.length>0">
-
-<select
-style="width: 100%"
-required
-name="recibe"
-(ngModelChange)="seleccionarPer($event)" 
-[(ngModel)]="item"
-[compareWith]="compareFnPer"
-class="form-control form-sm"
-required
->
-<option *ngFor="let item of items" [ngValue]="item">
-  {{ item.persona.norDni }} - {{ item.persona.nombre }} - {{ item.persona.apellido }} - {{ item.jerarquia.nombre }}
-</option>
-</select>
+<ng-container *ngIf="items.length > 0">
+  <select
+    style="width: 100%"
+    required
+    name="recibe"
+    (ngModelChange)="seleccionarPer($event)"
+    [(ngModel)]="item"
+    [compareWith]="compareFnPer"
+    class="form-control form-sm"
+    required
+  >
+    <option *ngFor="let item of items" [ngValue]="item">
+      {{ item.persona?.norDni }} - {{ item.persona?.nombre }} -
+      {{ item.persona?.apellido }} - {{ item.jerarquia?.nombre }}
+    </option>
+  </select>
 </ng-container>

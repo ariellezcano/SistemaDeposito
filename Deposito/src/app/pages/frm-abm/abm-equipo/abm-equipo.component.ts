@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -13,7 +13,6 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
   styleUrls: ['./abm-equipo.component.scss']
 })
 export class AbmEquipoComponent implements OnInit {
-
 
   @Output()
   finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -29,7 +28,7 @@ export class AbmEquipoComponent implements OnInit {
  
   id!: number;
   item: Equipo;
- 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

@@ -13,6 +13,7 @@ import { FilEntregaEquipoUnidadComponent } from '../../filtros/fil-entrega-equip
 })
 export class LstEntregaEquipoUnidadComponent implements OnInit {
 
+  public load!: boolean;
   @ViewChild(FilEntregaEquipoUnidadComponent, { static: true })
   fil!: FilEntregaEquipoUnidadComponent;
   @ViewChild('close')

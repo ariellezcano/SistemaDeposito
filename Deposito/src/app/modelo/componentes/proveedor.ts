@@ -12,5 +12,8 @@ export class Proveedor{
     
     constructor(){
      this.activo=true;
+     this.correo = "";
+     this.telefono = "";
+     this.celular = "";
     }
 }

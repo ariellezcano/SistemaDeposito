@@ -43,42 +43,62 @@
       <div class="row">
         <!-- select tipo alta -->
         <div class="form-group col-md-6" required>
-          <app-filtrounidad
+          <app-filtrounidad [dibujar]="item.unidad"
             (resultado)="unidadesEncontradas($event)"
           ></app-filtrounidad>
         </div>
         <div class="form-group col-md-6" required>
           <app-filtro-equipo
+          [dibujar]="item.equipo"
             (resultado)="equiposEncontrados($event)"
           ></app-filtro-equipo>
         </div>
       </div>
       <div class="row">
         <div class="form-group col-md-6">
-          <app-fil-persona (resultado)="personasEncontrados($event)"></app-fil-persona>
+          <app-fil-persona
+            [dibujar]="item.recibe"
+            (resultado)="personasEncontrados($event)"
+          ></app-fil-persona>
         </div>
-          <div class="form-group col-md-6">
-            <label for="title">Tipo Entrega</label>
-            <select
-              class="form-control"
-              data-style="btn-primary"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              [(ngModel)]="item.tipoEntrega"
-              name="situacion"
-              id="situacion"
-              required
-            >
-              <!-- <option selected>Seleccione una opción</option> -->
-              <option value="PP">PRESTAMO PROVISORIO</option>
-              <option value="PC">PROVISION CON CARGO</option>
-              <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
-              
-            </select>
+        <div class="form-group col-md-6">
+          <label for="title">Tipo Entrega</label>
+          <select
+            class="form-control"
+            data-style="btn-primary"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            [(ngModel)]="item.tipoEntrega"
+            name="situacion"
+            id="situacion"
+            required
+          >
+            <!-- <option selected>Seleccione una opción</option> -->
+            <option value="PP">PRESTAMO PROVISORIO</option>
+            <option value="PC">PROVISION CON CARGO</option>
+            <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
+          </select>
+        </div>
+      </div>
+      <!-- Movil policial -->
+      <div class="row">
+        <div class="form-group col-md-6">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="visible" type="checkbox" name="e" id="e" value="checkedValue"> 
+              Seleccione si el equipo pertenece a un móvil policial
+            </label>
           </div>
-
         </div>
-     
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <app-fil-movil *ngIf="visible"
+            (resultado)="VehiculosEncontradas($event)"
+          ></app-fil-movil>
+        </div>
+      </div>
+
       <div class="row">
         <!-- Observaciones -->
         <div class="form-group col-md-12">

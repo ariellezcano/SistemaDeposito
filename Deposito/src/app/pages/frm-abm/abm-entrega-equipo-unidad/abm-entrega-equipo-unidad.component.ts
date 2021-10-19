@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatoPolicial, EntregaEquipoUnidades, Equipo, Persona, Unidad } from 'src/app/modelo/index.models';
+import * as moment from 'moment';
+import { DatoPolicial, EntregaEquipoUnidades, Equipo, Persona, Unidad, Vehiculo } from 'src/app/modelo/index.models';
 import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
@@ -14,6 +15,9 @@ import Swal from 'sweetalert2';
 export class AbmEntregaEquipoUnidadComponent implements OnInit {
   unidades!: Unidad[];
 
+  vehiculo!: Vehiculo[];
+  public items!: Vehiculo[];
+
  
   @Output()
   finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -25,6 +29,8 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
     */
    procesando!: Boolean;
  
+   visible=false;
+
   entity = 'principal/entregaEquipoUnidad';
  
   id!: number;
@@ -51,6 +57,8 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
+          this.item.fechaEntrega = moment(this.item.fechaEntrega).format('YYYY-MM-DD');
+
         }
       } else {
         this.item = new EntregaEquipoUnidades();
@@ -152,6 +160,20 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       else{
         Swal.fire('Seleccione Persona')
       }
+      }
+
+
+      compareFnVe(c1: Vehiculo, c2: Vehiculo): boolean {
+        return c1 && c2 ? c1.id === c2.id : c1 === c2;
+      }
+    
+      VehiculosEncontradas(event: Vehiculo) {
+        try {
+      
+          this.item.movilPol = event;
+       
+        
+        } catch (error) {}
       }
 
   

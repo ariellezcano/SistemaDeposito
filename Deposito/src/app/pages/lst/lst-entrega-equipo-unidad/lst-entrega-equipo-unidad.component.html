@@ -1,3 +1,8 @@
+<div class="overlay" *ngIf="load">
+  <app-wg-cargando></app-wg-cargando>
+</div>
+<div >
+  <div *ngIf="!load">
 <div class="card border-info">
   <div class="card-body">
     <div class="card-header">
@@ -114,4 +119,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

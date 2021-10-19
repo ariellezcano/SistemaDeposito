@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { Unidad } from 'src/app/modelo/index.models';
 import { UnidadService } from 'src/app/servicio/index.service';
 
@@ -12,6 +12,13 @@ import { UnidadService } from 'src/app/servicio/index.service';
 export class FiltrounidadComponent implements OnInit {
   @Output()
   resultado = new EventEmitter<Unidad>();
+
+  @Input()
+  set dibujar(item: Unidad){
+    this.item = item
+    this.items = [];
+    this.items.push(this.item);
+  }
 
   criterio!: string;
 

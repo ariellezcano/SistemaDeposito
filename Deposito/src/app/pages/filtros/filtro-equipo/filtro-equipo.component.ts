@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Equipo } from 'src/app/modelo/index.models';
 import { EquipoService } from 'src/app/servicio/index.service';
 
@@ -16,6 +16,15 @@ export class FiltroEquipoComponent implements OnInit {
 
   items!: Equipo[];
   item!: Equipo;
+
+
+  @Input()
+  set dibujar(item: Equipo){
+    this.item = item
+    this.items = [];
+    this.items.push(this.item);
+  }
+
 
   constructor(private wsdl: EquipoService) { }
 

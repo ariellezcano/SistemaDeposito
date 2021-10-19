@@ -1,0 +1,37 @@
+<label for="title">Búsqueda de Móvil Policial</label>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        [(ngModel)]="criterio"
+        name="criterio"
+        id="criterio"
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="Buscar"
+      />
+      <button
+        (click)="buscarvehiculo()"
+        class="btn btn-outline-success my-2 my-sm-0"
+        type="submit"
+      >
+        Buscar
+      </button>
+    </form>
+    <ng-container *ngIf="items.length > 0">
+      <select
+        style="width: 100%"
+        required
+        name="vehiculo"
+        id="vehiculo"
+        [(ngModel)]="item"
+        [compareWith]="compareFnVe"
+        class="form-control form-sm"
+        required
+      >
+        <option *ngFor="let i of items" [ngValue]="i">
+          {{ i.identificacionPol }} - Dom.: {{ i.dominio }} - Marca:
+          {{ i.modelo.marca.nombre }} - Modelo: {{ i.modelo.nombre }}
+        </option>
+      </select>
+    </ng-container>
+  
