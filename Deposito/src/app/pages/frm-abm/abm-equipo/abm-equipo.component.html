@@ -13,6 +13,7 @@
               oninvalid="setCustomValidity('El campo es obligatorio')"
               oninput="setCustomValidity('')"
               minlength="4"
+              (keydown.enter)="buscar(2)"
               id="idPolicial"
               name="idPolicial"
               placeholder="Ingrese Id. policial"
@@ -28,11 +29,11 @@
               oninvalid="setCustomValidity('El campo es obligatorio')"
               oninput="setCustomValidity('')"
               minlength="4"
+              (keydown.enter)="buscar(1)"
               id="nroSerie"
               name="nroSerie"
               placeholder="Ingrese serie"
               [(ngModel)]="item.nroSerie"
-              required
             />
           </div>
         </div>

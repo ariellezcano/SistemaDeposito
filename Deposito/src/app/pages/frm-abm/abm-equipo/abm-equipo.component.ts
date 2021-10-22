@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { Equipo, EstadoEquipo, Modelo, Proveedor, TipoEquipo } from 'src/app/modelo/index.models';
 import { EquipoService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-equipo',
@@ -149,5 +150,47 @@ export class AbmEquipoComponent implements OnInit {
     return this.procesando
   }
  
+//control de búsqueda
+  async buscar(op: any) {
+    let crit = "";
+    
+    switch (op) {
+      case 1:
+        {
+          crit = "c.nroSerie like '" + this.item.nroSerie + "' AND c.activo=true";
+        }
+        break;
+      case 2:
+        {
+          crit = "c.idPolicial like '" + this.item.idPolicial + "' AND c.activo=true";
+        }
+        break;
+      default: {
+      }
+    }
+
+    let data = await this.wsdl
+      .doCriteria(crit, true, null, "ORDER BY c.nroSerie ASC", 1, 1)
+      .then();
+    const result = JSON.parse(JSON.stringify(data));
+
+    if (result.status === 200) {
+      Swal.fire({
+        title: "Ya está asignado dentro de la Base de datos",
+        text: "¡MODIFIQUE EL DATO INGRESADO!",
+        icon: "warning",
+      });
+    } else if (result.status === 666) {
+    } else {
+      // Swal.fire({
+      //   title: "NO ESTA ASIGNADO",
+      //   text: "Puede seguir agregando",
+      //   icon: "success",
+      // });
+      
+    }
+  }
+
+
 
 }
