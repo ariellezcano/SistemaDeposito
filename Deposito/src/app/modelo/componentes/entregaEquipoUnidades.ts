@@ -10,7 +10,7 @@ export class EntregaEquipoUnidades{
     nroNota!: string;
     equipo!: Equipo;
     unidad!: Unidad;
-    recibe!: DatoPolicial;
+    recibe!: Persona;
     entrega!: Persona;
     fechaEntrega!: any;
     fechaRecepcion!: any;
@@ -20,7 +20,7 @@ export class EntregaEquipoUnidades{
     activo: boolean;
 
     constructor(){
-        this.recibe = new DatoPolicial();
+        this.recibe = new Persona();
         this.entrega = new Persona();
         this.equipo = new Equipo();
         this.unidad = new Unidad();

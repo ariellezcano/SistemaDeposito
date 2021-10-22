@@ -26,7 +26,7 @@ export class FilEquipoComponent implements OnInit {
 
   public lastPage!: Number;
   public count!: Number;
-  public limits: Number[] = [5, 10, 25, 50, 100, 150, 200];
+  public limits: Number[] = [10, 25, 50, 100, 150, 200];
 
   setPage(page: any) {
     this.page = page;
@@ -35,7 +35,7 @@ export class FilEquipoComponent implements OnInit {
 
   constructor(private wsdl: EquipoService) {
     this.procesando = false;
-    this.limit = 5;
+    this.limit = 10;
     this.page = 1;
   }
 
@@ -52,7 +52,7 @@ export class FilEquipoComponent implements OnInit {
       }
       let d = this.oldSearch !== this.search;
       if (d) {
-        this.limit = 5;
+        this.limit = 10;
         this.page = 1;
         this.oldSearch = this.search;
       }

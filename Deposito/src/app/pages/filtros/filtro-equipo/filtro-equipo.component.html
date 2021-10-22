@@ -28,7 +28,7 @@
     required
   >
     <option *ngFor="let item of items" [ngValue]="item">
-      [{{ item.nroSerie }} - {{ item.tipoEquipo.nombre }}
+    [ {{ item.nroSerie }} ] - {{ item.modelo.marca.nombre }} - {{ item.modelo.nombre }} - {{ item.tipoEquipo.nombre }}
     </option>
   </select>
 </ng-container>

@@ -103,7 +103,7 @@ export class AbmEquipoComponent implements OnInit {
       this.item.unidad.id = 1;
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false
- console.log(res)
+      console.log(res)
       const result = JSON.parse(JSON.stringify(res));
  
       if (result.status == 200) {

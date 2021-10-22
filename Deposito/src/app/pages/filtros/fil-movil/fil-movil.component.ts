@@ -17,7 +17,9 @@ export class FilMovilComponent implements OnInit {
   criterio!: string;
   items!: Vehiculo[];
 
-  constructor(private wsdl: VehiculosService) { }
+  constructor(private wsdl: VehiculosService) {
+    this.items = [];
+   }
 
   ngOnInit() {
   }
