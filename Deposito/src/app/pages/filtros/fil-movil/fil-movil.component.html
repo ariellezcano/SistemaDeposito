@@ -20,18 +20,20 @@
     <ng-container *ngIf="items.length > 0">
       <select
         style="width: 100%"
-        required
-        name="vehiculo"
-        id="vehiculo"
+        name="movilPol"
+        (ngModelChange)="seleccionar($event)"
         [(ngModel)]="item"
         [compareWith]="compareFnVe"
         class="form-control form-sm"
         required
       >
         <option *ngFor="let i of items" [ngValue]="i">
-          {{ i.identificacionPol }} - Dom.: {{ i.dominio }} - Marca:
-          {{ i.modelo.marca.nombre }} - Modelo: {{ i.modelo.nombre }}
+          {{ i.identificacionPol }} - Dom.: {{ i.dominio }} - Modelo: {{ i.modelo.nombre }}
         </option>
       </select>
+
+      <label for="">
+    {{movil}}
+  </label>
     </ng-container>
   

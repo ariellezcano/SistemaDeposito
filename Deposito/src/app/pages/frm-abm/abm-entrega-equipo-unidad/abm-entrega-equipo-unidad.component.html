@@ -43,13 +43,14 @@
       <div class="row">
         <!-- select tipo alta -->
         <div class="form-group col-md-6" required>
-          <app-filtrounidad [dibujar]="item.unidad"
+          <app-filtrounidad
+            [dibujar]="item.unidad"
             (resultado)="unidadesEncontradas($event)"
           ></app-filtrounidad>
         </div>
         <div class="form-group col-md-6" required>
           <app-filtro-equipo
-          [dibujar]="item.equipo"
+            [dibujar]="item.equipo"
             (resultado)="equiposEncontrados($event)"
           ></app-filtro-equipo>
         </div>
@@ -73,10 +74,10 @@
             id="situacion"
             required
           >
-            <!-- <option selected>Seleccione una opción</option> -->
             <option value="PP">PRESTAMO PROVISORIO</option>
             <option value="PC">PROVISION CON CARGO</option>
             <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
+            <option value="RE">ENTREGA POR RELEVAMIENTO</option>
           </select>
         </div>
       </div>
@@ -85,7 +86,14 @@
         <div class="form-group col-md-6">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
-              <input class="form-check-input" [(ngModel)]="visible" type="checkbox" name="e" id="e" value="checkedValue"> 
+              <input
+                class="form-check-input"
+                [(ngModel)]="visible"
+                type="checkbox"
+                name="e"
+                id="e"
+                value="checkedValue"
+              />
               Seleccione si el equipo pertenece a un móvil policial
             </label>
           </div>
@@ -93,8 +101,10 @@
       </div>
       <div class="row">
         <div class="form-group col-md-6">
-          <app-fil-movil *ngIf="visible"
-            (resultado)="VehiculosEncontradas($event)"
+          <app-fil-movil
+            *ngIf="visible"
+            [dibujar]="item.movilPol"
+            (resultado)="vehiculoE($event)"
           ></app-fil-movil>
         </div>
       </div>

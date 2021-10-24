@@ -16,7 +16,7 @@ export class EntregaEquipoUnidades{
     fechaRecepcion!: any;
     observaciones!: string;
     tipoEntrega!: string;
-    movilPol!: Vehiculo; 
+    movilPol!: any; 
     activo: boolean;
 
     constructor(){
@@ -25,7 +25,6 @@ export class EntregaEquipoUnidades{
         this.equipo = new Equipo();
         this.unidad = new Unidad();
         this.fechaEntrega = new Date();
-        this.movilPol = new Vehiculo();
         this.activo = true;
     }
 }

@@ -1,123 +1,131 @@
 <div class="overlay" *ngIf="load">
   <app-wg-cargando></app-wg-cargando>
 </div>
-<div >
+<div>
   <div *ngIf="!load">
-<div class="card border-info">
-  <div class="card-body">
-    <div class="card-header">
-      <b>Listado de {{ entity }}</b>
-      &nbsp;
-      <!--             show-delay="10" data-toggle="modal" data-target="#modelId"
+    <div class="card border-info">
+      <div class="card-body">
+        <div class="card-header">
+          <b>Listado de {{ entity }}</b>
+          &nbsp;
+          <!--             show-delay="10" data-toggle="modal" data-target="#modelId"
   -->
-      <a
-        title="Agregar Nuevo"
-        placement="right"
-        (click)="linkear(0)"
-        class="btn btn-primary btn-redondo"
-      >
-        <i class="fa fa-plus" aria-hidden="true"></i>
-      </a>
-    </div>
+          <a
+            title="Agregar Nuevo"
+            placement="right"
+            (click)="linkear(0)"
+            class="btn btn-primary btn-redondo"
+          >
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </a>
+        </div>
 
-    <app-fil-entrega-equipo-unidad (filter)="doFound($event)">
-    </app-fil-entrega-equipo-unidad>
+        <app-fil-entrega-equipo-unidad (filter)="doFound($event)">
+        </app-fil-entrega-equipo-unidad>
 
-    <div class="row table-responsive">
-      <table
-        *ngIf="items.length > 0"
-        class="table table-striped table-inverse text-center"
-      >
-        <thead class="thead-inverse">
-          <tr>
-            <!-- <th>id</th> -->
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Nro.serie|Id.Pol</th>
-            <th>Tipo Equipo</th>
-            <th>Unidad</th>
-            <th>Fecha Entrega</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of items">
-            <td>{{ item.equipo.modelo.marca.nombre | uppercase }}</td>
-            <td>{{ item.equipo.modelo.nombre | uppercase }}</td>
-            <td>{{ item.equipo.nroSerie }} - {{ item.equipo.idPolicial }}</td>
-            <td>{{ item.equipo.tipoEquipo.nombre }}</td>
-            <td>{{ item.unidad.nombre }}</td>
-            <td>{{ item.fechaEntrega | date: "dd/MM/yyyy" }}</td>
-            <td>
-              <button
-                type="button"
-                title="Modificar"
-                placement="top"
-                show-delay="10"
-                (click)="linkear(item.id)"
-                class="btn btn-secondary btn-sm"
-              >
-                <i class="fas fa-edit"></i>
-              </button>
-              &nbsp;
-              <!-- <button type="button" title="Eliminar" placement="top" show-delay="10"
-                                (click)="preDelete(item)" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div
-      *ngIf="items.length === 0"
-      class="alert alert-primary alert-dismissible fade show"
-      role="alert"
-    >
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Salir</span>
-      </button>
-      <strong>No hay datos</strong>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="modelId"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modelTitleId"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Alta {{ entity }}</h5>
-        <button
-          #close
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
+        <div class="row table-responsive">
+          <table
+            *ngIf="items.length > 0"
+            class="table table-striped table-inverse text-center"
+          >
+            <thead class="thead-inverse">
+              <tr>
+                <!-- <th>id</th> -->
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Nro.serie|Id.Pol</th>
+                <th>Tipo Equipo</th>
+                <th>Unidad</th>
+                <th>Fecha Entrega</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items">
+                <td>{{ item.equipo.modelo.marca.nombre | uppercase }}</td>
+                <td>{{ item.equipo.modelo.nombre | uppercase }}</td>
+                <td>
+                  {{ item.equipo.nroSerie }} - {{ item.equipo.idPolicial }}
+                </td>
+                <td>{{ item.equipo.tipoEquipo.nombre }}</td>
+                <td>{{ item.unidad.nombre }}</td>
+                <td>{{ item.fechaEntrega | date: "dd/MM/yyyy" }}</td>
+                <td>
+                  <button
+                    type="button"
+                    title="Modificar"
+                    placement="top"
+                    show-delay="10"
+                    (click)="linkear(item.id)"
+                    class="btn btn-secondary btn-sm"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    *ngIf="item.movilPol != undefined"
+                    type="button"
+                    title="Ver vehículo"
+                    placement="top"
+                    show-delay="10"
+                    class="btn btn-danger btn-sm"
+                  >
+                    <i class="fas fa-car"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          *ngIf="items.length === 0"
+          class="alert alert-primary alert-dismissible fade show"
+          role="alert"
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Salir</span>
+          </button>
+          <strong>No hay datos</strong>
+        </div>
       </div>
-      <div class="modal-body">
-        <app-abm-marca
-          (finalizado)="evento($event)"
-          (cancelado)="setResultCancel($event)"
-        ></app-abm-marca>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modelId"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Alta {{ entity }}</h5>
+            <button
+              #close
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <app-abm-marca
+              (finalizado)="evento($event)"
+              (cancelado)="setResultCancel($event)"
+            ></app-abm-marca>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

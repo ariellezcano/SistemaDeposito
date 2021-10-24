@@ -17,15 +17,26 @@ export class FilMovilComponent implements OnInit {
   criterio!: string;
   items!: Vehiculo[];
 
+movil = '';
+  @Input()
+  set dibujar(item: Vehiculo){
+    //this.movil = item.identificacionPol + item.modelo.marca.nombre
+    this.item = item
+    //console.log("dibujar items", this.item)
+   // this.items = [];
+    //this.items.push(this.item);
+  }
+
   constructor(private wsdl: VehiculosService) {
     this.items = [];
+    //this.item;
    }
 
   ngOnInit() {
   }
 
-  seleccionaruni() {
-    this.resultado.emit(this.item);
+  seleccionar(event: Vehiculo) {
+    this.resultado.emit(event);
   }
 
   compareFnVe(c1: Vehiculo, c2: Vehiculo): boolean {

@@ -63,9 +63,16 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
+          console.log("estoy en modificar",this.item.movilPol);
           this.item.fechaEntrega = moment(this.item.fechaEntrega).format(
             'YYYY-MM-DD'
           );
+          if(this.item.movilPol != undefined){
+            this.visible = true;
+          }else{
+            this.visible = false;
+          }
+          
         }
       } else {
         this.item = new EntregaEquipoUnidades();
@@ -109,12 +116,12 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       this.item.entrega.id = JSON.parse(
         '' + UturuncoUtils.getSession('personal')
       ).id;
-      //this.item.recibe.id = 1500;
       this.procesando = true;
-      this.item.unidad.id = 1;
+      console.log("entregas creadas:", this.item);
       const res = await this.wsdl.doInsert(this.item).then();
+      
       this.procesando = false;
-
+        
       const result = JSON.parse(JSON.stringify(res));
 
       if (result.status == 200) {
@@ -164,31 +171,15 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
-  VehiculosEncontradas(event: Vehiculo) {
-    try {
-      this.item.movilPol = event;
-    } catch (error) {}
+  vehiculoE(event: Vehiculo) {
+  
+      console.log("evento mocil",event)
+        this.item.movilPol = event.id;
+      
+  
   }
 
-  // seleccionProveedor(event: Proveedor){
-  //   this.item.proveedor = event;
-  //   console.log("soy el papa" , this.item.proveedor)
-  // }
-
-  // seleccionestado(event: EstadoEquipo){
-  //   this.item.estado = event;
-  //   console.log("soy el papa" , this.item.estado)
-  // }
-
-  // seleccionmodelo(event: Modelo){
-  //   this.item.modelo = event;
-  //   console.log("soy el papa" , this.item.modelo)
-  // }
-
-  // selecciontipoEquipo(event: TipoEquipo){
-  //   this.item.tipoEquipo = event;
-  //   console.log("soy el papa" , this.item.tipoEquipo)
-  // }
+  
   getProceso() {
     return this.procesando;
   }
