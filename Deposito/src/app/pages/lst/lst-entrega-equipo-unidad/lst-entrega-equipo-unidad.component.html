@@ -63,11 +63,14 @@
                   </button>
                   <button
                     *ngIf="item.movilPol != undefined"
+                    (click)="buscarvehiculo(item.movilPol)"
                     type="button"
                     title="Ver vehículo"
                     placement="top"
                     show-delay="10"
                     class="btn btn-danger btn-sm"
+                    data-toggle="modal"
+                    data-target="#modelId"
                   >
                     <i class="fas fa-car"></i>
                   </button>
@@ -107,7 +110,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Alta {{ entity }}</h5>
+            <h5 class="modal-title">Equipo asignado a vehículo:</h5>
             <button
               #close
               type="button"
@@ -119,10 +122,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <app-abm-marca
-              (finalizado)="evento($event)"
-              (cancelado)="setResultCancel($event)"
-            ></app-abm-marca>
+          
+            {{vehiculo.identificacionPol}}
+
           </div>
         </div>
       </div>

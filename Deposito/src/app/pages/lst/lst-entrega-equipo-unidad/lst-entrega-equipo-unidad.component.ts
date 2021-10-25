@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { EntregaEquipoUnidades } from 'src/app/modelo/index.models';
+import { EntregaEquipoUnidades, Vehiculo } from 'src/app/modelo/index.models';
 import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
+import { VehiculosService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
 import { FilEntregaEquipoUnidadComponent } from '../../filtros/fil-entrega-equipo-unidad/fil-entrega-equipo-unidad.component';
@@ -24,20 +25,36 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   items: EntregaEquipoUnidades[];
   item: EntregaEquipoUnidades;
 
+  vehiculo:Vehiculo;
+
   procesando!: Boolean;
 
-  constructor(private wsdl: EntregaEquipoUnidadService , private router: Router) {
+  constructor(private wsdl: EntregaEquipoUnidadService , private router: Router,
+    private wsdlM: VehiculosService
+    ) {
     this.item = new EntregaEquipoUnidades();
     this.items = [];
+    this.vehiculo= new Vehiculo();
   }
 
   ngOnInit() {
 
   }
+
   /* esto sirve para cuado hay combobox */
-  select(item: EntregaEquipoUnidades) {
+  @Input()
+  set select(item: EntregaEquipoUnidades) {
     this.item = item;
   }
+
+  movil(item: EntregaEquipoUnidades){
+    this.item = item
+    }
+    vehiculoE(event: Vehiculo) {
+      console.log("evento movil",event)
+        this.item.movilPol = event.id;
+  }
+  
 
   cancel() {
     this.item = new EntregaEquipoUnidades();
@@ -51,6 +68,8 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   setResult(event: any) {
     this.cancel();
   }
+
+ 
 
   evento(event: Boolean) {
     UturuncoUtils.showToas('Se creo correctamente', 'success');
@@ -104,5 +123,30 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   linkear(id?: Number) {
     this.router.navigateByUrl(this.entidad.toLowerCase() + '/abm/' + id);
   }
+
+
+
+//devuelve movil policial
+async buscarvehiculo(item: number) {
+    
+  const crit = "c.id = " + item + " ";
+  let data = await this.wsdlM.doCriteria(crit, false, null,'ORDER BY c.id ASC', 1, 100).then();
+
+  const result = JSON.parse(JSON.stringify(data));
+    if (result.status === 200) {
+      this.vehiculo=result.data[0];
+
+  } else if (result.status === 666) {
+    // logout app o refresh token
+    this.items = [];
+
+  } else {
+    //  this.persona = new Persona();
+    this.items = [];
+  }
+  //this.resultado.emit(this.items);
+}
+
+
 
 }

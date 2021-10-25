@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -30,6 +30,9 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
 
   @Output()
   cancelado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  
+
+  
   /*
    * control de operaciones a realizar
    */
@@ -117,6 +120,8 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         '' + UturuncoUtils.getSession('personal')
       ).id;
       this.procesando = true;
+      this.item.movilPol = this.item.movilPol.id;
+      //alert(this.item.movilPol);
       console.log("entregas creadas:", this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       
@@ -172,15 +177,17 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
   }
 
   vehiculoE(event: Vehiculo) {
-  
-      console.log("evento mocil",event)
-        this.item.movilPol = event.id;
-      
-  
+      console.log("evento movil",event)
+        this.item.movilPol = event;
   }
+  
 
   
   getProceso() {
     return this.procesando;
   }
+
+
+
+
 }
