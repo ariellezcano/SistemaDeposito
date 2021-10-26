@@ -1,5 +1,5 @@
-<div class="container">
-<form class="form" #f="ngForm" ngNativeValidate *ngIf="item">
+<div id="form" class="container">
+<form  class="form" #f="ngForm" ngNativeValidate *ngIf="item">
     <!-- .row>.col-md-4*3-->
     <!-- membrete -->
     <h3>ORIGINAL</h3>
@@ -126,12 +126,10 @@
     <!-- .row>.col-md-4*3-->
     <!-- membrete -->
 
-    <h3>COPIA</h3>
-
     
 
     <div class="col-md-12">
-        <button (click)="imprimir(f)" class="d-print-none btn btn-primary">imprimir</button>
+        <button (click)="imprimir()" class="d-print-none btn btn-primary">imprimir</button>
     </div>
 
 

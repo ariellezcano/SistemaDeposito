@@ -5,6 +5,7 @@ import { EntregaEquipoUnidades } from 'src/app/modelo/index.models';
 import { EntregaEquipoUnidadService } from 'src/app/servicio/componentes/entrega-equipo-unidad.service';
 import { VehiculosService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
+declare var document: any; 
 
 @Component({
   selector: 'app-reportes',
@@ -91,9 +92,10 @@ export class ReportesComponent implements OnInit {
     this.router.navigateByUrl(this.entity.toLowerCase());
   }
 //impresion de pantalla
-  imprimir(f: NgForm) {
+  imprimir() {
     window.print();
   }
+
 
   devolver(valor: string){
     return UturuncoUtils.devolucionTE(valor);

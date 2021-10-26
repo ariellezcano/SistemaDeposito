@@ -113,15 +113,7 @@ const routes: Routes = [
               },
             ],
           },
-          {
-            path: 'principal/entregaequipounidad/reporte',
-            children: [
-              {
-                path: ':id',
-                component: ReportesComponent,
-              }
-            ],
-          },
+        
     ]
     }
 ];
