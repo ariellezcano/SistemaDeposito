@@ -17,7 +17,7 @@ export class Equipo {
   observacion!: String;
   fechaAlta!: any;
   garantia!: Number;
-  fechaAsignacion!: any;
+  fechaAsignacion!: any; //fecha para desguace de equipo
   tipoAlta!: string; //adquisicion, donacion, secuestro
   activo: Boolean;
 

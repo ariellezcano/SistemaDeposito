@@ -119,7 +119,7 @@
 
       &.active > a,
       &.active-pro > a {
-        background-color: $white-activo;
+        background-color: $white-activo !important;
         color: #000000;
         box-shadow: $box-shadow;
         i {
@@ -136,6 +136,7 @@
         }
       }
     }
+
 
     p {
       margin: 0;

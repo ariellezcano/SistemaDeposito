@@ -70,12 +70,11 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
           this.item.fechaEntrega = moment(this.item.fechaEntrega).format(
             'YYYY-MM-DD'
           );
-          if(this.item.movilPol != undefined){
-            this.visible = true;
-          }else{
-            this.visible = false;
-          }
-          
+          // if(this.item.movilPol != undefined){
+          //   this.visible = true;
+          // }else{
+          //   this.visible = false;
+          // }
         }
       } else {
         this.item = new EntregaEquipoUnidades();
@@ -97,10 +96,11 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
   async doEdit() {
     try {
       this.procesando = true;
+      this.item.movilPol = this.item.movilPol.id;
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
-        UturuncoUtils.showToas('Se actualizado correctamente', 'success');
+        UturuncoUtils.showToas('Se actualizó correctamente', 'success');
         this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
@@ -121,7 +121,6 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       ).id;
       this.procesando = true;
       this.item.movilPol = this.item.movilPol.id;
-      //alert(this.item.movilPol);
       console.log("entregas creadas:", this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       
