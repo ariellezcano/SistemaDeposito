@@ -2,7 +2,6 @@ import { HttpHeaders } from '@angular/common/http';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 export class UturuncoUtils {
-
   public static setSession(key: string, data: string) {
     localStorage.setItem(key, data);
   }
@@ -43,23 +42,43 @@ export class UturuncoUtils {
     return header;
   }
 
-    public static showToas(msg: String, type: SweetAlertIcon) {
-      const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-          },
-      });
+  public static showToas(msg: String, type: SweetAlertIcon) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
 
-      Toast.fire({
-          icon: type,
-          title: msg
+    Toast.fire({
+      icon: type,
+      title: msg,
+    });
+  }
 
-      });
+  static devolucionTE(valor: string) {
+
+    let d = ""
+    switch (valor) {
+      case 'PP':
+        d = 'PRESTAMO PROVISORIO';
+        break;
+      case 'PC':
+        d =  'PROVISION CON CARGO';
+        break;
+      case 'SE':
+        d =  'ORDEN DE SERVICIO EXTERNO';
+        break;
+      case 'RE':
+        d =  'ENTREGA POR RELEVAMIENTO';
+        break;
+    
+    }
+    return d;
   }
 }

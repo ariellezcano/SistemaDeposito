@@ -4,7 +4,7 @@ export class Unidad {
 
     id!: Number;
     cuof!: String;
-    nombre!: String;
+    nombre!: string;
     telefono!: String;
     ubicacion!: String;
     programa!: String;

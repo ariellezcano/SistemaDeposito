@@ -124,6 +124,10 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.router.navigateByUrl(this.entidad.toLowerCase() + '/abm/' + id);
   }
 
+  linkearReporte(id?: Number) {
+    this.router.navigateByUrl(this.entidad.toLowerCase() + '/reporte/' + id);
+  }
+
 
 
 //devuelve movil policial

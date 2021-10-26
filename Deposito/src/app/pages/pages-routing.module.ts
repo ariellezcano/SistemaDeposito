@@ -16,6 +16,7 @@ import { AbmEquipoComponent } from "./frm-abm/abm-equipo/abm-equipo.component";
 import { LstEquipoComponent } from "./lst/lst-equipo/lst-equipo.component";
 import { AbmEntregaEquipoUnidadComponent } from "./frm-abm/abm-entrega-equipo-unidad/abm-entrega-equipo-unidad.component";
 import { LstEntregaEquipoUnidadComponent } from "./lst/lst-entrega-equipo-unidad/lst-entrega-equipo-unidad.component";
+import { ReportesComponent } from "./componentes/reportes/reportes.component";
 
 const routes: Routes = [
     {
@@ -110,6 +111,15 @@ const routes: Routes = [
                 path: '',
                 component: LstEntregaEquipoUnidadComponent,
               },
+            ],
+          },
+          {
+            path: 'principal/entregaequipounidad/reporte',
+            children: [
+              {
+                path: ':id',
+                component: ReportesComponent,
+              }
             ],
           },
     ]

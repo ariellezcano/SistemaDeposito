@@ -16,6 +16,7 @@ export class EntregaEquipoUnidades{
     fechaRecepcion!: any;
     observaciones!: string;
     tipoEntrega!: string;
+    aclaracion!: string;
     movilPol!: any; 
     activo: boolean;
 

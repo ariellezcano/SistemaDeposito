@@ -13,7 +13,7 @@ export class Equipo {
   modelo: Modelo;
   situacion!: String; //'A ASIGNAR',/*REASIGNAR ASIGNADO*/
   idPolicial!: String;
-  nroSerie!: String;
+  nroSerie!: string;
   observacion!: String;
   fechaAlta!: any;
   garantia!: Number;

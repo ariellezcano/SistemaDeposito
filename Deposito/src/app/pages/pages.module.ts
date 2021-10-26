@@ -39,6 +39,7 @@ import { FiltrounidadComponent } from './filtros/filtrounidad/filtrounidad.compo
 import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.component';
 import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component';
 import { FilMovilComponent } from './filtros/fil-movil/fil-movil.component';
+import { ReportesComponent } from './componentes/reportes/reportes.component';
 
 @NgModule({
     declarations:[
@@ -78,6 +79,7 @@ import { FilMovilComponent } from './filtros/fil-movil/fil-movil.component';
         FiltroEquipoComponent,
         FilPersonaComponent,
         FilMovilComponent,
+        ReportesComponent,
     ], 
     exports: [
     ],

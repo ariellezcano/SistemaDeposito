@@ -120,7 +120,9 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         '' + UturuncoUtils.getSession('personal')
       ).id;
       this.procesando = true;
-      this.item.movilPol = this.item.movilPol.id;
+      if(this.visible){
+        this.item.movilPol = this.item.movilPol.id;
+      }
       console.log("entregas creadas:", this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       

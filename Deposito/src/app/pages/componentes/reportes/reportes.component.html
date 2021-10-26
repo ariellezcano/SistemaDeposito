@@ -1,0 +1,139 @@
+<div class="container">
+<form class="form" #f="ngForm" ngNativeValidate *ngIf="item">
+    <!-- .row>.col-md-4*3-->
+    <!-- membrete -->
+    <h3>ORIGINAL</h3>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <img height="80px" width="auto" src="assets/img/logopol.png" alt="">
+            <br>
+            <label for="">
+               <b>PROVINCIA DEL CHACO</b>
+               <br>
+               <b>POLICIA</b> 
+            </label>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <img height="80px" width="auto" src="assets/img/logocom.png" alt="">
+            <br>
+            <label for="">
+                <b>DPTO. COM. E INFORMATICA</b>
+                <br>
+                <b>DIV. DESARROLLO DE SISTEMAS</b> 
+             </label>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <br>
+        <b>********************************************************************************************************************************</b>
+    </div>
+</div>
+<div id="padding" class="row">
+    <div class="col-md-12 text-center">
+       <h4><u>{{item.unidad.nombre | uppercase}}</u></h4>
+       <h4><u>RECIBO</u></h4>
+       <hr>
+    </div>
+</div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 text-justify">
+            <h5><b><u>RECIBI:</u></b> De la DIVISION DESARROLLO DE SISTEMAS dependiente del DEPARTAMENTO COMUNICACIONES E INFORMATICA el equipamiento que se detalla a continuación: </h5>
+        </div>
+    </div>
+
+    <!-- .row>.col-md-6*2-->
+    <!-- nro serie y tipo combustible -->
+    <div class="row">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">{{item.equipo.modelo.marca.nombre | uppercase}}</td>
+                    <td>{{item.equipo.modelo.nombre |uppercase}}</td>
+                    <td>{{item.equipo.nroSerie |uppercase}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+          <textarea [(ngModel)]="aclaracion" class="form-control" name="" id="" rows="3" cols="115"></textarea>
+        </div>
+    </div>
+
+    <!-- .row>.col-md-12*1-->
+    <!-- observaciones -->
+    <div class="row">
+        <div class="col-md-12 text-justify">
+            <h5><b>OBSERVACIONES:</b><span> El equipo antes mencionado,{{v|uppercase}}, el mismo se encuentra <b>{{item.equipo.estado.nombre|uppercase}}</b>, funciona correctamente, y se entrega a la unidad de mención en el encabezado en carácter de <b>{{devolver(item.tipoEntrega) | uppercase}}</b>. </span></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <h5> <b> Resistencia, {{item.fechaEntrega | date:'dd/MM/yyyy'}}</b></h5>
+        </div>
+    </div>
+
+    <!-- .row>.col-md-6*2-->
+    <!-- firma de los empleados -->
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">FIRMA: ____________________________________</div>
+                <div class="col-md-12">ACLARACION: {{item.recibe.apellido}},{{item.recibe.nombre}}</div>
+                <div class="col-md-12">DNI: {{item.recibe.norDni}}</div>
+                <div class="col-md-12">JERARQUIA: ____________________________________</div>
+                <div class="col-md-12 text-center"> <b>-RECIBI CONFORME-</b></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <img class="sello" src="assets/img/sellounidadcom.png" alt="">
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">FIRMA: ____________________________________</div>
+                <div class="col-md-12">ACLARACION: {{item.entrega.apellido}},{{item.entrega.nombre}}</div>
+                <div class="col-md-12">DNI: {{item.entrega.norDni}}</div>
+                <div class="col-md-12">JERARQUIA: ____________________________________</div>
+                <div class="col-md-12 text-center"> <b>-ENTREGUE CONFORME-</b></div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <i class="fas fa-cut  fa-2x  "></i>
+            ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <!-- .row>.col-md-4*3-->
+    <!-- membrete -->
+
+    <h3>COPIA</h3>
+
+    
+
+    <div class="col-md-12">
+        <button (click)="imprimir(f)" class="d-print-none btn btn-primary">imprimir</button>
+    </div>
+
+
+</form>
+</div>

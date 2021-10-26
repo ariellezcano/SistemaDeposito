@@ -100,7 +100,7 @@ export class AbmEquipoComponent implements OnInit {
  
       this.procesando = true;
       //this.item.activo = true;
-      this.item.unidad.id = 1;
+      //this.item.unidad.id = 1;
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false
       console.log(res)
