@@ -8,6 +8,33 @@ b{
     font-size: 30px;
 }
 
+#tabla{
+    padding: 0px;
+  }
+
+
+
+//colores de th
 .table-light{
     color: #E8FFFF;
+}
+
+.t-success{ //ASIGNADO
+    background-color: lightgreen !important;
+}
+.t-warning{//NUEVO-ASIGNAR
+    background-color: lightyellow !important;
+}
+
+.t-danger{//DESGUACE
+    background-color: lightcoral !important;
+}
+.t-primary{//EXTRAVIADO
+    background-color: skyblue !important;
+}
+.t-info{//REASIGNAR
+    background-color: lightsalmon !important;
+}
+.t-violeta{
+    background-color: violet;
 }

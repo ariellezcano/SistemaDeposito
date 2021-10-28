@@ -66,15 +66,15 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
-          console.log("estoy en modificar",this.item.movilPol);
+      
           this.item.fechaEntrega = moment(this.item.fechaEntrega).format(
             'YYYY-MM-DD'
           );
-          // if(this.item.movilPol != undefined){
-          //   this.visible = true;
-          // }else{
-          //   this.visible = false;
-          // }
+          if(this.item.movilPol != undefined){
+            this.visible = true;
+          }else{
+            this.visible = false;
+          }
         }
       } else {
         this.item = new EntregaEquipoUnidades();
@@ -96,7 +96,9 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
   async doEdit() {
     try {
       this.procesando = true;
-      this.item.movilPol = this.item.movilPol.id;
+      if(this.visible){
+        this.item.movilPol = this.item.movilPol.id;
+      }
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {

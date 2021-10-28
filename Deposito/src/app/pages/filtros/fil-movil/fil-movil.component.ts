@@ -19,9 +19,9 @@ export class FilMovilComponent implements OnInit {
 
 movil = '';
   @Input()
-  set dibujar(item: Vehiculo){
+  set dibujar(id: number){
     //this.movil = item.identificacionPol + item.modelo.marca.nombre
-    this.item = item
+   this.dibujarvehiculo(id); 
     //console.log("dibujar items", this.item)
    // this.items = [];
     //this.items.push(this.item);
@@ -31,6 +31,19 @@ movil = '';
     this.items = [];
     //this.item;
    }
+
+   async dibujarvehiculo(item: number) {
+    const crit = 'c.id = ' + item + ' ';
+    let data = await this.wsdl
+      .doCriteria(crit, false, null, 'ORDER BY c.id ASC', 1, 100)
+      .then();
+
+    const result = JSON.parse(JSON.stringify(data));
+    if (result.status === 200) {
+      this.items = result.data;
+      this.item=this.items[0];
+    }
+  }
 
   ngOnInit() {
   }

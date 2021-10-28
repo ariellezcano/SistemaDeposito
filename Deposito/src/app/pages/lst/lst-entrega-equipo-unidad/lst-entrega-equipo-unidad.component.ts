@@ -10,10 +10,9 @@ import { FilEntregaEquipoUnidadComponent } from '../../filtros/fil-entrega-equip
 @Component({
   selector: 'app-lst-entrega-equipo-unidad',
   templateUrl: './lst-entrega-equipo-unidad.component.html',
-  styleUrls: ['./lst-entrega-equipo-unidad.component.scss']
+  styleUrls: ['./lst-entrega-equipo-unidad.component.scss'],
 })
 export class LstEntregaEquipoUnidadComponent implements OnInit {
-
   public load!: boolean;
   @ViewChild(FilEntregaEquipoUnidadComponent, { static: true })
   fil!: FilEntregaEquipoUnidadComponent;
@@ -23,23 +22,25 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   entidad = 'principal/entregaEquipoUnidad';
 
   items: EntregaEquipoUnidades[];
+  historial: EntregaEquipoUnidades[];
   item: EntregaEquipoUnidades;
 
-  vehiculo:Vehiculo;
+  vehiculo: Vehiculo;
 
   procesando!: Boolean;
 
-  constructor(private wsdl: EntregaEquipoUnidadService , private router: Router,
+  constructor(
+    private wsdl: EntregaEquipoUnidadService,
+    private router: Router,
     private wsdlM: VehiculosService
-    ) {
+  ) {
     this.item = new EntregaEquipoUnidades();
     this.items = [];
-    this.vehiculo= new Vehiculo();
+    this.historial = [];
+    this.vehiculo = new Vehiculo();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   /* esto sirve para cuado hay combobox */
   @Input()
@@ -47,14 +48,13 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.item = item;
   }
 
-  movil(item: EntregaEquipoUnidades){
-    this.item = item
-    }
-    vehiculoE(event: Vehiculo) {
-      console.log("evento movil",event)
-        this.item.movilPol = event.id;
+  movil(item: EntregaEquipoUnidades) {
+    this.item = item;
   }
-  
+  vehiculoE(event: Vehiculo) {
+    console.log('evento movil', event);
+    this.item.movilPol = event.id;
+  }
 
   cancel() {
     this.item = new EntregaEquipoUnidades();
@@ -69,8 +69,6 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.cancel();
   }
 
- 
-
   evento(event: Boolean) {
     UturuncoUtils.showToas('Se creo correctamente', 'success');
     this.cerrar.nativeElement.click();
@@ -83,7 +81,10 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text: '¡No podrás recuperar este archivo ' + item.equipo.tipoEquipo.nombre + '!',
+      text:
+        '¡No podrás recuperar este archivo ' +
+        item.equipo.tipoEquipo.nombre +
+        '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -128,29 +129,40 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.router.navigateByUrl(this.entidad.toLowerCase() + '/reporte/' + id);
   }
 
+  //devuelve movil policial
+  async buscarvehiculo(item: number) {
+    const crit = 'c.id = ' + item + ' ';
+    let data = await this.wsdlM
+      .doCriteria(crit, false, null, 'ORDER BY c.id ASC', 1, 100)
+      .then();
 
-
-//devuelve movil policial
-async buscarvehiculo(item: number) {
-    
-  const crit = "c.id = " + item + " ";
-  let data = await this.wsdlM.doCriteria(crit, false, null,'ORDER BY c.id ASC', 1, 100).then();
-
-  const result = JSON.parse(JSON.stringify(data));
+    const result = JSON.parse(JSON.stringify(data));
     if (result.status === 200) {
-      this.vehiculo=result.data[0];
-
-  } else if (result.status === 666) {
-    // logout app o refresh token
-    this.items = [];
-
-  } else {
-    //  this.persona = new Persona();
-    this.items = [];
+      this.vehiculo = result.data[0];
+    } else if (result.status === 666) {
+      // logout app o refresh token
+      this.items = [];
+    } else {
+      //  this.persona = new Persona();
+      this.items = [];
+    }
+    //this.resultado.emit(this.items);
   }
-  //this.resultado.emit(this.items);
-}
 
-
-
+  async listarHistorial(id: any) {
+    const crit = 'c.equipo.id = ' + id;
+    let data = await this.wsdl.doCriteria(crit, false, null, 'ORDER BY c.fechaEntrega desc', 1, 100);
+    const result = JSON.parse(JSON.stringify(data));
+    console.log("historial", result)
+    if (result.status === 200) {
+      this.historial = result.data;
+    } else if (result.status === 666) {
+      // logout app o refresh token
+      this.historial = [];
+    } else {
+      //  this.persona = new Persona();
+      this.historial = [];
+    }
+    //this.resultado.emit(this.items);
+  }
 }

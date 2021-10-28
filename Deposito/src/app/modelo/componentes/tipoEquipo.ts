@@ -1,6 +1,6 @@
 export class TipoEquipo {
   id!: Number;
-  nombre!: String;
+  nombre!: string;
   activo: Boolean;
   constructor() {
     this.activo = true;

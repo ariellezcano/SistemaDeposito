@@ -9,10 +9,9 @@ import { FilEquipoComponent } from '../../filtros/fil-equipo/fil-equipo.componen
 @Component({
   selector: 'app-lst-equipo',
   templateUrl: './lst-equipo.component.html',
-  styleUrls: ['./lst-equipo.component.scss']
+  styleUrls: ['./lst-equipo.component.scss'],
 })
 export class LstEquipoComponent implements OnInit {
-
   public load: boolean;
   @ViewChild(FilEquipoComponent, { static: true })
   fil!: FilEquipoComponent;
@@ -32,9 +31,7 @@ export class LstEquipoComponent implements OnInit {
     this.items = [];
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
   /* esto sirve para cuado hay combobox */
   select(item: Equipo) {
     this.item = item;
@@ -104,5 +101,30 @@ export class LstEquipoComponent implements OnInit {
 
   linkear(id?: Number) {
     this.router.navigateByUrl(this.entidad + '/abm/' + id);
+  }
+
+  colores(valor: any) {
+    let color = 'success';
+    switch (valor) {
+      case 1:
+        color = 't-success';
+        break;
+      // case 1:
+      //   color = 't-warning';
+      //   break;
+      case 10:
+        color = 't-violeta';
+        break;
+      case 8:
+        color = 't-danger';
+        break;
+      case 9:
+        color = 't-warning';
+        break;
+      default:
+        color = 't';
+        break;
+    }
+    return color;
   }
 }
