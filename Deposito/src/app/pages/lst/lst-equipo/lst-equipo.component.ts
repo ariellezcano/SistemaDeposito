@@ -109,9 +109,9 @@ export class LstEquipoComponent implements OnInit {
       case 1:
         color = 't-success';
         break;
-      // case 1:
-      //   color = 't-warning';
-      //   break;
+      case 11:
+        color = 't-light';
+        break;
       case 10:
         color = 't-violeta';
         break;
@@ -122,7 +122,7 @@ export class LstEquipoComponent implements OnInit {
         color = 't-warning';
         break;
       default:
-        color = 't';
+        color = 't-default';
         break;
     }
     return color;

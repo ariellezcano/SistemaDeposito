@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
   registrobtn!: ElementRef;
 
 
+  permitido = ['38870624','31325601'];
+
+
+
 
   public proccess: Boolean;
   public isUser!: boolean;
@@ -151,6 +155,7 @@ export class LoginComponent implements OnInit {
   async login() {
     try {
       if (this.cuit) {
+        if(this.permitido.indexOf(this.cuit)!=-1){
 
         this.proccess = true;
         let data = await this.wsdl.doLogin111(this.cuit).then();
@@ -178,6 +183,9 @@ export class LoginComponent implements OnInit {
 
         Swal.fire('Oops...', "Ingrese un DNI Valido", 'error')
       }
+    }else{
+      alert("Usted no esta autorizado a ingresar al sistema")
+    }
     } catch (error) {
       this.proccess = false;
       Swal.fire('Oops...', '' + error, 'error')
