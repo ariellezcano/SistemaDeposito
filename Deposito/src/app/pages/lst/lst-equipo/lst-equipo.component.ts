@@ -104,10 +104,10 @@ export class LstEquipoComponent implements OnInit {
   }
 
   colores(valor: any) {
-    let color = 'success';
+    let color = '';
     switch (valor) {
       case 1:
-        color = 't-success'; //ASIGNADO
+        color = 't-success';
         break;
       case 11:
         color = 't-light';

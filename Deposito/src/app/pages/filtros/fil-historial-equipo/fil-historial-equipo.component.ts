@@ -45,12 +45,6 @@ export class FilHistorialEquipoComponent implements OnInit {
 
   async list() {
     if (this.search === '' || this.search === undefined) {
-      // Swal.fire({
-      //   title: 'Error!',
-      //   text: 'Agregue criterio de búsqueda (Nro serie del equipo o Unidad)',
-      //   icon: 'error',
-      //   confirmButtonText: 'Ok!'
-      // })
       this.items = [];
       this.filter.emit(this.items);
     } else {
@@ -62,9 +56,9 @@ export class FilHistorialEquipoComponent implements OnInit {
         const crit =
           "(c.equipo.nroSerie = '" +
           this.search +
-          "' or c.unidad.nombre = '" +
+          "' or c.unidad.nombre like '%" +
           this.search +
-          "')";
+          "')AND c.activo=true";
 
         let data = await this.wsdl
           .doCriteria(

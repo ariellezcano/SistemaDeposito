@@ -16,30 +16,39 @@ b{
 
 //colores de th
 .t-light{
-    background-color: #E8FFFF !important;
+    //background-color: #E8FFFF !important;
+    color: blue !important;
 }
 
 .t-success{
-    background-color: lightgreen !important;
+    //background-color: lightgreen !important;
+    color: green !important;
 }
 .t-warning{
-    background-color: lightyellow !important;
+    //background-color: lightyellow !important;
+    color: rgb(143, 143, 38) !important;
 }
 
 .t-danger{
-    background-color: lightcoral !important;
+    //background-color: red !important;
+   // color: #E8FFFF;
+   color: red !important;
 }
 .t-primary{
-    background-color: skyblue !important;
+  //  background-color: skyblue !important;
+  color: skyblue !important;
 }
 .t-info{
-    background-color: lightsalmon !important;
+    //background-color: lightsalmon !important;
+    color: lightsalmon !important;
 }
 .t-violeta{
-    background-color: violet !important;
+    //background-color: violet !important;
+    color: rgb(206, 14, 206) !important;
 }
 .t-default{
-    background-color: #FEF1E6 !important;
+    //background-color: #FEF1E6 !important;
+    color: #4e4e4e !important;
 }
 th{
     color: white !important;
