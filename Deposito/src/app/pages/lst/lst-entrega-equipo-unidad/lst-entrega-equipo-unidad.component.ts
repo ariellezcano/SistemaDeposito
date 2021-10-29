@@ -18,7 +18,7 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   fil!: FilEntregaEquipoUnidadComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-  entity = 'Entrega de equipos';
+  entity = 'de Equipos Entregados';
   entidad = 'principal/entregaEquipoUnidad';
 
   items: EntregaEquipoUnidades[];

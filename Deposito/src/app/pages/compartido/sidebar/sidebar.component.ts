@@ -53,6 +53,14 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
 
+  //historial de equipo
+  {
+    path: 'historial',
+    title: 'Historial de equipos entregados',
+    icon: 'text_caps-small',
+    class: '',
+  },  
+
   // {
   //   path: 'ordenCompra',
   //   title: 'Orden de Compra',

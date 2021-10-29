@@ -1,0 +1,53 @@
+<div *ngIf="cargando">
+    <app-wg-cargando></app-wg-cargando>
+  </div>
+  <ng-container *ngIf="!cargando; then mostrar"> </ng-container>
+  
+  <ng-template #mostrar>
+    <div class="row">
+      <div class="col-md-5">
+        <label for=""
+          ><span>Ingrese Nro. serie o Unidad</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total encontrados:</label
+        >&nbsp;{{ total }}
+  
+        <input
+          type="text"
+          class="form-control"
+          name="search"
+          id="search"
+          [(ngModel)]="search"
+          aria-describedby="helpId"
+          placeholder=""
+        />
+        <small id="helpId" class="form-text text-muted"
+          >Criterio de búsqueda</small
+        >
+      </div>
+  
+      <div class="col-md-1">
+          <label for="">
+              &nbsp;
+            </label>
+        <button class="btn btn-primary" (click)="list()">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <br />
+      <div class="col-md-6">
+          <label for="">
+              &nbsp;
+            </label>
+  
+        <app-wg-paginate
+          (pagina)="paginaSelec($event)"
+          [primero]="primero"
+          [anterior]="anterior"
+          [actual]="actual"
+          [siguiente]="siguiente"
+          [final]="final"
+        ></app-wg-paginate>
+      </div>
+    </div>
+  </ng-template>
+  

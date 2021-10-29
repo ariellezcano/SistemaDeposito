@@ -107,7 +107,7 @@ export class LstEquipoComponent implements OnInit {
     let color = 'success';
     switch (valor) {
       case 1:
-        color = 't-success';
+        color = 't-success'; //ASIGNADO
         break;
       case 11:
         color = 't-light';
@@ -127,4 +127,25 @@ export class LstEquipoComponent implements OnInit {
     }
     return color;
   }
+
+
+  tipoAdquisicion(value: any) {
+    let valor = '';
+    switch (value) {
+      case 'AD':
+        valor = 'Adquisicion Policial';
+        break;
+      case 'DO':
+        valor = 'Donacion';
+        break;
+      case 'SE':
+        valor = 'Secuestro';
+        break;
+      default:
+        valor = 'SIN TIPO ADQUISICION';
+        break;
+    }
+    return valor;
+  }
+
 }

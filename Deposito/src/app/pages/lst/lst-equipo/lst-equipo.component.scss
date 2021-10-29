@@ -16,28 +16,31 @@ b{
 
 //colores de th
 .t-light{
-    background-color: #E8FFFF;
+    background-color: #E8FFFF !important;
 }
 
-.t-success{ //ASIGNADO
+.t-success{
     background-color: lightgreen !important;
 }
-.t-warning{//NUEVO-ASIGNAR
+.t-warning{
     background-color: lightyellow !important;
 }
 
-.t-danger{//DESGUACE
+.t-danger{
     background-color: lightcoral !important;
 }
-.t-primary{//EXTRAVIADO
+.t-primary{
     background-color: skyblue !important;
 }
-.t-info{//REASIGNAR
+.t-info{
     background-color: lightsalmon !important;
 }
 .t-violeta{
-    background-color: violet;
+    background-color: violet !important;
 }
 .t-default{
-    background-color: #FEF1E6;
+    background-color: #FEF1E6 !important;
+}
+th{
+    color: white !important;
 }

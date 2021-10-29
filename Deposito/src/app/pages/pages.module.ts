@@ -40,6 +40,8 @@ import { FiltroEquipoComponent } from './filtros/filtro-equipo/filtro-equipo.com
 import { FilPersonaComponent } from './filtros/fil-persona/fil-persona.component';
 import { FilMovilComponent } from './filtros/fil-movil/fil-movil.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
+import { LstHitorialEquipoComponent } from './lst/lst-hitorial-equipo/lst-hitorial-equipo.component';
+import { FilHistorialEquipoComponent } from './filtros/fil-historial-equipo/fil-historial-equipo.component';
 
 @NgModule({
     declarations:[
@@ -80,6 +82,8 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
         FilPersonaComponent,
         FilMovilComponent,
         ReportesComponent,
+        LstHitorialEquipoComponent,
+        FilHistorialEquipoComponent,
     ], 
     exports: [
     ],

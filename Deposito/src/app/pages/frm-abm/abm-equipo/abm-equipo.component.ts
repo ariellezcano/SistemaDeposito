@@ -97,18 +97,17 @@ export class AbmEquipoComponent implements OnInit {
  
   async doCreate() {
     try {
- 
       this.procesando = true;
-      //this.item.activo = true;
-      //this.item.unidad.id = 1;
-      const res = await this.wsdl.doInsert(this.item).then();
-      this.procesando = false
-      console.log(res)
-      const result = JSON.parse(JSON.stringify(res));
+      this.item.unidad.id = 1;
+      console.log("datos",this.item)
+       const res = await this.wsdl.doInsert(this.item).then();
+       this.procesando = false
+       console.log("datos",res)
+       const result = JSON.parse(JSON.stringify(res));
  
       if (result.status == 200) {
-        // this.item = result.status;
-        UturuncoUtils.showToas("Se creo correctamente", "success");
+          //this.item = result.status;
+         UturuncoUtils.showToas("Se creo correctamente", "success");
         this.back() 
         this.finalizado.emit(true);
       } else if (result.status == 666) {
@@ -182,11 +181,11 @@ export class AbmEquipoComponent implements OnInit {
       });
     } else if (result.status === 666) {
     } else {
-      // Swal.fire({
-      //   title: "NO ESTA ASIGNADO",
-      //   text: "Puede seguir agregando",
-      //   icon: "success",
-      // });
+      Swal.fire({
+        title: "NO ESTA ASIGNADO",
+        text: "Puede seguir agregando",
+        icon: "success",
+      });
       
     }
   }
