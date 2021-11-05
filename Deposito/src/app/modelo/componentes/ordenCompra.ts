@@ -15,6 +15,7 @@ export class OrdenCompra{
     fechaCompra!: any;
     tipoCompra!: string;
     estadoCompra!: string;
+    observaciones!:string
     activo: Boolean;
 
     constructor(){

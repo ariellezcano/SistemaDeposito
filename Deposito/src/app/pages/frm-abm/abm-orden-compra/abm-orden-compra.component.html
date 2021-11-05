@@ -1,0 +1,239 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2><b>ABM Orden de compra</b></h2>
+    <form
+      #f="ngForm"
+      (ngSubmit)="doAction(f)"
+      ngNativeValidate
+      class="was-validated"
+    >
+      <hr />
+      <div class="row">
+        <!-- expediente -->
+        <div class="form-group col-md-6">
+          <label for="title">Número de Expediente</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            (keydown.enter)="buscar(2)"
+            id="nroExpte"
+            name="nroExpte"
+            placeholder="Ingrese número de expediente"
+            [(ngModel)]="item.nroExpte"
+          />
+        </div>
+        <!-- orden de compra -->
+        <div class="form-group col-md-6">
+          <label for="title">Número Orden de Compra</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            (keydown.enter)="buscar(1)"
+            id="nroOrdenCompra"
+            name="nroOrdenCompra"
+            placeholder="Ingrese orden de compra"
+            [(ngModel)]="item.nroOrdenCompra"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- licitacion -->
+        <div class="form-group col-md-6">
+          <label for="title">Número de Licitación</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="nroLicitacion"
+            name="nroLicitacion"
+            placeholder="Ingrese número de licitacion"
+            [(ngModel)]="item.nroLicitacion"
+          />
+        </div>
+
+        <!-- preadjudicacion -->
+        <div class="form-group col-md-6">
+          <label for="title">Número de Preadjudicación</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="nroPreadjudicacion"
+            name="nroPreadjudicacion"
+            placeholder="Ingrese nro de Preadjudicacion"
+            [(ngModel)]="item.nroPreadjudicacion"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- nota preadjudicacion -->
+        <div class="form-group col-md-6">
+          <label for="title">Nota de Preadjudicación</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="notPreadjudicacion"
+            name="notPreadjudicacion"
+            placeholder="Ingrese nota de Preadjudicacion"
+            [(ngModel)]="item.notPreadjudicacion"
+          />
+        </div>
+        <!-- nota preadjudicacion -->
+        <div class="form-group col-md-6">
+          <label for="title">Número de factura</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="nroFactura"
+            name="nroFactura"
+            placeholder="Ingrese número de factura"
+            [(ngModel)]="item.nroFactura"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="title">Orden de pago</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            id="ordenPago"
+            name="ordenPago"
+            placeholder="Ingrese orden de pago"
+            [(ngModel)]="item.ordenPago"
+          />
+        </div>
+        <!-- fecha compra -->
+        <div class="form-group col-md-6">
+          <label for="title">Fecha compra</label>
+          <input
+            class="form-control"
+            type="date"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            id="fechaCompra"
+            name="fechaCompra"
+            [(ngModel)]="item.fechaCompra"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- Proveedor -->
+        <div class="col-lg-6">
+          <app-combo-proveedor
+            [dibujar]="item.proveedor"
+            (emity)="seleccionProveedor($event)"
+          ></app-combo-proveedor>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="title">Fecha de pago de compra</label>
+          <input
+            class="form-control"
+            type="date"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            id="fechaPagoCompra"
+            name="fechaPagoCompra"
+            [(ngModel)]="item.fechaPagoCompra"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- select tipo alta -->
+        <div class="form-group col-md-6">
+          <label for="title">Tipo de compra</label>
+          <select
+            class="form-control"
+            data-style="btn-primary"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            [(ngModel)]="item.tipoCompra"
+            name="tipoCompra"
+            id="tipoCompra"
+            required
+          >
+            <option value="CD">Contratación Directa</option>
+            <option value="CP">Concurso de Precios</option>
+            <option value="LPr">Licitación Privada</option>
+            <option value="LPu">Licitación Pública</option>
+          </select>
+        </div>
+        <!-- estado de compra -->
+        <div class="form-group col-md-6">
+            <label for="title">Estado de compra</label>
+            <select
+              class="form-control"
+              data-style="btn-primary"
+              oninvalid="setCustomValidity('El campo es obligatorio')"
+              oninput="setCustomValidity('')"
+              [(ngModel)]="item.estadoCompra"
+              name="estadoCompra"
+              id="estadoCompra"
+              required
+            >
+              <option value="CD">Pagado</option>
+              <option value="CP">Falta de pago</option>
+              <option value="LPr">Faltan equipos</option>
+              
+            </select>
+          </div>
+      </div>
+      <div class="row">
+        <!-- Observaciones -->
+      <div class="form-group col-md-12">
+        <div class="form-floating">
+          <label for="floatingTextarea">Observaciones</label>
+          <textarea
+          [(ngModel)]="item.observaciones"
+            class="form-control"
+            name="observacion"
+            placeholder="Observaciones del equipo"
+            id="observacion"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+      <hr />
+      <div class="form-group">
+        <button
+          type="submit"
+          [disabled]="procesando"
+          name="btn"
+          class="btn btn-primary btn-lg btn-block float-left"
+        >
+          Aceptar
+          <ng-container *ngIf="getProceso(); then mostrar"></ng-container>
+          <ng-template #mostrar>
+            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          </ng-template>
+        </button>
+        &nbsp;
+        <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+          <i class="fas fa-arrow-left"></i> Volver
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

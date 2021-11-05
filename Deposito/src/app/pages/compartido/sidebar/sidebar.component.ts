@@ -52,7 +52,13 @@ export const ROUTES: RouteInfo[] = [
     icon: 'text_caps-small',
     class: '',
   },
-
+  //orden de compra de equipos
+  {
+    path: 'ordenCompra',
+    title: 'Listado de Compras',
+    icon: 'text_caps-small',
+    class: '',
+  },
   //historial de equipo
   {
     path: 'historial',

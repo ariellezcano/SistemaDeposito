@@ -60,7 +60,7 @@ th {
 	color: #ffffff; /* Color del texto */
 	border-radius: 9px; /* Borde del boton */
 	letter-spacing: 2px; /* Espacio entre letras */
-	background-color: #6976bd; /* Color de fondo */
+	background-color: #596bd3; /* Color de fondo */
 	padding: 13px 10px; /* Relleno del boton */
 	position: fixed;
 	bottom: 70px;
@@ -94,4 +94,8 @@ thead tr th {
   overflow:scroll;
   overflow-x: hidden;
   
+}
+
+.btn-secondary{
+  background-color: #596bd3;
 }

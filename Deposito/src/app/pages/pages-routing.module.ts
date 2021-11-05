@@ -18,6 +18,8 @@ import { AbmEntregaEquipoUnidadComponent } from "./frm-abm/abm-entrega-equipo-un
 import { LstEntregaEquipoUnidadComponent } from "./lst/lst-entrega-equipo-unidad/lst-entrega-equipo-unidad.component";
 import { ReportesComponent } from "./componentes/reportes/reportes.component";
 import { LstHitorialEquipoComponent } from "./lst/lst-hitorial-equipo/lst-hitorial-equipo.component";
+import { LstOrdenCOmpraComponent } from "./lst/lst-orden-compra/lst-orden-compra.component";
+import { AbmOrdenCompraComponent } from "./frm-abm/abm-orden-compra/abm-orden-compra.component";
 
 const routes: Routes = [
     {
@@ -123,7 +125,19 @@ const routes: Routes = [
               },
             ],
           },
-        
+          {
+            path: 'principal/ordenCompra',
+            children: [
+              {
+                path: 'abm/:id',
+                component: AbmOrdenCompraComponent,
+              },
+              {
+                path: '',
+                component: LstOrdenCOmpraComponent,
+              },
+            ],
+          },
     ]
     }
 ];

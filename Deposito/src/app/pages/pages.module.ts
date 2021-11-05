@@ -44,6 +44,9 @@ import { LstHitorialEquipoComponent } from './lst/lst-hitorial-equipo/lst-hitori
 import { FilHistorialEquipoComponent } from './filtros/fil-historial-equipo/fil-historial-equipo.component';
 import { ActaEntregaComponent } from './componentes/acta-entrega/acta-entrega.component';
 import { GraficoComponent } from './componentes/grafico/grafico.component';
+import { LstOrdenCOmpraComponent } from './lst/lst-orden-compra/lst-orden-compra.component';
+import { FilOrdenCompraComponent } from './filtros/fil-orden-compra/fil-orden-compra.component';
+import { AbmOrdenCompraComponent } from './frm-abm/abm-orden-compra/abm-orden-compra.component';
 
 @NgModule({
     declarations:[
@@ -88,6 +91,9 @@ import { GraficoComponent } from './componentes/grafico/grafico.component';
         FilHistorialEquipoComponent,
         ActaEntregaComponent,
         GraficoComponent,
+        LstOrdenCOmpraComponent,
+        FilOrdenCompraComponent,
+        AbmOrdenCompraComponent,
     ], 
     exports: [
     ],
