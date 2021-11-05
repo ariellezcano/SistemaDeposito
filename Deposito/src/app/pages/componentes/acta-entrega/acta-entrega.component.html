@@ -1,0 +1,125 @@
+<div id="form" class="container">
+  <form class="form" #f="ngForm" ngNativeValidate *ngIf="item">
+    <!-- .row>.col-md-4*3-->
+    <!-- membrete -->
+    <div id="membrete" class="row text-center">
+      <div class="col-md-4">
+        <img height="80px" width="auto" src="assets/img/logopol.png" alt="" />
+        <br />
+        <label for="">
+          <b>PROVINCIA DEL CHACO</b>
+          <br />
+          <b>POLICIA</b>
+        </label>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <img height="80px" width="auto" src="assets/img/logocom.png" alt="" />
+        <br />
+        <label for="">
+          <b>DCCION. EJECUTIVA DEL C.E.A.C</b>
+          <br />
+          <b>DPTO. COM. E INFORMATICA</b>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <b
+          >*********************************************************************************************************************************************************</b
+        >
+      </div>
+    </div>
+    <div id="padding" class="row">
+      <div class="col-md-12 text-center">
+        <h4><u><b>ACTA DE ENTREGA</b></u></h4>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div id="fecha" class="col-md-12 text-justify">
+        <h5>
+          En la División Desarrollo de Sistemas, dependiente del Departamento
+          Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la ciudad
+          de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
+          {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a:
+         <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b> con prestacion de
+          servicio en <b>{{ item.unidad.nombre }}</b>, a quién seguidamente se procede
+          a hacer entrega en carácter de <b>{{ instrumento(item.tipoEntrega) }}</b> de
+          un <b>{{ item.equipo.tipoEquipo.nombre }}</b>, marca:
+          <b>{{ item.equipo.modelo.marca.nombre }}</b>, modelo:
+          <b>{{ item.equipo.modelo.nombre }}</b>, serie n° <b>{{ item.equipo.nroSerie }}</b>,
+          con su correspondiente <b>{{ item.observaciones }}</b>, destinado al
+          funcionamiento técnico de la <b>{{ item.unidad.nombre }}</b>, el cual a
+          partir de la fecha queda bajo la entera responsabilidad de la unidad
+          mencionada. Es todo, no siendo para más se da por finalizado el
+          presente acto, previa integra lectura efectuadas por las partes,
+          quienes para constancia legal firman al pie. <b>CONSTE.</b>
+        </h5>
+      </div>
+    </div>
+    <!-- firma de los empleados -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12 b">
+            <b>FIRMA:</b> ____________________________________
+          </div>
+          <div class="col-md-12 b">
+            <b>ACLARACION:</b> {{ item.recibe.apellido }},
+            {{ item.recibe.nombre }}
+          </div>
+          <div class="col-md-12 b"><b>DNI:</b> {{ item.recibe.norDni }}</div>
+          <div class="col-md-12 b">
+            <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
+          </div>
+          <div class="col-md-12 text-center"><b>-RECIBI CONFORME-</b></div>
+        </div>
+      </div>
+      <div class="col md-1"></div>
+      <div class="col-md-2">
+        <img class="sello" src="assets/img/sellounidadcom.png" alt="" />
+      </div>
+      <div class="col md-1"></div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12 b">
+            <b>FIRMA:</b>____________________________________
+          </div>
+          <div class="col-md-12 b">
+            <b>ACLARACION:</b> {{ item.entrega.apellido }},
+            {{ item.entrega.nombre }}
+          </div>
+          <div class="col-md-12 b"><b>DNI:</b> {{ item.entrega.norDni }}</div>
+          <div class="col-md-12 b">
+            <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
+          </div>
+          <div class="col-md-12 text-center"><b>-ENTREGUE CONFORME-</b></div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row text-center d-print-none">
+      <div class="col-md-12">
+        <i class="fas fa-cut fa-2x"></i>
+        <b
+          >------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</b
+        >
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <button (click)="imprimir()" class="d-print-none btn btn-primary">
+        imprimir
+      </button>
+    </div>
+    <br />
+  </form>
+</div>

@@ -25,19 +25,19 @@
         </div>
         <!-- numero de nota -->
         <div class="form-group col-md-6">
-          <label for="title">Número nota</label>
-          <input
+          <label for="title">VERIFICADO</label>
+          <select
             class="form-control"
-            type="text"
+            data-style="btn-primary"
             oninvalid="setCustomValidity('El campo es obligatorio')"
             oninput="setCustomValidity('')"
-            minlength="4"
-            id="nroNota"
-            name="nroNota"
-            placeholder="Ingrese nro. de nota"
             [(ngModel)]="item.nroNota"
-            required
-          />
+            name="nroNota"
+            id="nroNota"
+          >
+            <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
+            <option value="RE">ENTREGA POR RELEVAMIENTO</option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -76,8 +76,6 @@
           >
             <option value="PP">PRESTAMO PROVISORIO</option>
             <option value="PC">PROVISION CON CARGO</option>
-            <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
-            <option value="RE">ENTREGA POR RELEVAMIENTO</option>
           </select>
         </div>
       </div>

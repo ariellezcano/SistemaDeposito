@@ -70,6 +70,7 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
           this.item.fechaEntrega = moment(this.item.fechaEntrega).format(
             'YYYY-MM-DD'
           );
+          
           if(this.item.movilPol != undefined){
             this.visible = true;
           }else{

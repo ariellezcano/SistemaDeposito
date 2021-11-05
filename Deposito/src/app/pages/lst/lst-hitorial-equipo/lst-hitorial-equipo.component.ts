@@ -96,12 +96,6 @@ export class LstHitorialEquipoComponent implements OnInit {
     this.items = event;
   }
 
-  /* <option value="PP">PRESTAMO PROVISORIO</option>
-            <option value="PC">PROVISION CON CARGO</option>
-            <option value="SE">ORDEN DE SERVICIO EXTERNO</option>
-            <option value="RE">ENTREGA POR RELEVAMIENTO</option>*/
-
-
   instrumento(value: any) {
     console.log("instrumento", value)
     let valor = '';

@@ -54,9 +54,7 @@ export class FilHistorialEquipoComponent implements OnInit {
         this.cargando = true;
         this.procesando = true;
         const crit =
-          "(c.equipo.nroSerie = '" +
-          this.search +
-          "' or c.unidad.nombre like '%" +
+          "(c.unidad.nombre like '%" +
           this.search +
           "')AND c.activo=true";
 

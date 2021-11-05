@@ -9,7 +9,7 @@
           <b>{{ Entity }}</b>
           &nbsp;
         </div>
-        
+
         <app-fil-historial-equipo
           (filter)="doFound($event)"
         ></app-fil-historial-equipo>
@@ -21,43 +21,25 @@
             class="table table-striped table-inverse text-center"
           >
             <thead class="table-light">
-              <tr></tr>
               <tr id="tabla">
                 <th>Id. Policial</th>
                 <th>Nro. Serie</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ items[0].equipo.idPolicial }}</td>
-                <td>{{ items[0].equipo.nroSerie }}</td>
-                <td>{{ items[0].equipo.modelo.marca.nombre }}</td>
-                <td>{{ items[0].equipo.modelo.nombre }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            *ngIf="items.length > 0"
-            class="table text-center"
-            id="tblData"
-          >
-            <thead>
-              <tr id="tr">
                 <th>Fecha Entrega</th>
-                <th>Unidad</th>
                 <th>Estado</th>
                 <th>Instrumento</th>
               </tr>
             </thead>
-            <br />
             <tbody>
-              <tr  *ngFor="let item of items">
+              <tr *ngFor="let item of items">
+                <td>{{ item.equipo.idPolicial }}</td>
+                <td>{{ item.equipo.nroSerie }}</td>
+                <td>{{ item.equipo.modelo.marca.nombre }}</td>
+                <td>{{ item.equipo.modelo.nombre }}</td>
                 <td>{{ item.fechaEntrega | date: "dd/MM/yyyy" }}</td>
-                <td>{{ item.unidad.nombre | uppercase }}</td>
-                <td>{{ item.equipo.estado.nombre | uppercase }}</td>
-                <td>{{instrumento(item.tipoEntrega)}}</td>
+                <td>{{ item.equipo.estado.nombre }}</td>
+                <td>{{ instrumento(item.tipoEntrega) }}</td>
               </tr>
             </tbody>
           </table>

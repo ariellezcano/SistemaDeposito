@@ -42,6 +42,8 @@ import { FilMovilComponent } from './filtros/fil-movil/fil-movil.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { LstHitorialEquipoComponent } from './lst/lst-hitorial-equipo/lst-hitorial-equipo.component';
 import { FilHistorialEquipoComponent } from './filtros/fil-historial-equipo/fil-historial-equipo.component';
+import { ActaEntregaComponent } from './componentes/acta-entrega/acta-entrega.component';
+import { GraficoComponent } from './componentes/grafico/grafico.component';
 
 @NgModule({
     declarations:[
@@ -84,6 +86,8 @@ import { FilHistorialEquipoComponent } from './filtros/fil-historial-equipo/fil-
         ReportesComponent,
         LstHitorialEquipoComponent,
         FilHistorialEquipoComponent,
+        ActaEntregaComponent,
+        GraficoComponent,
     ], 
     exports: [
     ],

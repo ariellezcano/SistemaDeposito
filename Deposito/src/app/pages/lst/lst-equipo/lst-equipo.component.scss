@@ -1,55 +1,97 @@
-h3{
-    color: black;
+h3 {
+  color: black;
 }
-.card{
-background-color: #E8FFFF !important;    
+.card {
+  background-color: #e8ffff !important;
 }
-b{
-    font-size: 30px;
+b {
+  font-size: 30px;
 }
 
-#tabla{
-    padding: 0px;
-  }
-
-
+#tabla {
+  padding: 0px;
+}
 
 //colores de th
-.t-light{
-    //background-color: #E8FFFF !important;
-    color: blue !important;
+.t-light {
+  //background-color: #E8FFFF !important;
+  color: blue !important;
 }
 
-.t-success{
-    //background-color: lightgreen !important;
-    color: green !important;
+.t-success {
+  //background-color: lightgreen !important;
+  color: green !important;
 }
-.t-warning{
-    //background-color: lightyellow !important;
-    color: rgb(143, 143, 38) !important;
+.t-warning {
+  //background-color: lightyellow !important;
+  color: rgb(143, 143, 38) !important;
 }
 
-.t-danger{
-    //background-color: red !important;
-   // color: #E8FFFF;
-   color: red !important;
+.t-danger {
+  //background-color: red !important;
+  // color: #E8FFFF;
+  color: red !important;
 }
-.t-primary{
+.t-primary {
   //  background-color: skyblue !important;
   color: skyblue !important;
 }
-.t-info{
-    //background-color: lightsalmon !important;
-    color: lightsalmon !important;
+.t-info {
+  //background-color: lightsalmon !important;
+  color: lightsalmon !important;
 }
-.t-violeta{
-    //background-color: violet !important;
-    color: rgb(206, 14, 206) !important;
+.t-violeta {
+  //background-color: violet !important;
+  color: rgb(206, 14, 206) !important;
 }
-.t-default{
-    //background-color: #FEF1E6 !important;
-    color: #4e4e4e !important;
+.t-default {
+  //background-color: #FEF1E6 !important;
+  color: #4e4e4e !important;
 }
-th{
-    color: white !important;
+th {
+  color: white !important;
+}
+
+//boton flotante
+.flotante {
+	font-size: 12px; /* Cambiar el tamaño de la tipografia */
+	text-transform: uppercase; /* Texto en mayusculas */
+	font-weight: bold; /* Fuente en negrita o bold */
+	color: #ffffff; /* Color del texto */
+	border-radius: 9px; /* Borde del boton */
+	letter-spacing: 2px; /* Espacio entre letras */
+	background-color: #6976bd; /* Color de fondo */
+	padding: 13px 10px; /* Relleno del boton */
+	position: fixed;
+	bottom: 70px;
+	right: 8em;
+	transition: all 300ms ease 0ms;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	z-index: 99;
+}
+.flotante:hover {
+	background-color: #0dc535; /* Color de fondo al pasar el cursor */
+	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+	transform: translateY(-7px);
+}
+@media only screen and (max-width: 500px) {
+ 	.flotante {
+		font-size: 14px;
+		padding: 12px 20px;
+		bottom: 20px;
+		right: 20px;
+	}
+}
+
+thead tr th { 
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: black;
+}
+.table-responsive {
+  height:400px;
+  overflow:scroll;
+  overflow-x: hidden;
+  
 }

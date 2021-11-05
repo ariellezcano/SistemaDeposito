@@ -129,6 +129,12 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.router.navigateByUrl(this.entidad.toLowerCase() + '/reporte/' + id);
   }
 
+  linkearActa(id?: Number) {
+    this.router.navigateByUrl(
+      this.entidad.toLowerCase() + '/actaentrega/' + id
+    );
+  }
+
   //devuelve movil policial
   async buscarvehiculo(item: number) {
     const crit = 'c.id = ' + item + ' ';
@@ -151,9 +157,16 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
 
   async listarHistorial(id: any) {
     const crit = 'c.equipo.id = ' + id;
-    let data = await this.wsdl.doCriteria(crit, false, null, 'ORDER BY c.fechaEntrega desc', 1, 100);
+    let data = await this.wsdl.doCriteria(
+      crit,
+      false,
+      null,
+      'ORDER BY c.fechaEntrega desc',
+      1,
+      100
+    );
     const result = JSON.parse(JSON.stringify(data));
-    console.log("historial", result)
+    console.log('historial', result);
     if (result.status === 200) {
       this.historial = result.data;
     } else if (result.status === 666) {
@@ -164,5 +177,45 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
       this.historial = [];
     }
     //this.resultado.emit(this.items);
+  }
+
+   //para exportar datos a excel
+   exportTableToExcel(tableID: any, filename = '') {
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var navigator: any;
+
+    var tableSelect: any = document.getElementById(tableID);
+    console.log(tableSelect);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+
+    // Create download link element
+    downloadLink = document.createElement('a');
+
+    document.body.appendChild(downloadLink);
+
+    // Create a link to the file
+    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+    // Setting the file name
+    downloadLink.download = filename;
+
+    //triggering the function
+    downloadLink.click();
+  }
+
+
+  scroll(value: any[]) {
+    console.log('valor', value);
+    const valor = '';
+    if (value.length > 5) {
+      const valor = 'table-responsive';
+      return valor;
+    } else {
+      return console.log('no hay mas de 10');
+    }
   }
 }
