@@ -11,7 +11,7 @@ export class OrdenCompraService {
   api;
 
   constructor(private http: HttpClient) {
-  this.api = environment.URL + "comuOrdenCompra/";
+  this.api = environment.URL + "compra/";
   
   }
   /* particularidad de la entidad */

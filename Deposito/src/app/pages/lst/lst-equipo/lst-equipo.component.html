@@ -27,7 +27,7 @@
                         <th>Proveedor</th>
                         <th>Estado</th>
                         <th>Tipo Adquisicion</th>
-                        <th>Acción</th>
+                        <th *ngIf="!exportar">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,18 +37,13 @@
                         <td>{{ item.modelo.marca.nombre | uppercase}}</td>
                         <td>{{ item.modelo.nombre | uppercase}}</td>
                         <td>{{ item.proveedor.nombre | uppercase}}</td>
-                        <td class="{{colores(item.estado.id)}}" ><em> <b style="font-size: 15px;">{{ item.estado.nombre }}</b></em></td>
+                        <td class="{{colores(item.estado.id)}}" ><em><b style="font-size: 15px;">{{ item.estado.nombre }}</b></em></td>
                         <td>{{ tipoAdquisicion(item.tipoAlta)|uppercase }}</td>
-                        <td>
+                        <td *ngIf="!exportar" >
                             <button type="button" title="Modificar" placement="top" show-delay="10"
                                 (click)="linkear(item.id)" class="btn btn-secondary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            &nbsp;
-                            <!-- <button type="button" title="Eliminar" placement="top" show-delay="10"
-                                (click)="preDelete(item)" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button> -->
                         </td>
                     </tr>
                 </tbody>

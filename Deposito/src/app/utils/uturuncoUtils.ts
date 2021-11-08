@@ -81,4 +81,38 @@ export class UturuncoUtils {
     }
     return d;
   }
+ static exportTableToExcel(tableID: any, filename = '') {
+
+  return new Promise( resolve => {
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var navigator: any;
+
+    var tableSelect: any = document.getElementById(tableID);
+    console.log(tableSelect);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+
+    // Create download link element
+    downloadLink = document.createElement('a');
+
+    document.body.appendChild(downloadLink);
+
+    // Create a link to the file
+    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+    // Setting the file name
+    downloadLink.download = filename;
+
+    //triggering the function
+    downloadLink.click();
+    resolve(true)
+  } );
+  }
+  static delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
 }

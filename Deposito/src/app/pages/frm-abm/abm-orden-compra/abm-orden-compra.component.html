@@ -10,7 +10,7 @@
       <hr />
       <div class="row">
         <!-- expediente -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Número de Expediente</label>
           <input
             class="form-control"
@@ -21,12 +21,12 @@
             (keydown.enter)="buscar(2)"
             id="nroExpte"
             name="nroExpte"
-            placeholder="Ingrese número de expediente"
-            [(ngModel)]="item.nroExpte"
+            placeholder="Número de expediente"
+            [(ngModel)]="item.nroExpediente"
           />
         </div>
         <!-- orden de compra -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Número Orden de Compra</label>
           <input
             class="form-control"
@@ -37,14 +37,12 @@
             (keydown.enter)="buscar(1)"
             id="nroOrdenCompra"
             name="nroOrdenCompra"
-            placeholder="Ingrese orden de compra"
-            [(ngModel)]="item.nroOrdenCompra"
+            placeholder="Orden de compra"
+            [(ngModel)]="item.ordenCompraNum"
           />
         </div>
-      </div>
-      <div class="row">
         <!-- licitacion -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Número de Licitación</label>
           <input
             class="form-control"
@@ -54,13 +52,14 @@
             minlength="4"
             id="nroLicitacion"
             name="nroLicitacion"
-            placeholder="Ingrese número de licitacion"
+            placeholder="Número de licitacion"
             [(ngModel)]="item.nroLicitacion"
           />
         </div>
-
+      </div>
+      <div class="row">
         <!-- preadjudicacion -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Número de Preadjudicación</label>
           <input
             class="form-control"
@@ -70,14 +69,13 @@
             minlength="4"
             id="nroPreadjudicacion"
             name="nroPreadjudicacion"
-            placeholder="Ingrese nro de Preadjudicacion"
+            placeholder="Nro. de Preadjudicacion"
             [(ngModel)]="item.nroPreadjudicacion"
           />
         </div>
-      </div>
-      <div class="row">
+
         <!-- nota preadjudicacion -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Nota de Preadjudicación</label>
           <input
             class="form-control"
@@ -85,14 +83,14 @@
             oninvalid="setCustomValidity('El campo es obligatorio')"
             oninput="setCustomValidity('')"
             minlength="4"
-            id="notPreadjudicacion"
-            name="notPreadjudicacion"
-            placeholder="Ingrese nota de Preadjudicacion"
-            [(ngModel)]="item.notPreadjudicacion"
+            id="notaPreadjudicacion"
+            name="notaPreadjudicacion"
+            placeholder="Nota de Preadjudicacion"
+            [(ngModel)]="item.notaPreadjudicacion"
           />
         </div>
         <!-- nota preadjudicacion -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Número de factura</label>
           <input
             class="form-control"
@@ -102,13 +100,13 @@
             minlength="4"
             id="nroFactura"
             name="nroFactura"
-            placeholder="Ingrese número de factura"
+            placeholder="Número de factura"
             [(ngModel)]="item.nroFactura"
           />
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="title">Orden de pago</label>
           <input
             class="form-control"
@@ -118,50 +116,77 @@
             minlength="4"
             id="ordenPago"
             name="ordenPago"
-            placeholder="Ingrese orden de pago"
+            placeholder="Orden de pago"
             [(ngModel)]="item.ordenPago"
           />
         </div>
-        <!-- fecha compra -->
-        <div class="form-group col-md-6">
-          <label for="title">Fecha compra</label>
-          <input
-            class="form-control"
-            type="date"
-            oninvalid="setCustomValidity('El campo es obligatorio')"
-            oninput="setCustomValidity('')"
-            id="fechaCompra"
-            name="fechaCompra"
-            [(ngModel)]="item.fechaCompra"
-            required
-          />
+
+        <div class="col-md-4">
+          <!-- fecha compra -->
+          <label id="label">Fecha compra</label>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  onclick="fecha.disabled = !this.checked"
+                  name="checked"
+                  id="checked"
+                  type="checkbox"
+                  [(ngModel)]="checked"
+                />
+              </div>
+            </div>
+            <input
+              id="fecha"
+              name="fecha"
+              disabled="disabled"
+              [(ngModel)]="item.fecha"
+              type="date"
+              class="form-control"
+            />
+          </div>
         </div>
-      </div>
-      <div class="row">
+
         <!-- Proveedor -->
-        <div class="col-lg-6">
+
+        <div class="col-lg-4">
           <app-combo-proveedor
             [dibujar]="item.proveedor"
             (emity)="seleccionProveedor($event)"
           ></app-combo-proveedor>
         </div>
-        <div class="form-group col-md-6">
-          <label for="title">Fecha de pago de compra</label>
-          <input
-            class="form-control"
-            type="date"
-            oninvalid="setCustomValidity('El campo es obligatorio')"
-            oninput="setCustomValidity('')"
-            id="fechaPagoCompra"
-            name="fechaPagoCompra"
-            [(ngModel)]="item.fechaPagoCompra"
-            required
-          />
-        </div>
+
+        <!-- select tipo alta -->
       </div>
       <div class="row">
-        <!-- select tipo alta -->
-        <div class="form-group col-md-6">
+        <div class="col-md-4">
+          <!-- fecha compra -->
+          <label id="label">Fecha de pago de compra</label>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  onclick="fechaPago.disabled = !this.checkedfechaPago"
+                  [(ngModel)]="checked"
+                  name="checkedfechaPago"
+                  id="checkedfechaPago"
+                  type="checkbox"
+                  [(ngModel)]="checkedfechaPago"
+                />
+              </div>
+            </div>
+            <input
+              id="fechaPago"
+              name="fechaPago"
+              disabled="disabled"
+              [(ngModel)]="item.fechaPago"
+              type="date"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
           <label for="title">Tipo de compra</label>
           <select
             class="form-control"
@@ -180,41 +205,120 @@
           </select>
         </div>
         <!-- estado de compra -->
-        <div class="form-group col-md-6">
-            <label for="title">Estado de compra</label>
-            <select
-              class="form-control"
-              data-style="btn-primary"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              [(ngModel)]="item.estadoCompra"
-              name="estadoCompra"
-              id="estadoCompra"
-              required
-            >
-              <option value="CD">Pagado</option>
-              <option value="CP">Falta de pago</option>
-              <option value="LPr">Faltan equipos</option>
-              
-            </select>
-          </div>
-      </div>
-      <div class="row">
-        <!-- Observaciones -->
-      <div class="form-group col-md-12">
-        <div class="form-floating">
-          <label for="floatingTextarea">Observaciones</label>
-          <textarea
-          [(ngModel)]="item.observaciones"
+        <!-- <div class="form-group col-md-4">
+          <label for="title">Estado de compra</label>
+          <select
             class="form-control"
-            name="observacion"
-            placeholder="Observaciones del equipo"
-            id="observacion"
-          ></textarea>
+            data-style="btn-primary"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            [(ngModel)]="item.estadoCompra"
+            name="estadoCompra"
+            id="estadoCompra"
+            required
+          >
+            <option value="CD">Pagado</option>
+            <option value="CP">Falta de pago</option>
+            <option value="LPr">Faltan equipos</option>
+          </select>
+        </div> -->
+        <div class="col-md-4">
+          <!-- fecha Invitación -->
+          <label id="label">Fecha de Invitación</label>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  onclick="fechaInvitacion.disabled = !this.checkedInvitacion"
+                  name="checkedInvitacion"
+                  id="checkedInvitacion"
+                  type="checkbox"
+                  [(ngModel)]="checkedInvitacion"
+                />
+              </div>
+            </div>
+            <input
+              id="fechaInvitacion"
+              name="fechaInvitacion"
+              disabled="disabled"
+              [(ngModel)]="item.fechaInvitacion"
+              type="date"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        
+        <div class="col-md-6">
+          <!-- fecha Licitación -->
+          <label id="label">Fecha de Licitación</label>
+          <div class="input-group mb-6">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  onclick="fechaLicitacion.disabled = !this.checkedlicitacion"
+                  name="checkedlicitacion"
+                  id="checkedlicitacion"
+                  type="checkbox"
+                  [(ngModel)]="checkedlicitacion"
+                />
+              </div>
+            </div>
+            <input
+              id="fechaLicitacion"
+              name="fechaLicitacion"
+              disabled="disabled"
+              [(ngModel)]="item.fechaLicitacion"
+              type="date"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <!-- fecha Adjudicación -->
+          <label id="label">Fecha de Adjudicación</label>
+          <div class="input-group mb-6">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  onclick="fechaAdjudicacion.disabled = !this.checkedadjudicacion"
+                  name="checkedadjudicacion"
+                  id="checkedadjudicacion"
+                  type="checkbox"
+                  [(ngModel)]="checkedadjudicacion"
+                />
+              </div>
+            </div>
+            <input
+              id="fechaAdjudicacion"
+              name="fechaAdjudicacion"
+              disabled="disabled"
+              [(ngModel)]="item.fechaAdjudicacion"
+              type="date"
+              class="form-control"
+            />
+          </div>
         </div>
       </div>
-    </div>
-
+        <br>
+      <div class="row">
+        <!-- Observaciones -->
+        <div class="form-group col-md-12">
+          <div class="form-floating">
+            <label for="floatingTextarea">Observaciones</label>
+            <textarea
+              [(ngModel)]="item.observacion"
+              class="form-control"
+              name="observacion"
+              placeholder="Observaciones de la orden de compra"
+              id="observacion"
+            ></textarea>
+          </div>
+        </div>
+      </div>
       <hr />
       <div class="form-group">
         <button

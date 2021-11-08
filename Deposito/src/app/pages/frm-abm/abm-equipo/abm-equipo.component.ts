@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -51,6 +50,7 @@ export class AbmEquipoComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
+          console.log(this.item)
           this.item.fechaAlta = moment(this.item.fechaAlta).format('YYYY-MM-DD');
         }
       } else {

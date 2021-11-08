@@ -61,13 +61,13 @@ export class FilOrdenCompraComponent implements OnInit {
       const crit =
         "(c.proveedor.nombre like '%" +
         this.search +
-        "%' or c.nroOrdenCompra like '%" +
+        "%' or c.ordenCompraNum like '%" +
         this.search +
-        "%' or c.nroExpte like '%" +
+        "%' or c.nroExpediente like '%" +
         this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
-        .doCriteria(crit, false, null, 'ORDER BY c.tipoCompra ASC', this.page, this.limit)
+        .doCriteria(crit, false, null, 'ORDER BY c.nroExpediente ASC', this.page, this.limit)
         .then();
 
       const result = JSON.parse(JSON.stringify(data));
@@ -85,7 +85,6 @@ export class FilOrdenCompraComponent implements OnInit {
         // logout app o refresh token
       } else {
         this.filter.emit([]);
-        console.log(result.msg);
         UturuncoUtils.showToas(result.msg, 'error');
       }
       this.procesando = false;
@@ -94,6 +93,7 @@ export class FilOrdenCompraComponent implements OnInit {
       UturuncoUtils.showToas('Error', 'error');
     } finally {
       this.procesando = false;
+      this.cargando = false;
     }
   }
 

@@ -13,6 +13,9 @@ import { FilEquipoComponent } from '../../filtros/fil-equipo/fil-equipo.componen
 })
 export class LstEquipoComponent implements OnInit {
   public load: boolean;
+
+  exportar: boolean = false;
+
   @ViewChild(FilEquipoComponent, { static: true })
   fil!: FilEquipoComponent;
   @ViewChild('close')
@@ -148,31 +151,12 @@ export class LstEquipoComponent implements OnInit {
   }
 
   //para exportar datos a excel
-  exportTableToExcel(tableID: any, filename = '') {
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var navigator: any;
+ async exportTableToExcel(tableID: any, filename = '') {
+    this.exportar = true;
+    await UturuncoUtils.delay(300);
+    await UturuncoUtils.exportTableToExcel(tableID, filename).then();
 
-    var tableSelect: any = document.getElementById(tableID);
-    console.log(tableSelect);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-
-    // Specify file name
-    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
-
-    // Create download link element
-    downloadLink = document.createElement('a');
-
-    document.body.appendChild(downloadLink);
-
-    // Create a link to the file
-    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-    // Setting the file name
-    downloadLink.download = filename;
-
-    //triggering the function
-    downloadLink.click();
+    this.exportar = false;
   }
 
   scroll(value: any[]) {

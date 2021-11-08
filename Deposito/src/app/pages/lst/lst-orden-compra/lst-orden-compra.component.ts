@@ -9,11 +9,12 @@ import { FilOrdenCompraComponent } from '../../filtros/fil-orden-compra/fil-orde
 @Component({
   selector: 'app-lst-orden-compra',
   templateUrl: './lst-orden-compra.component.html',
-  styleUrls: ['./lst-orden-compra.component.scss']
+  styleUrls: ['./lst-orden-compra.component.scss'],
 })
 export class LstOrdenCOmpraComponent implements OnInit {
-
   public load: boolean;
+
+  exportar: boolean = false;
   @ViewChild(FilOrdenCompraComponent, { static: true })
   fil!: FilOrdenCompraComponent;
   @ViewChild('close')
@@ -63,7 +64,7 @@ export class LstOrdenCOmpraComponent implements OnInit {
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text: '¡No podrás recuperar este archivo ' + item.nroOrdenCompra + '!',
+      text: '¡No podrás recuperar este archivo ' + item.ordenCompraNum + '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -129,17 +130,20 @@ export class LstOrdenCOmpraComponent implements OnInit {
     return color;
   }
 
-  tipoAdquisicion(value: any) {
+  tipoCompra(value: any) {
     let valor = '';
     switch (value) {
-      case 'AD':
-        valor = 'Adquisicion Policial';
+      case 'CD':
+        valor = 'Contratación Directa';
         break;
-      case 'DO':
-        valor = 'Donacion';
+      case 'CP':
+        valor = 'Concurso de Precios';
         break;
-      case 'SE':
-        valor = 'Secuestro';
+      case 'LPr':
+        valor = 'Licitación Privada';
+        break;
+      case 'LPu':
+        valor = 'Licitación Pública';
         break;
       default:
         valor = 'SIN TIPO ADQUISICION';
@@ -149,33 +153,16 @@ export class LstOrdenCOmpraComponent implements OnInit {
   }
 
   //para exportar datos a excel
-  exportTableToExcel(tableID: any, filename = '') {
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var navigator: any;
+  async exportTableToExcel(tableID: any, filename = '') {
+    this.exportar = true;
+    await UturuncoUtils.delay(300);
+    await UturuncoUtils.exportTableToExcel(tableID, filename).then();
 
-    var tableSelect: any = document.getElementById(tableID);
-    console.log(tableSelect);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-
-    // Specify file name
-    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
-
-    // Create download link element
-    downloadLink = document.createElement('a');
-
-    document.body.appendChild(downloadLink);
-
-    // Create a link to the file
-    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-    // Setting the file name
-    downloadLink.download = filename;
-
-    //triggering the function
-    downloadLink.click();
+    this.exportar = false;
   }
+  
 
+  //scroll
   scroll(value: any[]) {
     console.log('valor', value);
     const valor = '';

@@ -1,27 +1,38 @@
+import { Persona } from "./persona";
 import { Proveedor } from "./proveedor";
 
 export class OrdenCompra{
 
     id!: Number;
-    nroExpte!: string;//agregadoNuevo
-    nroOrdenCompra!: string;
+    nroExpediente!: string;//agregadoNuevo
+    ordenCompraNum!: string;///ordenCompraNum
     nroLicitacion!: string;//agregadonuevo
     nroPreadjudicacion!:string;//agregadonuevo
-    notPreadjudicacion!:string;//agregadonuevo
+    notaPreadjudicacion!:string;//agregadonuevo
     nroFactura!:string;//agregadonuevo
     ordenPago!:string;//agregadonuevo
-    fechaPagoCompra!: any;
+    fechaPago!: any;
     proveedor: Proveedor;
-    fechaCompra!: any;
+    fechaInvitacion: any;//agregue nuevo
+    fechaLicitacion: any;//agregue nuevo
+    fechaAdjudicacion: any; //Agregue nuevo
+    fechaOrdenCompra!: any;//fecha
+    fecha:any;//fechacompra
+    usuario!: Persona;
     tipoCompra!: string;
-    estadoCompra!: string;
-    observaciones!:string
+    observacion!:string;//agregue nuevo
     activo: Boolean;
 
     constructor(){
        this.proveedor=new Proveedor();
-       this.fechaCompra = new Date();
-       this.fechaPagoCompra = new Date();   
-       this.activo = true;    
+       this.fechaOrdenCompra = new Date();
+       this.fechaPago = new Date();
+       this.fechaAdjudicacion = new Date();
+       this.fechaInvitacion = new Date();
+       this.fechaLicitacion = new Date();
+       this.fechaOrdenCompra = new Date();
+       this.fecha = new Date();//fechacompra
+       this.usuario = new Persona();   
+       this.activo = true;   
     }
 }

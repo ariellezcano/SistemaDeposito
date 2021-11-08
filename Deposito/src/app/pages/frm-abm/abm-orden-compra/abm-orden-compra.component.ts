@@ -1,8 +1,9 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
-import { OrdenCompra, Proveedor } from 'src/app/modelo/index.models';
+import { OrdenCompra, Proveedor, Usuario } from 'src/app/modelo/index.models';
 import { OrdenCompraService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
@@ -29,6 +30,14 @@ export class AbmOrdenCompraComponent implements OnInit {
   id!: number;
   item: OrdenCompra;
 
+
+  checked: boolean=false;
+  checkedInvitacion: boolean=false;
+  checkedlicitacion: boolean=false;
+  checkedadjudicacion: boolean=false;
+  //checkedfechacompra: boolean=false;
+  checkedfechaPago: boolean=false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -50,10 +59,28 @@ export class AbmOrdenCompraComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
-          this.item.fechaCompra = moment(this.item.fechaCompra).format('YYYY-MM-DD');
-          if (this.item.fechaPagoCompra != undefined) {
-            this.item.fechaPagoCompra = moment(this.item.fechaPagoCompra).format('YYYY-MM-DD');
+          this.item.fechaOrdenCompra = moment(this.item.fechaOrdenCompra).format('YYYY-MM-DD');
+          if (this.item.fechaPago != undefined) {
+            this.checkedfechaPago = true;
+            this.item.fechaPago = moment(this.item.fechaPago).format('YYYY-MM-DD');
           }
+          else if(this.item.fecha != undefined){
+            this.checked = true;
+            this.item.fecha = moment(this.item.fecha).format('YYYY-MM-DD');
+          }
+          else if(this.item.fechaAdjudicacion != undefined){
+            this.checkedadjudicacion = true;
+            this.item.fechaAdjudicacion = moment(this.item.fechaAdjudicacion).format('YYYY-MM-DD');
+          }
+          else if(this.item.fechaInvitacion != undefined){
+            this.checkedInvitacion = true;
+            this.item.fechaInvitacion = moment(this.item.fechaInvitacion).format('YYYY-MM-DD');
+          }
+          else if(this.item.fechaLicitacion != undefined){
+            this.checkedlicitacion = true;
+            this.item.fechaLicitacion = moment(this.item.fechaLicitacion).format('YYYY-MM-DD');
+          }
+          
         }
       } else {
         this.item = new OrdenCompra();
@@ -99,6 +126,8 @@ export class AbmOrdenCompraComponent implements OnInit {
  
   async doCreate() {
     try {
+      this.item.usuario.id = JSON.parse(''+UturuncoUtils.getSession("personal")).id;
+      this.item.fechaOrdenCompra =  moment(this.item.fechaOrdenCompra).format('YYYY-MM-DD');
       this.procesando = true;
       console.log("datos",this.item)
        const res = await this.wsdl.doInsert(this.item).then();
@@ -123,7 +152,7 @@ export class AbmOrdenCompraComponent implements OnInit {
   }
  
   back() {
-    this.router.navigateByUrl(this.entity.toLowerCase());
+    this.router.navigateByUrl(this.entity);
   }
 
   
@@ -142,12 +171,12 @@ export class AbmOrdenCompraComponent implements OnInit {
     switch (op) {
       case 1:
         {
-          crit = "c.nroExpte like '" + this.item.nroExpte + "' AND c.activo=true";
+          crit = "c.nroExpte like '" + this.item.nroExpediente + "' AND c.activo=true";
         }
         break;
       case 2:
         {
-          crit = "c.nroOrdenCompra like '" + this.item.nroOrdenCompra + "' AND c.activo=true";
+          crit = "c.nroOrdenCompra like '" + this.item.ordenCompraNum + "' AND c.activo=true";
         }
         break;
       default: {

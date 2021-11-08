@@ -17,41 +17,32 @@
         </app-fil-orden-compra>
   
         <div class="row {{scroll(items)}}">
-            <table id="tabla" *ngIf="items.length > 0" class="table table-striped table-inverse text-center">
+            <table id="listacompra" *ngIf="items.length > 0" class="table table-striped table-inverse text-center">
                 <thead class="table-light">
                     <tr>
                         <th>Orden Compra</th>
                         <th>Licitación</th>
                         <th>Proveedor</th>
                         <th>Fecha Compra</th>
-                        <th>Estado Compra</th>
-                        <th>Tipo</th>
                         <th>Pago</th>
                         <th>Tipo Compra</th>
-                        <th>Acción</th>
+                        <th *ngIf="!exportar">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
-                        <td>{{ item.nroOrdenCompra}}</td>
+                        <td>{{ item.ordenCompraNum}}</td>
                         <td>{{ item.nroLicitacion }}</td>
                         <td>{{ item.proveedor.nombre| uppercase}}</td>
-                        <td>{{ item.fechaCompra | uppercase}}</td>
-                        <td>{{ item.tipoCompra | uppercase}}</td>
-                        <td>{{ item.fechaPagoCompra | uppercase}}</td>
-                        <td>{{ item.tipoCompra | uppercase}}</td>
-                        <!-- <td class="{{colores(item.estado.id)}}" ><em> <b style="font-size: 15px;">{{ item.estado.nombre }}</b></em></td> -->
-                        <!-- <td>{{ tipoAdquisicion(item.tipoAlta)|uppercase }}</td> -->
-                        <td>
+                        <td>{{ item.fechaOrdenCompra | date: "dd/MM/yyyy"}}</td>
+                        <td>{{ item.fechaPago| date: "dd/MM/yyyy"}}</td>
+                        <td>{{ tipoCompra(item.tipoCompra)}}</td>
+                          <td *ngIf="!exportar">
                             <button type="button" title="Modificar" placement="top" show-delay="10"
                                 (click)="linkear(item.id)" class="btn btn-secondary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            &nbsp;
-                            <!-- <button type="button" title="Eliminar" placement="top" show-delay="10"
-                                (click)="preDelete(item)" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button> -->
+                           
                         </td>
                     </tr>
                 </tbody>
@@ -77,7 +68,7 @@
   </div>
   <br>
   <button *ngIf="items.length > 0"
-    (click)="exportTableToExcel('tabla', 'Equipos')"
+    (click)="exportTableToExcel('listacompra', 'compra')"
     class="btn btn-outline-success flotante"
   >
   <i class="far fa-file-excel"></i>
