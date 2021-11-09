@@ -47,6 +47,10 @@ import { GraficoComponent } from './componentes/grafico/grafico.component';
 import { LstOrdenCOmpraComponent } from './lst/lst-orden-compra/lst-orden-compra.component';
 import { FilOrdenCompraComponent } from './filtros/fil-orden-compra/fil-orden-compra.component';
 import { AbmOrdenCompraComponent } from './frm-abm/abm-orden-compra/abm-orden-compra.component';
+import { LstDetalleCompraComponent } from './lst/lst-detalle-compra/lst-detalle-compra.component';
+import { FilDetalleCompraComponent } from './filtros/fil-detalle-compra/fil-detalle-compra.component';
+import { AbmDetalleCompraComponent } from './frm-abm/abm-detalle-compra/abm-detalle-compra.component';
+import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.component';
 
 @NgModule({
     declarations:[
@@ -94,6 +98,10 @@ import { AbmOrdenCompraComponent } from './frm-abm/abm-orden-compra/abm-orden-co
         LstOrdenCOmpraComponent,
         FilOrdenCompraComponent,
         AbmOrdenCompraComponent,
+        LstDetalleCompraComponent,
+        FilDetalleCompraComponent,
+        AbmDetalleCompraComponent,
+        ComboCompraComponent,
     ], 
     exports: [
     ],

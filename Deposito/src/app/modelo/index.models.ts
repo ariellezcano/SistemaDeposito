@@ -16,3 +16,4 @@ export { Regional } from './componentes/regional';
 export { Escalafon } from './componentes/escalafon';
 export { Roles } from './componentes/roles';
 export { Vehiculo } from './componentes/vehiculo';
+export { DetalleEquipos } from './componentes/detalleEquipos';

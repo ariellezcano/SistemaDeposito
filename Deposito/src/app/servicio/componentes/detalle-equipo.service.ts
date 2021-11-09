@@ -1,17 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import { environment } from 'src/environments/environment';
-import { UturuncoUtils } from '../../utils/uturuncoUtils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DetalleCompraService {
-    other_header: any;
+export class DetalleEquipoService {
+
+  other_header: any;
     api;
   
     constructor(private http: HttpClient) {
-    this.api = environment.URL + "detalleCompra/";
+    this.api = environment.URL + "detalleEquipo/";
     
     }
     /* particularidad de la entidad */
@@ -79,5 +80,4 @@ export class DetalleCompraService {
               return { code: 500, msg: err.message }
           });
   }
-  
 }

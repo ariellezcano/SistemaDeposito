@@ -1,25 +1,28 @@
 import { Equipo } from "./equipo";
+import { Modelo } from "./modelo";
 import { OrdenCompra } from "./ordenCompra";
 import { Persona } from "./persona";
+import { TipoEquipo } from "./tipoEquipo";
 
 export class DetalleCompra{
 
     id!: Number;
-    ordenCompra: OrdenCompra;
-    cantidadCompra!: number;
-    cantidadIngreso!:number;
-    observaciones!: string;
-    personalRecibe!: Persona;
-    fechaRecepcion!: Date;
-    equipo!: Equipo;
+    compra: OrdenCompra;
+    cantidad_compra!: number;
+    cantidad_ingreso!:number;
+    personal_recibe!: Persona;
+    fecha_recepcion!: any;
+    modelo: Modelo;
+    tipo_equipo: TipoEquipo;
     activo: Boolean;
     
 
     constructor(){
-       this.ordenCompra=new OrdenCompra();
-       this.personalRecibe = new Persona();
-       this.fechaRecepcion = new Date();
-       this.equipo = new Equipo();
+       this.compra=new OrdenCompra();
+       this.personal_recibe = new Persona();
+       this.fecha_recepcion = new Date();
+       this.tipo_equipo = new TipoEquipo();
+       this.modelo = new Modelo();
        this.activo=true;
       
     }

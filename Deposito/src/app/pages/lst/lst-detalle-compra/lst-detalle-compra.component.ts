@@ -1,50 +1,48 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrdenCompra } from 'src/app/modelo/index.models';
-import { OrdenCompraService } from 'src/app/servicio/index.service';
+import { DetalleCompra } from 'src/app/modelo/index.models';
+import { DetalleCompraService } from 'src/app/servicio/index.service';
 import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 import Swal from 'sweetalert2';
-import { FilOrdenCompraComponent } from '../../filtros/fil-orden-compra/fil-orden-compra.component';
+import { FilDetalleCompraComponent } from '../../filtros/fil-detalle-compra/fil-detalle-compra.component';
 
 @Component({
-  selector: 'app-lst-orden-compra',
-  templateUrl: './lst-orden-compra.component.html',
-  styleUrls: ['./lst-orden-compra.component.scss'],
+  selector: 'app-lst-detalle-compra',
+  templateUrl: './lst-detalle-compra.component.html',
+  styleUrls: ['./lst-detalle-compra.component.scss']
 })
-export class LstOrdenCOmpraComponent implements OnInit {
- 
-  filter: EventEmitter<OrdenCompra[]> = new EventEmitter<OrdenCompra[]>();
+export class LstDetalleCompraComponent implements OnInit {
 
   public load: boolean;
 
   exportar: boolean = false;
-  @ViewChild(FilOrdenCompraComponent, { static: true })
-  fil!: FilOrdenCompraComponent;
+
+  @ViewChild(FilDetalleCompraComponent, { static: true })
+  fil!: FilDetalleCompraComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-  entity = 'Ordenes de Compras';
-  entidad = 'principal/ordenCompra';
-  detalle = 'principal/detallecompra';
+  entity = 'Detalles de la compra';
+  entidad = 'principal/detallecompra';
 
-  items: OrdenCompra[];
-  item: OrdenCompra;
+  items: DetalleCompra[];
+  item: DetalleCompra;
 
   procesando!: Boolean;
 
-  constructor(private wsdl: OrdenCompraService, private router: Router) {
+  constructor(private wsdl: DetalleCompraService, private router: Router) {
     this.load = false;
-    this.item = new OrdenCompra();
+    this.item = new DetalleCompra();
     this.items = [];
   }
 
   ngOnInit() {}
   /* esto sirve para cuado hay combobox */
-  select(item: OrdenCompra) {
+  select(item: DetalleCompra) {
     this.item = item;
   }
 
   cancel() {
-    this.item = new OrdenCompra();
+    this.item = new DetalleCompra();
     this.fil.list();
   }
 
@@ -62,13 +60,13 @@ export class LstOrdenCOmpraComponent implements OnInit {
     this.fil.list();
   }
 
-  preDelete(item: OrdenCompra) {
-    this.item = new OrdenCompra();
+  preDelete(item: DetalleCompra) {
+    this.item = new DetalleCompra();
     this.item = item;
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text: '¡No podrás recuperar este archivo ' + item.ordenCompraNum + '!',
+      text: '¡No podrás recuperar este archivo ' + item.tipo_equipo.nombre + '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -101,15 +99,12 @@ export class LstOrdenCOmpraComponent implements OnInit {
     this.procesando = false;
   }
 
-  doFound(event: OrdenCompra[]) {
+  doFound(event: DetalleCompra[]) {
     this.items = event;
   }
 
   linkear(id?: Number) {
     this.router.navigateByUrl(this.entidad + '/abm/' + id);
-  }
-  linkearDetalle(id?: Number) {
-    this.router.navigateByUrl(this.detalle + '/abm/' + id);
   }
 
   colores(valor: any) {
@@ -137,20 +132,17 @@ export class LstOrdenCOmpraComponent implements OnInit {
     return color;
   }
 
-  tipoCompra(value: any) {
+  tipoAdquisicion(value: any) {
     let valor = '';
     switch (value) {
-      case 'CD':
-        valor = 'Contratación Directa';
+      case 'AD':
+        valor = 'Adquisicion Policial';
         break;
-      case 'CP':
-        valor = 'Concurso de Precios';
+      case 'DO':
+        valor = 'Donacion';
         break;
-      case 'LPr':
-        valor = 'Licitación Privada';
-        break;
-      case 'LPu':
-        valor = 'Licitación Pública';
+      case 'SE':
+        valor = 'Secuestro';
         break;
       default:
         valor = 'SIN TIPO ADQUISICION';
@@ -160,16 +152,14 @@ export class LstOrdenCOmpraComponent implements OnInit {
   }
 
   //para exportar datos a excel
-  async exportTableToExcel(tableID: any, filename = '') {
+ async exportTableToExcel(tableID: any, filename = '') {
     this.exportar = true;
     await UturuncoUtils.delay(300);
     await UturuncoUtils.exportTableToExcel(tableID, filename).then();
 
     this.exportar = false;
   }
-  
 
-  //scroll
   scroll(value: any[]) {
     console.log('valor', value);
     const valor = '';
@@ -180,4 +170,5 @@ export class LstOrdenCOmpraComponent implements OnInit {
       return console.log('no hay mas de 10');
     }
   }
+
 }

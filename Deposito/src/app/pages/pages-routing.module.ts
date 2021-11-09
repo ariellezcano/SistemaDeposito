@@ -20,6 +20,8 @@ import { ReportesComponent } from "./componentes/reportes/reportes.component";
 import { LstHitorialEquipoComponent } from "./lst/lst-hitorial-equipo/lst-hitorial-equipo.component";
 import { LstOrdenCOmpraComponent } from "./lst/lst-orden-compra/lst-orden-compra.component";
 import { AbmOrdenCompraComponent } from "./frm-abm/abm-orden-compra/abm-orden-compra.component";
+import { LstDetalleCompraComponent } from "./lst/lst-detalle-compra/lst-detalle-compra.component";
+import { AbmDetalleCompraComponent } from "./frm-abm/abm-detalle-compra/abm-detalle-compra.component";
 
 const routes: Routes = [
     {
@@ -135,6 +137,19 @@ const routes: Routes = [
               {
                 path: '',
                 component: LstOrdenCOmpraComponent,
+              },
+            ],
+          },
+          {
+            path: 'principal/detallecompra',
+            children: [
+              {
+                path: 'abm/:id',
+                component: AbmDetalleCompraComponent,
+              },
+              {
+                path: '',
+                component: LstDetalleCompraComponent,
               },
             ],
           },

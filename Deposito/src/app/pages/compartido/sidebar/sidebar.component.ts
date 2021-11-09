@@ -59,20 +59,29 @@ export const ROUTES: RouteInfo[] = [
     icon: 'text_caps-small',
     class: '',
   },
-  //historial de equipo
-  {
-    path: 'historial',
-    title: 'Historial de equipos entregados',
-    icon: 'text_caps-small',
-    class: '',
-  },  
+// //Detalle de compra
+// {
+//   path: 'detallecompra',
+//   title: 'Detalle de Compra',
+//   icon: 'text_caps-small',
+//   class: '',
+// },
 
-  // {
-  //   path: 'ordenCompra',
-  //   title: 'Orden de Compra',
-  //   icon: 'objects_spaceship',
-  //   class: '',
-  // },
+
+//   //historial de equipo
+//   {
+//     path: 'historial',
+//     title: 'Historial de equipos entregados',
+//     icon: 'text_caps-small',
+//     class: '',
+//   },  
+
+//   {
+//     path: 'ordenCompra',
+//     title: 'Orden de Compra',
+//     icon: 'objects_spaceship',
+//     class: '',
+//   },
 ];
 
 @Component({
@@ -97,5 +106,16 @@ export class SidebarComponent implements OnInit {
 
   rutas(r: string) {
     this.router.navigateByUrl('/principal/' + r);
+  }
+
+  //scroll
+  scroll(value: any[]) {
+    const valor = '';
+    if (value.length > 9) {
+      const valor = 'table-responsive';
+      return valor;
+    } else {
+      return "no hay mas de 10";
+    }
   }
 }

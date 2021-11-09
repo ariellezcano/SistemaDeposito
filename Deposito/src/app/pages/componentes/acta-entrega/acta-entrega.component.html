@@ -32,7 +32,9 @@
     </div>
     <div id="padding" class="row">
       <div class="col-md-12 text-center">
-        <h4><u><b>ACTA DE ENTREGA</b></u></h4>
+        <h4>
+          <u><b>ACTA DE ENTREGA</b></u>
+        </h4>
       </div>
     </div>
     <br />
@@ -43,18 +45,20 @@
           Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la ciudad
           de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
           {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a:
-         <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b> con prestacion de
-          servicio en <b>{{ item.unidad.nombre }}</b>, a quién seguidamente se procede
-          a hacer entrega en carácter de <b>{{ instrumento(item.tipoEntrega) }}</b> de
-          un equipo <b>{{ item.equipo.tipoEquipo.nombre }}</b>, marca:
-          <b>{{ item.equipo.modelo.marca.nombre }}</b>, modelo:
-          <b>{{ item.equipo.modelo.nombre }}</b>, serie n° <b>{{ item.equipo.nroSerie }}</b>,
-          con su correspondiente <b>{{ item.observaciones }}</b>, destinado al
-          funcionamiento técnico de la <b>{{ item.unidad.nombre }}</b>, el cual a
-          partir de la fecha queda bajo la entera responsabilidad de la unidad
-          mencionada. Es todo, no siendo para más se da por finalizado el
-          presente acto, previa integra lectura efectuadas por las partes,
-          quienes para constancia legal firman al pie. <b>CONSTE.</b>
+          <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b
+          >, a quién seguidamente se procede a hacer entrega en carácter de
+          <b>{{ instrumento(item.tipoEntrega) }}</b>, destinado al funcionamiento técnico de la unidad
+          <b>{{ item.unidad.nombre | uppercase}}</b
+          > del equipo que se detalla a continuación: 
+          <b>{{ item.equipo.tipoEquipo.nombre }}</b
+          >, marca: <b>{{ item.equipo.modelo.marca.nombre }}</b
+          >, modelo: <b>{{ item.equipo.modelo.nombre }}</b
+          >, serie n° <b>{{ item.equipo.nroSerie }}</b
+          >, con su correspondiente <b>{{ item.observaciones }}</b
+          >, el cual a partir de la fecha queda bajo la entera responsabilidad
+          de la unidad mencionada. Es todo, no siendo para más se da por
+          finalizado el presente acto, previa integra lectura efectuadas por las
+          partes, quienes para constancia legal firman al pie. <b>CONSTE.</b>
         </h5>
       </div>
     </div>
