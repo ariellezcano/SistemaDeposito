@@ -30,7 +30,7 @@ export class AbmOrdenCompraComponent implements OnInit {
   id!: number;
   item: OrdenCompra;
 
-
+  disabled = false;
   checked: boolean=false;
   checkedInvitacion: boolean=false;
   checkedlicitacion: boolean=false;
@@ -60,23 +60,24 @@ export class AbmOrdenCompraComponent implements OnInit {
         if (res.status == 200) {
           this.item = res.data;
           this.item.fechaOrdenCompra = moment(this.item.fechaOrdenCompra).format('YYYY-MM-DD');
+        
           if (this.item.fechaPago != undefined) {
             this.checkedfechaPago = true;
             this.item.fechaPago = moment(this.item.fechaPago).format('YYYY-MM-DD');
           }
-          else if(this.item.fecha != undefined){
+           if(this.item.fecha != undefined){
             this.checked = true;
             this.item.fecha = moment(this.item.fecha).format('YYYY-MM-DD');
           }
-          else if(this.item.fechaAdjudicacion != undefined){
+           if(this.item.fechaAdjudicacion != undefined){
             this.checkedadjudicacion = true;
             this.item.fechaAdjudicacion = moment(this.item.fechaAdjudicacion).format('YYYY-MM-DD');
           }
-          else if(this.item.fechaInvitacion != undefined){
+           if(this.item.fechaInvitacion != undefined){
             this.checkedInvitacion = true;
             this.item.fechaInvitacion = moment(this.item.fechaInvitacion).format('YYYY-MM-DD');
           }
-          else if(this.item.fechaLicitacion != undefined){
+           if(this.item.fechaLicitacion != undefined){
             this.checkedlicitacion = true;
             this.item.fechaLicitacion = moment(this.item.fechaLicitacion).format('YYYY-MM-DD');
           }

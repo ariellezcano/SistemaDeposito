@@ -128,7 +128,6 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  onclick="fecha.disabled = !this.checked"
                   name="checked"
                   id="checked"
                   type="checkbox"
@@ -136,10 +135,10 @@
                 />
               </div>
             </div>
-            <input
+            <input *ngIf="checked"
               id="fecha"
               name="fecha"
-              disabled="disabled"
+              
               [(ngModel)]="item.fecha"
               type="date"
               class="form-control"
@@ -166,8 +165,6 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  onclick="fechaPago.disabled = !this.checkedfechaPago"
-                  [(ngModel)]="checked"
                   name="checkedfechaPago"
                   id="checkedfechaPago"
                   type="checkbox"
@@ -175,10 +172,10 @@
                 />
               </div>
             </div>
-            <input
+            <input *ngIf="checkedfechaPago"
               id="fechaPago"
               name="fechaPago"
-              disabled="disabled"
+              
               [(ngModel)]="item.fechaPago"
               type="date"
               class="form-control"
@@ -229,7 +226,6 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  onclick="fechaInvitacion.disabled = !this.checkedInvitacion"
                   name="checkedInvitacion"
                   id="checkedInvitacion"
                   type="checkbox"
@@ -238,9 +234,9 @@
               </div>
             </div>
             <input
+            *ngIf="checkedInvitacion"
               id="fechaInvitacion"
               name="fechaInvitacion"
-              disabled="disabled"
               [(ngModel)]="item.fechaInvitacion"
               type="date"
               class="form-control"
@@ -259,7 +255,6 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  onclick="fechaLicitacion.disabled = !this.checkedlicitacion"
                   name="checkedlicitacion"
                   id="checkedlicitacion"
                   type="checkbox"
@@ -267,10 +262,9 @@
                 />
               </div>
             </div>
-            <input
+            <input *ngIf="checkedlicitacion"
               id="fechaLicitacion"
               name="fechaLicitacion"
-              disabled="disabled"
               [(ngModel)]="item.fechaLicitacion"
               type="date"
               class="form-control"
@@ -284,7 +278,6 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  onclick="fechaAdjudicacion.disabled = !this.checkedadjudicacion"
                   name="checkedadjudicacion"
                   id="checkedadjudicacion"
                   type="checkbox"
@@ -292,10 +285,9 @@
                 />
               </div>
             </div>
-            <input
+            <input *ngIf="checkedadjudicacion"
               id="fechaAdjudicacion"
               name="fechaAdjudicacion"
-              disabled="disabled"
               [(ngModel)]="item.fechaAdjudicacion"
               type="date"
               class="form-control"
