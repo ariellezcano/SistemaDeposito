@@ -17,7 +17,7 @@ export class Equipo {
   observacion!: String;
   fechaAlta!: any;
   garantia!: Number;
-  fechaAsignacion!: any; //fecha para desguace de equipo
+  fechaAsiganacion!: any; //fecha para desguace de equipo
   tipoAlta!: string; //adquisicion, donacion, secuestro
   activo: Boolean;
 
@@ -29,6 +29,6 @@ export class Equipo {
     this.tipoEquipo = new TipoEquipo();
     this.fechaAlta = new Date();
     this.activo = true;
-    this.fechaAsignacion = new Date();
+    this.fechaAsiganacion = new Date();
   }
 }

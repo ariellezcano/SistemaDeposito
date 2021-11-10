@@ -16,45 +16,44 @@
         <div class="row">
           <div class="col-md-3">
             <label for=""> <b>Expte.:</b></label>
-            {{ item.compra.nroExpediente }}
+            {{ compra.nroExpediente }}
           </div>
           <div class="col-md-3">
             <label for=""> <b>Fecha Compra:</b></label>
-            {{ item.compra.fecha | date: "dd/MM/yyyy" }}
+            {{ compra.fecha | date: "dd/MM/yyyy" }}
           </div>
           <div class="col-md-3">
             <label for=""> <b>Nro. Factura:</b></label>
-            {{ item.compra.nroFactura }}
+            {{ compra.nroFactura }}
           </div>
           <div class="col-md-3">
             <label for=""> <b>Proveedor:</b></label>
-            {{ item.compra.proveedor.nombre }}
+            {{ compra.proveedor.nombre }}
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <label for=""> <b>Tipo compra:</b></label>
-            {{ tipoCompra(item.compra.tipoCompra) }}
+            {{ tipoCompra(compra.tipoCompra) }}
           </div>
           <div class="col-md-4">
             <label for=""> <b>Licitación:</b></label>
-            {{ item.compra.fechaLicitacion | date: "dd/MM/yyyy" }}
+            {{ compra.fechaLicitacion | date: "dd/MM/yyyy" }}
           </div>
           <div class="col-md-4">
             <label for=""> <b>Orden de compra:</b></label>
-            {{ item.compra.ordenCompraNum }}
+            {{ compra.ordenCompraNum }}
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- #f="ngForm"
     (ngSubmit)="doAction(f)"
     ngNativeValidate
     class="was-validated" -->
 
-    <form
-    >
+    <form>
       <hr />
       <div class="row">
         <div class="col-md-12">
@@ -66,57 +65,126 @@
         </div>
       </div>
       <br />
-      <form #f="ngForm"
-      (ngSubmit)="guardar(f)"
-      ngNativeValidate
-      class="was-validated">
-      <div class="row">
-        <!-- tipoequipo -->
-        <div class="form-group col-md-4">
-          <app-combo-tipo-equipo
-            [dibujar]="item.tipo_equipo"
-            (emity)="selecciontipoEquipo($event)"
-          ></app-combo-tipo-equipo>
-        </div>
-        <!-- modelo -->
-        <div class="form-group col-md-4">
-          <app-combo-modelo-equipo
-            [dibujar]="item.modelo"
-            (emity)="seleccionmodelo($event)"
-          ></app-combo-modelo-equipo>
-        </div>
+      <form
+        #f="ngForm"
+        (ngSubmit)="guardar(f)"
+        ngNativeValidate
+        class="was-validated"
+      >
+        <div class="row">
+          <table id="tabla" class="table">
+            <thead class="text-center">
+              <tr>
+                <th>Tipo Equipo</th>
+                <th>Marca-Modelo</th>
+                <th>Cantidad</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <!-- tipoequipo -->
+                  <div class="form-group">
+                    <app-combo-tipo-equipo
+                      [dibujar]="item.tipo_equipo"
+                      (emity)="selecciontipoEquipo($event)"
+                    ></app-combo-tipo-equipo>
+                  </div>
+                </td>
+                <td>
+                  <!-- modelo -->
+                  <div class="form-group">
+                    <app-combo-modelo-equipo
+                      [dibujar]="item.modelo"
+                      (emity)="seleccionmodelo($event)"
+                    ></app-combo-modelo-equipo>
+                  </div>
+                </td>
+                <td>
+                  <!-- cantidad compradas -->
+                  <div class="form-group">
+                    <label for="">Agregue cantidad de compra</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      oninvalid="setCustomValidity('El campo es obligatorio')"
+                      oninput="setCustomValidity('')"
+                      minlength="1"
+                      id="cantidad_compra"
+                      name="cantidad_compra"
+                      placeholder="Compradas"
+                      [(ngModel)]="item.cantidad_compra"
+                      required
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <button
+                      id="boton"
+                      type="submit"
+                      title="Guardar"
+                      placement="top"
+                      show-delay="10"
+                      class="btn btn-warning btn-sm"
+                    >
+                      <i class="fas fa-archive"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngFor="let i of items" class="text-center">
+                <td>{{ i.tipo_equipo.nombre }}</td>
+                <td>{{ i.modelo.marca.nombre }} - {{ i.modelo.nombre }}</td>
 
-        <!-- cantidad compradas -->
-        <div class="form-group col-md-2">
-          <label for="title">Cantidad</label>
-          <input
-            class="form-control"
-            type="text"
-            oninvalid="setCustomValidity('El campo es obligatorio')"
-            oninput="setCustomValidity('')"
-            minlength="1"
-            id="cantidad_compra"
-            name="cantidad_compra"
-            placeholder="Compradas"
-            [(ngModel)]="item.cantidad_compra"
-            required
-          />
+                <ng-container
+                  *ngIf="i.editar; then mostrar; else noMostrar"
+                ></ng-container>
+
+                <ng-template #mostrar>
+                  <td>
+                    <input
+                      class="text-center"
+                      type="text"
+                      id="cantidad"
+                      name="cantidad"
+                      [(ngModel)]="i.cantidad_compra"
+                    />
+                  </td>
+                </ng-template>
+                <ng-template #noMostrar>
+                  <td>{{ i.cantidad_compra }}</td>
+                </ng-template>
+
+                <td>
+                  <button
+                    type="button"
+                    title="Modificar"
+                    placement="top"
+                    show-delay="10"
+                    (click)="modificar(i)"
+                    class="btn btn-success btn-sm btn-redondo"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  &nbsp;
+                  <button
+                    type="button"
+                    title="Eliminar"
+                    placement="top"
+                    show-delay="10"
+                    (click)="eliminar(i)"
+                    class="btn btn-danger btn-sm btn-redondo"
+                  >
+                    <i class="fas fa-calendar-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="form-group col-md-2">
-          <button
-            id="boton"
-            type="submit"
-            title="Guardar"
-            placement="top"
-            show-delay="10"
-            class="btn btn-warning btn-sm"
-          >
-            <i class="fas fa-archive"></i>
-          </button>
-        </div>
-      </div>
       </form>
-
       <hr />
       <div class="form-group">
         <button
