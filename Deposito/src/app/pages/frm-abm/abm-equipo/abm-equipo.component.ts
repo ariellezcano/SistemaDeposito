@@ -103,7 +103,7 @@ export class AbmEquipoComponent implements OnInit {
       this.procesando = true;
       this.item.unidad.id = 1;
       // this.item.unidad.regional.id = 1;
-      // this.item.situacion = 'situacion';
+      this.item.situacion = 'A Asignar';
       console.log('datos', this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false;

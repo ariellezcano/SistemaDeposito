@@ -11,7 +11,7 @@ export class Equipo {
   estado: EstadoEquipo;
   tipoEquipo: TipoEquipo;
   modelo: Modelo;
-  situacion!: String; //'A ASIGNAR',/*REASIGNAR ASIGNADO*/
+  situacion!: string; //'A ASIGNAR',/*REASIGNAR ASIGNADO*/
   idPolicial!: String;
   nroSerie!: string;
   observacion!: String;

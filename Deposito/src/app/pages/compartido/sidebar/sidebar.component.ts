@@ -59,29 +59,28 @@ export const ROUTES: RouteInfo[] = [
     icon: 'text_caps-small',
     class: '',
   },
-// //Detalle de compra
-// {
-//   path: 'detallecompra',
-//   title: 'Detalle de Compra',
-//   icon: 'text_caps-small',
-//   class: '',
-// },
+  // //Detalle de compra
+  // {
+  //   path: 'detallecompra',
+  //   title: 'Detalle de Compra',
+  //   icon: 'text_caps-small',
+  //   class: '',
+  // },
 
+  //   //historial de equipo
+  //   {
+  //     path: 'historial',
+  //     title: 'Historial de equipos entregados',
+  //     icon: 'text_caps-small',
+  //     class: '',
+  //   },
 
-//   //historial de equipo
-//   {
-//     path: 'historial',
-//     title: 'Historial de equipos entregados',
-//     icon: 'text_caps-small',
-//     class: '',
-//   },  
-
-//   {
-//     path: 'ordenCompra',
-//     title: 'Orden de Compra',
-//     icon: 'objects_spaceship',
-//     class: '',
-//   },
+  //   {
+  //     path: 'ordenCompra',
+  //     title: 'Orden de Compra',
+  //     icon: 'objects_spaceship',
+  //     class: '',
+  //   },
 ];
 
 @Component({
@@ -115,7 +114,7 @@ export class SidebarComponent implements OnInit {
       const valor = 'table-responsive';
       return valor;
     } else {
-      return "no hay mas de 10";
+      return 'no hay mas de 10';
     }
   }
 }

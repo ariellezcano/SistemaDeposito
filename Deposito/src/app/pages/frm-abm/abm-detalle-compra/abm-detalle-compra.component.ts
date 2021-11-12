@@ -43,7 +43,7 @@ export class AbmDetalleCompraComponent implements OnInit {
   id!: number;
   item: DetalleCompra;
   items!: DetalleCompra[];
-
+  cantidad!: number;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -228,13 +228,7 @@ export class AbmDetalleCompraComponent implements OnInit {
   // compras: any[];
   guardar(f: NgForm) {
     if (f.valid) {
-      //this.compras.push(this.item);
-      console.log('esta es la compra arrriba', this.compra);
       this.items.unshift(this.item);
-      console.log(
-        'detalle de lezca muestra la compra alangu',
-        this.item.compra
-      );
     }
     this.item = new DetalleCompra();
   }
@@ -242,8 +236,19 @@ export class AbmDetalleCompraComponent implements OnInit {
   eliminar(indice: any) {
     this.items.splice(indice, 1);
   }
+  cancelar(item: DetalleCompra) {
+    item.editar = !item.editar;
+    item.cantidad_compra = this.cantidad;
+    this.cantidad = 0;
+  }
 
   modificar(item: DetalleCompra) {
     item.editar = !item.editar;
+    this.cantidad = item.cantidad_compra;
+  }
+
+  guardarboton(item: DetalleCompra) {
+    item.editar = !item.editar;
+    this.cantidad = 0;
   }
 }

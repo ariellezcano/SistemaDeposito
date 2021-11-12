@@ -27,8 +27,10 @@
     class="form-control form-sm"
   >
     <option *ngFor="let item of items" [ngValue]="item">
-      {{ item.persona?.norDni }} - {{ item.persona?.nombre }} -
-      {{ item.persona?.apellido }} - {{ item.jerarquia?.nombre }}
+      <b
+        >{{ item.persona?.norDni }} - {{ item.persona?.apellido }},
+        {{ item.persona?.nombre }}</b
+      >
     </option>
   </select>
 

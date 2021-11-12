@@ -47,11 +47,10 @@
         </div>
       </div>
     </div>
-
     <!-- #f="ngForm"
-    (ngSubmit)="doAction(f)"
-    ngNativeValidate
-    class="was-validated" -->
+      (ngSubmit)="doAction(f)"
+      ngNativeValidate
+      class="was-validated" -->
 
     <form>
       <hr />
@@ -138,6 +137,7 @@
                 <td>{{ i.tipo_equipo.nombre }}</td>
                 <td>{{ i.modelo.marca.nombre }} - {{ i.modelo.nombre }}</td>
 
+                <!-- editar y guardar -->
                 <ng-container
                   *ngIf="i.editar; then mostrar; else noMostrar"
                 ></ng-container>
@@ -152,34 +152,56 @@
                       [(ngModel)]="i.cantidad_compra"
                     />
                   </td>
+                  <td>
+                    <button
+                      type="button"
+                      title="Guardar"
+                      placement="top"
+                      show-delay="10"
+                      (click)="guardarboton(i)"
+                      class="btn btn-secondary btn-sm btn-redondo"
+                    >
+                      <i class="fas fa-check-circle"></i>
+                    </button>
+                    &nbsp;
+                    <button
+                      type="button"
+                      title="Cancelar"
+                      placement="top"
+                      show-delay="10"
+                      (click)="cancelar(i)"
+                      class="btn btn-info btn-sm btn-redondo"
+                    >
+                      <i class="far fa-window-close"></i>
+                    </button>
+                  </td>
                 </ng-template>
                 <ng-template #noMostrar>
                   <td>{{ i.cantidad_compra }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      title="Modificar"
+                      placement="top"
+                      show-delay="10"
+                      (click)="modificar(i)"
+                      class="btn btn-success btn-sm btn-redondo"
+                    >
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    &nbsp;
+                    <button
+                      type="button"
+                      title="Eliminar"
+                      placement="top"
+                      show-delay="10"
+                      (click)="eliminar(i)"
+                      class="btn btn-danger btn-sm btn-redondo"
+                    >
+                      <i class="fas fa-calendar-times"></i>
+                    </button>
+                  </td>
                 </ng-template>
-
-                <td>
-                  <button
-                    type="button"
-                    title="Modificar"
-                    placement="top"
-                    show-delay="10"
-                    (click)="modificar(i)"
-                    class="btn btn-success btn-sm btn-redondo"
-                  >
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  &nbsp;
-                  <button
-                    type="button"
-                    title="Eliminar"
-                    placement="top"
-                    show-delay="10"
-                    (click)="eliminar(i)"
-                    class="btn btn-danger btn-sm btn-redondo"
-                  >
-                    <i class="fas fa-calendar-times"></i>
-                  </button>
-                </td>
               </tr>
             </tbody>
           </table>

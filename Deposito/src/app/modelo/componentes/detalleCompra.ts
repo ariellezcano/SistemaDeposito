@@ -7,12 +7,12 @@ import { TipoEquipo } from './tipoEquipo';
 export class DetalleCompra {
   id!: Number;
   compra: OrdenCompra;
-  cantidad_compra!: number;
+  cantidad_compra!: number; //ya esta
   cantidad_ingreso!: number;
   personal_recibe!: Persona;
   fecha_recepcion!: any;
-  modelo: Modelo;
-  tipo_equipo: TipoEquipo;
+  modelo: Modelo; //ya esta
+  tipo_equipo: TipoEquipo; //ya esta
   editar: boolean;
   activo: Boolean;
 
