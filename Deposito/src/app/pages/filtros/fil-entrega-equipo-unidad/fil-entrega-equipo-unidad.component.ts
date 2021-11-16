@@ -6,13 +6,14 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 @Component({
   selector: 'app-fil-entrega-equipo-unidad',
   templateUrl: './fil-entrega-equipo-unidad.component.html',
-  styleUrls: ['./fil-entrega-equipo-unidad.component.scss']
+  styleUrls: ['./fil-entrega-equipo-unidad.component.scss'],
 })
 export class FilEntregaEquipoUnidadComponent implements OnInit {
-
   @Output()
-  filter: EventEmitter<EntregaEquipoUnidades[]> = new EventEmitter<EntregaEquipoUnidades[]>();
-  
+  filter: EventEmitter<EntregaEquipoUnidades[]> = new EventEmitter<
+    EntregaEquipoUnidades[]
+  >();
+
   cargando: Boolean = false;
   procesando: Boolean;
   public search!: String;
@@ -62,13 +63,24 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
       const crit =
         "(c.unidad.nombre like '%" +
         this.search +
+        "%' or c.equipo.nroSerie like '%" +
+        this.search +
+        "%' or c.equipo.idPolicial like '%" +
+        this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
-        .doCriteria(crit, false, null, 'ORDER BY c.unidad.nombre ASC', this.page, this.limit)
+        .doCriteria(
+          crit,
+          false,
+          null,
+          'ORDER BY c.fechaEntrega Desc',
+          this.page,
+          this.limit
+        )
         .then();
 
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado de la busqueda", result)
+      console.log('resultado de la busqueda', result);
       if (result.status == 200) {
         this.filter.emit(result.data);
 
@@ -93,5 +105,4 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
       this.procesando = false;
     }
   }
-
 }

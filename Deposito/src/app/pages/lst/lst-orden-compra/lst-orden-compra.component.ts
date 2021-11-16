@@ -1,4 +1,10 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { OrdenCompra } from 'src/app/modelo/index.models';
 import { OrdenCompraService } from 'src/app/servicio/index.service';
@@ -12,7 +18,6 @@ import { FilOrdenCompraComponent } from '../../filtros/fil-orden-compra/fil-orde
   styleUrls: ['./lst-orden-compra.component.scss'],
 })
 export class LstOrdenCOmpraComponent implements OnInit {
- 
   filter: EventEmitter<OrdenCompra[]> = new EventEmitter<OrdenCompra[]>();
 
   public load: boolean;
@@ -167,17 +172,16 @@ export class LstOrdenCOmpraComponent implements OnInit {
 
     this.exportar = false;
   }
-  
 
   //scroll
   scroll(value: any[]) {
-    console.log('valor', value);
+    // console.log('valor', value);
     const valor = '';
     if (value.length > 5) {
       const valor = 'table-responsive';
       return valor;
     } else {
-      return console.log('no hay mas de 10');
+      return 'no hay mas de 10';
     }
   }
 }

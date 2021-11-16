@@ -82,12 +82,21 @@ export class AbmDetalleCompraComponent implements OnInit {
     }
   }
 
-  doAction(f: NgForm) {
+  doAction() {
     /* validar */
-    if (this.item.id > 0) {
-      this.doEdit();
-    } else {
-      this.doCreate();
+
+    for (let index = 0; index < this.items.length; index++) {
+      const dt = this.items[index];
+      dt.compra.id = this.id;
+      this.item = new DetalleCompra();
+      this.item = dt;
+      //console.log('item', this.item);
+
+      if (this.item.id > 0) {
+        this.doEdit();
+      } else {
+        this.doCreate();
+      }
     }
   }
 
@@ -114,11 +123,13 @@ export class AbmDetalleCompraComponent implements OnInit {
   async doCreate() {
     try {
       this.procesando = true;
+      this.item.compra = this.compra;
+      this.item.cantidad_ingreso = 0;
+      console.log('datos enviados', this.items);
 
-      // console.log("datos",this.item)
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false;
-      //  console.log("datos",res)
+      console.log('datos', res);
       const result = JSON.parse(JSON.stringify(res));
 
       if (result.status == 200) {
@@ -134,6 +145,44 @@ export class AbmDetalleCompraComponent implements OnInit {
     } catch (error: any) {
       UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
     }
+  }
+
+  preDelete(item: DetalleCompra) {
+    this.item = item;
+
+    Swal.fire({
+      title: 'Esta Seguro?',
+      text:
+        '¡No podrás recuperar este archivo ' + item.tipo_equipo.nombre + '!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '¡Eliminar!',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.value) {
+        this.delete();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        UturuncoUtils.showToas('Tu archivo esta seguro :)', 'warning');
+      }
+    });
+  }
+
+  async delete() {
+    try {
+      this.procesando = true;
+      const res = await this.wsdl.doDelete(this.item.id).then();
+      const result = JSON.parse(JSON.stringify(res));
+      if (result.code == 200) {
+        UturuncoUtils.showToas(result.msg, 'success');
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    }
+    this.procesando = false;
   }
 
   back() {
@@ -203,6 +252,7 @@ export class AbmDetalleCompraComponent implements OnInit {
       });
     }
   }
+
   tipoCompra(value: any) {
     let valor = '';
     switch (value) {
@@ -229,6 +279,7 @@ export class AbmDetalleCompraComponent implements OnInit {
   guardar(f: NgForm) {
     if (f.valid) {
       this.items.unshift(this.item);
+      //console.log('equipo', this.item.tipo_equipo.id);
     }
     this.item = new DetalleCompra();
   }
@@ -243,8 +294,14 @@ export class AbmDetalleCompraComponent implements OnInit {
   }
 
   modificar(item: DetalleCompra) {
-    item.editar = !item.editar;
-    this.cantidad = item.cantidad_compra;
+    if (item.id > 0) {
+      alert('esto es ya existe actualizo');
+      this.doEdit();
+    } else {
+      alert('esto es en memroia');
+      item.editar = !item.editar;
+      this.cantidad = item.cantidad_compra;
+    }
   }
 
   guardarboton(item: DetalleCompra) {

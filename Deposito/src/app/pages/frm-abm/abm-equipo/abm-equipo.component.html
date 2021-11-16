@@ -1,121 +1,126 @@
 <div class="row">
   <div class="col-md-12">
-      <h2><b>ABM Equipo</b></h2>
-      <form #f="ngForm" (ngSubmit)="doAction(f)" ngNativeValidate class="was-validated">
-        <hr>  
-        <div class="row">
-          <!-- identificacion policial -->
-          <div class="form-group col-md-6">
-            <label for="title">Identificación Policial</label>
-            <input
-              class="form-control"
-              type="text"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              minlength="4"
-              (keydown.enter)="buscar(2)"
-              id="idPolicial"
-              name="idPolicial"
-              placeholder="Ingrese Id. policial"
-              [(ngModel)]="item.idPolicial"
-            />
-          </div>
-          <!-- numero serie -->
-          <div class="form-group col-md-6">
-            <label for="title">Número Serie</label>
-            <input
-              class="form-control"
-              type="text"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              minlength="4"
-              (keydown.enter)="buscar(1)"
-              id="nroSerie"
-              name="nroSerie"
-              placeholder="Ingrese serie"
-              [(ngModel)]="item.nroSerie"
-            />
-          </div>
+    <h2><b>ABM Equipo</b></h2>
+    <form
+      #f="ngForm"
+      (ngSubmit)="doAction(f)"
+      ngNativeValidate
+      class="was-validated"
+    >
+      <hr />
+      <div class="row">
+        <!-- identificacion policial -->
+        <div class="form-group col-md-6">
+          <label for="title">Identificación Policial</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            (keydown.enter)="buscar(2)"
+            id="idPolicial"
+            name="idPolicial"
+            placeholder="Ingrese Id. policial"
+            [(ngModel)]="item.idPolicial"
+          />
         </div>
-        <div class="row">
-          <!-- select tipo alta -->
-          <div class="form-group col-md-6">
-            <label for="title">Tipo adquisición</label>
-            <select
-              class="form-control"
-              data-style="btn-primary"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              [(ngModel)]="item.tipoAlta"
-              name="tipoAlta"
-              id="tipoAlta"
-              required
-            >
-              <option value="AD">Adquisición Policial</option>
-              <option value="DO">Donación</option>
-              <option value="SE">Secuestro</option>
-            </select>
-          </div>
-          <!-- fecha alta equipo -->
-          <div class="form-group col-md-6">
-            <label for="title">Fecha alta equipo</label>
-            <input
-              class="form-control"
-              type="date"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              id="fechaAlta"
-              name="fechaAlta"
-              [(ngModel)]="item.fechaAlta"
-              required
-            />
-          </div>
+        <!-- numero serie -->
+        <div class="form-group col-md-6">
+          <label for="title">Número Serie</label>
+          <input
+            class="form-control"
+            type="text"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            minlength="4"
+            (keydown.enter)="buscar(1)"
+            id="nroSerie"
+            name="nroSerie"
+            placeholder="Ingrese serie"
+            [(ngModel)]="item.nroSerie"
+          />
         </div>
-      
-        <div class="row">
-          <!-- Proveedor -->
-          <div class="col-lg-6">
-            <app-combo-proveedor
-              [dibujar]="item.proveedor"
-              (emity)="seleccionProveedor($event)"
-            ></app-combo-proveedor>
-          </div>
-          <!-- Garantía -->
-          <div class="form-group col-md-6">
-            <label for="title">Garantía</label>
-            <input
-              class="form-control"
-              type="number"
-              oninvalid="setCustomValidity('El campo es obligatorio')"
-              oninput="setCustomValidity('')"
-              min="0"
-              id="garantia"
-              name="garantia"
-              placeholder="Garantía del equipo"
-              [(ngModel)]="item.garantia"
-              required
-            />
-          </div>
+      </div>
+      <div class="row">
+        <!-- select tipo alta -->
+        <div class="form-group col-md-6">
+          <label for="title">Tipo adquisición</label>
+          <select
+            class="form-control"
+            data-style="btn-primary"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            [(ngModel)]="item.tipoAlta"
+            name="tipoAlta"
+            id="tipoAlta"
+            required
+          >
+            <option value="AD">Adquisición Policial</option>
+            <option value="DO">Donación</option>
+            <option value="SE">Secuestro</option>
+          </select>
         </div>
-        <div class="row">
-          <!-- combo estado -->
-          <div class="col-lg-6">
-            <app-combo-estado
-              [dibujar]="item.estado"
-              (emity)="seleccionestado($event)"
-            ></app-combo-estado>
-          </div>
-          <!-- combo modelo equipo -->
-          <div class="col-lg-6">
-            <app-combo-modelo-equipo
-              [dibujar]="item.modelo"
-              (emity)="seleccionmodelo($event)"
-            ></app-combo-modelo-equipo>
-          </div>
+        <!-- fecha alta equipo -->
+        <div class="form-group col-md-6">
+          <label for="title">Fecha alta equipo</label>
+          <input
+            class="form-control"
+            type="date"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            id="fechaAlta"
+            name="fechaAlta"
+            [(ngModel)]="item.fechaAlta"
+            required
+          />
         </div>
-        <div class="row">
-          <!-- situacion -->
-          <!-- <div class="form-group col-md-6">
+      </div>
+
+      <div class="row">
+        <!-- Proveedor -->
+        <div class="col-lg-6">
+          <app-combo-proveedor
+            [dibujar]="item.proveedor"
+            (emity)="seleccionProveedor($event)"
+          ></app-combo-proveedor>
+        </div>
+        <!-- Garantía -->
+        <div class="form-group col-md-6">
+          <label for="title">Garantía</label>
+          <input
+            class="form-control"
+            type="number"
+            oninvalid="setCustomValidity('El campo es obligatorio')"
+            oninput="setCustomValidity('')"
+            min="0"
+            id="garantia"
+            name="garantia"
+            placeholder="Garantía del equipo"
+            [(ngModel)]="item.garantia"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <!-- combo estado -->
+        <div class="col-lg-6">
+          <app-combo-estado
+            [dibujar]="item.estado"
+            (emity)="seleccionestado($event)"
+          ></app-combo-estado>
+        </div>
+        <!-- combo modelo equipo -->
+        <div class="col-lg-6">
+          <app-combo-modelo-equipo
+            [dibujar]="item.modelo"
+            (emity)="seleccionmodelo($event)"
+          ></app-combo-modelo-equipo>
+        </div>
+      </div>
+      <div class="row">
+        <!-- situacion -->
+        <!-- <div class="form-group col-md-6">
             <label for="title">Situación</label>
             <select
               class="form-control"
@@ -133,49 +138,50 @@
               <option value="Asignado">ASIGNADO</option>
             </select>
           </div> -->
-          
-          <!-- tipo equipo -->
-          <div class="form-group col-lg-6">
-            <app-combo-tipo-equipo
-              [dibujar]="item.tipoEquipo"
-              (emity)="selecciontipoEquipo($event)"
-            ></app-combo-tipo-equipo>
+
+        <!-- tipo equipo -->
+        <div class="form-group col-lg-6">
+          <app-combo-tipo-equipo
+            [dibujar]="item.tipoEquipo"
+            (emity)="selecciontipoEquipo($event)"
+          ></app-combo-tipo-equipo>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Observaciones -->
+        <div class="form-group col-md-12">
+          <div class="form-floating">
+            <label for="floatingTextarea">Observaciones</label>
+            <textarea
+              [(ngModel)]="item.observacion"
+              class="form-control"
+              name="observacion"
+              placeholder="Observaciones del equipo"
+              id="observacion"
+            ></textarea>
           </div>
         </div>
-        <div class="row">
-            <!-- Observaciones -->
-          <div class="form-group col-md-12">
-            <div class="form-floating">
-              <label for="floatingTextarea">Observaciones</label>
-              <textarea
-                [(ngModel)]="item.observacion"
-                class="form-control"
-                name="observacion"
-                placeholder="Observaciones del equipo"
-                id="observacion"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-      
-          <hr>
-          <div class="form-group">
-              <button type="submit" [disabled]="procesando" name="btn"
-                  class="btn btn-primary btn-lg btn-block float-left">
-                  Aceptar
-                  <ng-container *ngIf="getProceso();then mostrar" ></ng-container>
-                  <ng-template #mostrar>
-                    <i class="fa fa-spinner fa-spin"  aria-hidden="true"></i>
-                  </ng-template>
-                  
-              </button>
-              &nbsp;
-              <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
-                  <i class="fas fa-arrow-left"></i> Volver
-              </a>
+      </div>
 
-          </div>
-      </form>
-
+      <hr />
+      <div class="form-group">
+        <button
+          type="submit"
+          [disabled]="procesando"
+          name="btn"
+          class="btn btn-primary btn-lg btn-block float-left"
+        >
+          Aceptar
+          <ng-container *ngIf="getProceso(); then mostrar"></ng-container>
+          <ng-template #mostrar>
+            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          </ng-template>
+        </button>
+        &nbsp;
+        <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+          <i class="fas fa-arrow-left"></i> Volver
+        </a>
+      </div>
+    </form>
   </div>
 </div>
