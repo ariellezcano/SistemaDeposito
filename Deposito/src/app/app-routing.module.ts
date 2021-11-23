@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/compartido/login/login.component';
 import { ActaEntregaComponent } from './pages/componentes/acta-entrega/acta-entrega.component';
+import { ReporteFaltanteComponent } from './pages/componentes/reporte-faltante/reporte-faltante.component';
 import { ReportesComponent } from './pages/componentes/reportes/reportes.component';
 
-
-const routes: Routes = [{
-    path:"",component:LoginComponent,
-  
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent,
   },
   {
     path: 'principal/entregaequipounidad/reporte',
@@ -15,7 +16,7 @@ const routes: Routes = [{
       {
         path: ':id',
         component: ReportesComponent,
-      }
+      },
     ],
   },
   {
@@ -24,13 +25,22 @@ const routes: Routes = [{
       {
         path: ':id',
         component: ActaEntregaComponent,
-      }
+      },
+    ],
+  },
+  {
+    path: 'principal/detallecompra/reporte',
+    children: [
+      {
+        path: ':id',
+        component: ReporteFaltanteComponent,
+      },
     ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

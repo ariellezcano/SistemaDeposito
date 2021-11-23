@@ -51,6 +51,7 @@ import { LstDetalleCompraComponent } from './lst/lst-detalle-compra/lst-detalle-
 import { FilDetalleCompraComponent } from './filtros/fil-detalle-compra/fil-detalle-compra.component';
 import { AbmDetalleCompraComponent } from './frm-abm/abm-detalle-compra/abm-detalle-compra.component';
 import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.component';
+import { ReporteFaltanteComponent } from './componentes/reporte-faltante/reporte-faltante.component';
 
 @NgModule({
     declarations:[
@@ -102,6 +103,7 @@ import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.co
         FilDetalleCompraComponent,
         AbmDetalleCompraComponent,
         ComboCompraComponent,
+        ReporteFaltanteComponent,
     ], 
     exports: [
     ],

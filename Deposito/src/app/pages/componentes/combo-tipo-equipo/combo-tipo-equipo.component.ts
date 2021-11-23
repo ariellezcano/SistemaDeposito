@@ -6,15 +6,13 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-combo-tipo-equipo',
   templateUrl: './combo-tipo-equipo.component.html',
-  styleUrls: ['./combo-tipo-equipo.component.scss']
+  styleUrls: ['./combo-tipo-equipo.component.scss'],
 })
 export class ComboTipoEquipoComponent implements OnInit {
-
   @Input()
-  set dibujar(item: TipoEquipo){
-    this.item = item
+  set dibujar(item: TipoEquipo) {
+    this.item = item;
   }
-
 
   item: TipoEquipo;
   items: TipoEquipo[];
@@ -27,7 +25,7 @@ export class ComboTipoEquipoComponent implements OnInit {
     this.item = new TipoEquipo();
     this.items = [];
     this.listar();
-   // this.opcionseleccionada = "";
+    // this.opcionseleccionada = "";
   }
 
   ngOnInit(): void {
@@ -36,10 +34,10 @@ export class ComboTipoEquipoComponent implements OnInit {
   //captura el dato del combo
 
   capturar(event: TipoEquipo) {
-      this.item = event;
-      //Swal.fire(event.nombre)
-      //console.log(event.nombre)
-      this.emity.emit(this.item);
+    this.item = event;
+    //Swal.fire(event.nombre)
+    //console.log(event.nombre)
+    this.emity.emit(this.item);
   }
 
   compareFnPer(c1: TipoEquipo, c2: TipoEquipo): boolean {
@@ -60,5 +58,4 @@ export class ComboTipoEquipoComponent implements OnInit {
       });
     });
   }
-
 }

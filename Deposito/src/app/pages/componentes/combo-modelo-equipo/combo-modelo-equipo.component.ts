@@ -5,15 +5,13 @@ import { ModeloService } from 'src/app/servicio/index.service';
 @Component({
   selector: 'app-combo-modelo-equipo',
   templateUrl: './combo-modelo-equipo.component.html',
-  styleUrls: ['./combo-modelo-equipo.component.scss']
+  styleUrls: ['./combo-modelo-equipo.component.scss'],
 })
 export class ComboModeloEquipoComponent implements OnInit {
-
   @Input()
-  set dibujar(item: Modelo){
-    this.item = item
+  set dibujar(item: Modelo) {
+    this.item = item;
   }
-
 
   item: Modelo;
   items: Modelo[];
@@ -26,7 +24,7 @@ export class ComboModeloEquipoComponent implements OnInit {
     this.item = new Modelo();
     this.items = [];
     this.listar();
-   // this.opcionseleccionada = "";
+    // this.opcionseleccionada = "";
   }
 
   ngOnInit(): void {
@@ -35,10 +33,10 @@ export class ComboModeloEquipoComponent implements OnInit {
   //captura el dato del combo
 
   capturar(event: Modelo) {
-      this.item = event;
-      //Swal.fire(event.nombre)
-      //console.log(event.nombre)
-      this.emity.emit(this.item);
+    this.item = event;
+    //Swal.fire(event.nombre)
+    //console.log(event.nombre)
+    this.emity.emit(this.item);
   }
 
   compareFnPer(c1: Modelo, c2: Modelo): boolean {
@@ -59,5 +57,4 @@ export class ComboModeloEquipoComponent implements OnInit {
       });
     });
   }
-
 }

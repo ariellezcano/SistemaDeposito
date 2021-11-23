@@ -1,14 +1,26 @@
-h2{
-    color: black !important;
+h2 {
+  color: black !important;
 }
-.card-body{
-    background-color: bisque !important;
+.card-body {
+  background-color: bisque !important;
 }
-#boton{
-    height:36px; 
-    width:36px; 
-    margin: 27px -14px; 
-    position:relative;
-    top:41%; 
-    left:50%;
+#boton {
+  height: 36px;
+  width: 36px;
+  margin: 27px -14px;
+  position: relative;
+  top: 41%;
+  left: 50%;
+}
+.table-responsive {
+  height: 400px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.t-success {
+  //background-color: lightgreen !important;
+  color: green !important;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 15px;
 }

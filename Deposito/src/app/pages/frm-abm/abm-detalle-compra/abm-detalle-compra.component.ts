@@ -1,8 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import {
+  DatoPolicial,
   DetalleCompra,
   Modelo,
   OrdenCompra,
@@ -22,6 +31,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./abm-detalle-compra.component.scss'],
 })
 export class AbmDetalleCompraComponent implements OnInit {
+  @ViewChild('close') cerrar!: ElementRef;
+
   @Output()
   finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
@@ -41,9 +52,15 @@ export class AbmDetalleCompraComponent implements OnInit {
   compra!: OrdenCompra;
 
   id!: number;
+
+  itm!: DetalleCompra;
   item: DetalleCompra;
   items!: DetalleCompra[];
+
+  dt: DetalleCompra;
+
   cantidad!: number;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -53,6 +70,7 @@ export class AbmDetalleCompraComponent implements OnInit {
     this.compra = new OrdenCompra();
     this.item = new DetalleCompra();
     this.items = [];
+    this.dt = new DetalleCompra();
   }
 
   ngOnInit() {
@@ -69,6 +87,8 @@ export class AbmDetalleCompraComponent implements OnInit {
         if (res.status == 200) {
           this.compra = res.data;
 
+          this.obtenerDetalle();
+
           // if (this.item.fecha_recepcion != undefined)
           //   this.item.fecha_recepcion = moment(
           //     this.item.fecha_recepcion
@@ -81,25 +101,68 @@ export class AbmDetalleCompraComponent implements OnInit {
       UturuncoUtils.showToas('Error inesperado', 'error');
     }
   }
+  //enlista el detalle de compra en la tabla del abm y lo guarda en la lista de detalle
+  async obtenerDetalle() {
+    try {
+      let criteria = '(c.compra.id =' + this.compra.id + ') AND c.activo=true';
+      let data = await this.wsdl
+        .doCriteria(criteria, false, null, 'ORDER BY c.id Desc', 1, 1000)
+        .then();
+      const result = JSON.parse(JSON.stringify(data));
+      if (result.status == 200) {
+        this.items = result.data;
+      } else {
+        this.items = [];
+      }
+    } catch (error) {}
+  }
 
+  //validar los campos del registro
   doAction() {
     /* validar */
-
     for (let index = 0; index < this.items.length; index++) {
-      const dt = this.items[index];
-      dt.compra.id = this.id;
-      this.item = new DetalleCompra();
-      this.item = dt;
-      //console.log('item', this.item);
+      this.dt = new DetalleCompra();
+      this.dt = this.items[index];
 
-      if (this.item.id > 0) {
-        this.doEdit();
-      } else {
+      if (this.dt.id == undefined) {
+        this.item = new DetalleCompra();
+        this.item = this.dt;
+        this.item.compra = new OrdenCompra();
+        this.item.compra.id = this.id;
+
         this.doCreate();
       }
     }
   }
 
+  //crear el registro
+  async doCreate() {
+    try {
+      this.procesando = true;
+
+      this.item.cantidadIngreso = 0;
+
+      const res = await this.wsdl.doInsert(this.item).then();
+      this.procesando = false;
+      const result = JSON.parse(JSON.stringify(res));
+
+      if (result.status == 200) {
+        //this.item = result.status;
+        UturuncoUtils.showToas('Se creó correctamente', 'success');
+        this.back();
+        this.finalizado.emit(true);
+      } else if (result.status == 666) {
+        // logout app o refresh token
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
+    }
+  }
+  //editar el registro
   async doEdit() {
     try {
       this.procesando = true;
@@ -109,6 +172,7 @@ export class AbmDetalleCompraComponent implements OnInit {
         UturuncoUtils.showToas('Se actualizado correctamente', 'success');
         this.back();
         this.finalizado.emit(true);
+        this.cerrar.nativeElement.click();
       } else if (result.status == 666) {
         // logout app o refresh token
       } else {
@@ -116,27 +180,29 @@ export class AbmDetalleCompraComponent implements OnInit {
       }
     } catch (error: any) {
       UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
     }
-    this.procesando = false;
   }
-
-  async doCreate() {
+  async doEditEntrega() {
     try {
       this.procesando = true;
-      this.item.compra = this.compra;
-      this.item.cantidad_ingreso = 0;
-      console.log('datos enviados', this.items);
+      this.itm.personalRecibe = new Persona();
 
-      const res = await this.wsdl.doInsert(this.item).then();
-      this.procesando = false;
-      console.log('datos', res);
+      this.itm.personalRecibe.id = JSON.parse(
+        '' + UturuncoUtils.getSession('personal')
+      ).id;
+
+      if (this.faltantes(this.itm) < 0) {
+        UturuncoUtils.showToas('No recibir mas de lo comprado', 'info');
+        return;
+      }
+
+      const res = await this.wsdl.doUpdate(this.itm, this.itm.id).then();
       const result = JSON.parse(JSON.stringify(res));
-
       if (result.status == 200) {
-        //this.item = result.status;
-        UturuncoUtils.showToas('Se creo correctamente', 'success');
-        this.back();
-        this.finalizado.emit(true);
+        UturuncoUtils.showToas('Se actualizó correctamente', 'success');
+        this.cerrar.nativeElement.click();
       } else if (result.status == 666) {
         // logout app o refresh token
       } else {
@@ -144,16 +210,18 @@ export class AbmDetalleCompraComponent implements OnInit {
       }
     } catch (error: any) {
       UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
     }
   }
 
   preDelete(item: DetalleCompra) {
+    this.item = new DetalleCompra();
     this.item = item;
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text:
-        '¡No podrás recuperar este archivo ' + item.tipo_equipo.nombre + '!',
+      text: '¡No podrás recuperar este archivo ' + item.tipoEquipo.nombre + '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -169,90 +237,56 @@ export class AbmDetalleCompraComponent implements OnInit {
     });
   }
 
+  select(item: DetalleCompra) {
+    this.itm = new DetalleCompra();
+    this.itm = item;
+  }
+
+  // para ver cuantos equipos faltan en entregar
+
+  faltantes(itm: DetalleCompra) {
+    return itm.cantidadCompra - itm.cantidadIngreso;
+  }
+
   async delete() {
     try {
       this.procesando = true;
-      const res = await this.wsdl.doDelete(this.item.id).then();
+      this.item.activo = false;
+
+      const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
-      if (result.code == 200) {
-        UturuncoUtils.showToas(result.msg, 'success');
+
+      if (result.status == 200) {
+        UturuncoUtils.showToas('Eliminado exitosamente!', 'success');
       } else {
         UturuncoUtils.showToas(result.msg, 'error');
       }
     } catch (error: any) {
       UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+    } finally {
+      this.procesando = false;
     }
-    this.procesando = false;
   }
 
   back() {
     this.router.navigateByUrl(this.entity);
   }
 
-  seleccionpersona(event: Persona) {
-    this.item.personal_recibe = event;
-    // console.log("soy el papa" , this.item.personal_recibe)
-  }
-
+  // se utiliza para la seleccion del combo modelo
   seleccionmodelo(event: Modelo) {
     this.item.modelo = event;
-    // console.log("soy el papa" , this.item.modelo)
   }
 
+  // se utiliza para la seleccion del combo tipo equipo
   selecciontipoEquipo(event: TipoEquipo) {
-    this.item.tipo_equipo = event;
-    // console.log("soy el papa" , this.item.tipo_equipo)
+    this.item.tipoEquipo = event;
   }
+
   getProceso() {
     return this.procesando;
   }
 
-  //control de búsqueda
-  async buscar(op: any) {
-    let crit = '';
-
-    switch (op) {
-      case 1:
-        {
-          crit =
-            "c.compra.ordenCompraNum like '" +
-            this.item.compra.ordenCompraNum +
-            "' AND c.activo=true";
-        }
-        break;
-      case 2:
-        {
-          crit =
-            "c.compra.nroExpediente like '" +
-            this.item.compra.nroExpediente +
-            "' AND c.activo=true";
-        }
-        break;
-      default: {
-      }
-    }
-
-    let data = await this.wsdl
-      .doCriteria(crit, true, null, 'ORDER BY c.fecha_recepcion ASC', 1, 1)
-      .then();
-    const result = JSON.parse(JSON.stringify(data));
-
-    if (result.status === 200) {
-      Swal.fire({
-        title: 'Ya está asignado dentro de la Base de datos',
-        text: '¡MODIFIQUE EL DATO INGRESADO!',
-        icon: 'warning',
-      });
-    } else if (result.status === 666) {
-    } else {
-      Swal.fire({
-        title: 'NO ESTA ASIGNADO',
-        text: 'Puede seguir agregando',
-        icon: 'success',
-      });
-    }
-  }
-
+  // se utiliza en la compra
   tipoCompra(value: any) {
     let valor = '';
     switch (value) {
@@ -275,37 +309,51 @@ export class AbmDetalleCompraComponent implements OnInit {
     return valor;
   }
 
-  // compras: any[];
-  guardar(f: NgForm) {
-    if (f.valid) {
-      this.items.unshift(this.item);
-      //console.log('equipo', this.item.tipo_equipo.id);
-    }
+  //agregar la fila en memoria
+  addRow() {
+    this.items.unshift(this.item);
     this.item = new DetalleCompra();
   }
-
-  eliminar(indice: any) {
+  //elimina la fila en memoria
+  deleteRow(indice: any) {
     this.items.splice(indice, 1);
   }
-  cancelar(item: DetalleCompra) {
-    item.editar = !item.editar;
-    item.cantidad_compra = this.cantidad;
-    this.cantidad = 0;
-  }
 
-  modificar(item: DetalleCompra) {
-    if (item.id > 0) {
-      alert('esto es ya existe actualizo');
-      this.doEdit();
+  //cancelar no se utiliza
+  // cancelar(item: DetalleCompra) {
+  //   item.editar = !item.editar;
+  //   item.cantidadCompra = this.cantidad;
+  //   this.cantidad = 0;
+  // }
+
+  //cancelar no se utiliza
+  // modificar(item: DetalleCompra) {
+  //   if (item.id > 0) {
+  //     alert('esto es ya existe actualizo');
+  //     this.doEdit();
+  //   } else {
+  //     alert('esto es en memroia');
+  //     item.editar = !item.editar;
+  //     this.cantidad = item.cantidadCompra;
+  //   }
+  // }
+
+  // guardarboton no se utiliza
+  // guardarboton(item: DetalleCompra) {
+  //   item.editar = !item.editar;
+  //   this.cantidad = 0;
+  // }
+
+  // se utiliza para pintar la fila en memoria
+  colores(item: DetalleCompra) {
+    let color = '';
+
+    if (item.id == undefined) {
+      color = 't-success';
     } else {
-      alert('esto es en memroia');
-      item.editar = !item.editar;
-      this.cantidad = item.cantidad_compra;
+      color = 't-default';
     }
-  }
 
-  guardarboton(item: DetalleCompra) {
-    item.editar = !item.editar;
-    this.cantidad = 0;
+    return color;
   }
 }

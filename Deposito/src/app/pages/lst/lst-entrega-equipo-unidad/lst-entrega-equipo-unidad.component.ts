@@ -18,7 +18,7 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   fil!: FilEntregaEquipoUnidadComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
-  entity = 'de Equipos Entregados';
+  entity = ' Equipos Entregados';
   entidad = 'principal/entregaEquipoUnidad';
 
   items: EntregaEquipoUnidades[];
@@ -179,8 +179,8 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     //this.resultado.emit(this.items);
   }
 
-   //para exportar datos a excel
-   exportTableToExcel(tableID: any, filename = '') {
+  //para exportar datos a excel
+  exportTableToExcel(tableID: any, filename = '') {
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
     var navigator: any;
@@ -206,7 +206,6 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     //triggering the function
     downloadLink.click();
   }
-
 
   scroll(value: any[]) {
     console.log('valor', value);

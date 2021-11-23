@@ -116,6 +116,9 @@ export class LstOrdenCOmpraComponent implements OnInit {
   linkearDetalle(id?: Number) {
     this.router.navigateByUrl(this.detalle + '/abm/' + id);
   }
+  linkearFaltante(id?: Number) {
+    this.router.navigateByUrl(this.detalle + '/reporte/' + id);
+  }
 
   colores(valor: any) {
     let color = '';

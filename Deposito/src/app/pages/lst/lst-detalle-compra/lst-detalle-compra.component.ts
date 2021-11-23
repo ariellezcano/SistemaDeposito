@@ -9,10 +9,9 @@ import { FilDetalleCompraComponent } from '../../filtros/fil-detalle-compra/fil-
 @Component({
   selector: 'app-lst-detalle-compra',
   templateUrl: './lst-detalle-compra.component.html',
-  styleUrls: ['./lst-detalle-compra.component.scss']
+  styleUrls: ['./lst-detalle-compra.component.scss'],
 })
 export class LstDetalleCompraComponent implements OnInit {
-
   public load: boolean;
 
   exportar: boolean = false;
@@ -66,7 +65,7 @@ export class LstDetalleCompraComponent implements OnInit {
 
     Swal.fire({
       title: 'Esta Seguro?',
-      text: '¡No podrás recuperar este archivo ' + item.tipo_equipo.nombre + '!',
+      text: '¡No podrás recuperar este archivo ' + item.tipoEquipo.nombre + '!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '¡Eliminar!',
@@ -152,7 +151,7 @@ export class LstDetalleCompraComponent implements OnInit {
   }
 
   //para exportar datos a excel
- async exportTableToExcel(tableID: any, filename = '') {
+  async exportTableToExcel(tableID: any, filename = '') {
     this.exportar = true;
     await UturuncoUtils.delay(300);
     await UturuncoUtils.exportTableToExcel(tableID, filename).then();
@@ -170,5 +169,4 @@ export class LstDetalleCompraComponent implements OnInit {
       return console.log('no hay mas de 10');
     }
   }
-
 }

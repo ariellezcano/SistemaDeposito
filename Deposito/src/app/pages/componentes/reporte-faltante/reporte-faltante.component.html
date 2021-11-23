@@ -42,24 +42,49 @@
       <div id="fecha" class="col-md-12 text-justify">
         <h5>
           En la División Desarrollo de Sistemas, dependiente del Departamento
-          Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la ciudad
+          Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la Ciudad
           de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
-          {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a:
-          <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b
-          >, a quién seguidamente se procede a hacer entrega en carácter de
-          <b>{{ instrumento(item.tipoEntrega) }}</b
-          >, destinado al funcionamiento técnico de la unidad
-          <b>{{ item.unidad.nombre | uppercase }}</b> del equipo que se detalla
-          a continuación: <b>{{ item.equipo.tipoEquipo.nombre }}</b
-          >, marca: <b>{{ item.equipo.modelo.marca.nombre }}</b
-          >, modelo: <b>{{ item.equipo.modelo.nombre }}</b
-          >, serie n° <b>{{ item.equipo.nroSerie }}</b
-          >, con su correspondiente
-          <b>{{ item.observaciones | uppercase }}{{ v | uppercase }}</b
-          >, el cual a partir de la fecha queda bajo la entera responsabilidad
-          de la unidad mencionada. Es todo, no siendo para más se da por
-          finalizado el presente acto, previa integra lectura efectuadas por las
-          partes, quienes para constancia legal firman al pie. <b>CONSTE.</b>
+          {{ fecha(compra.fecha) }}, se hace presente el sr/a:
+          ___________________________, quién seguidamente hace entrega al sr/a:
+          <b
+            >{{ items[0].personalRecibe.apellido }},
+            {{ items[0].personalRecibe.nombre }}</b
+          >
+          la cantidad de equipamiento que se detalla a continuación:
+          <br />
+          <table class="table">
+            <thead class="text-center">
+              <tr>
+                <th>Tipo Equipo</th>
+                <th>Marca-modelo</th>
+                <th>Compra</th>
+                <th>Ingreso</th>
+                <th>Faltante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items" class="text-center">
+                <td>{{ item.tipoEquipo.nombre }}</td>
+                <td>
+                  {{ item.modelo.marca.nombre }} -
+                  {{ item.modelo.nombre }}
+                </td>
+                <td>{{ item.cantidadCompra }}</td>
+                <td>{{ item.cantidadIngreso }}</td>
+                <td>
+                  {{ faltante(item.cantidadCompra, item.cantidadIngreso) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          correspondiente a
+          <b>{{ instrumento(items[0].compra.tipoCompra) }}</b> nro.
+          <b> {{ items[0]?.compra?.nroLicitacion }}</b>
+          <b>{{ items[0]?.compra?.nroPreadjudicacion }}</b
+          >. Es todo, no siendo para más se da por finalizado el presente acto,
+          previa integra lectura efectuadas por las partes, quienes para
+          constancia legal firman al pie.
+          <b>CONSTE.-</b>
         </h5>
       </div>
     </div>
@@ -75,10 +100,12 @@
             <b>FIRMA:</b> ____________________________________
           </div>
           <div class="col-md-12 b">
-            <b>ACLARACION:</b> {{ item.recibe.apellido }},
-            {{ item.recibe.nombre }}
+            <b>ACLARACION:</b> {{ items[0].personalRecibe.apellido }},
+            {{ items[0].personalRecibe.nombre }}
           </div>
-          <div class="col-md-12 b"><b>DNI:</b> {{ item.recibe.norDni }}</div>
+          <div class="col-md-12 b">
+            <b>DNI:</b> {{ items[0].personalRecibe.norDni }}
+          </div>
           <div class="col-md-12 b">
             <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
           </div>
@@ -96,12 +123,10 @@
             <b>FIRMA:</b>____________________________________
           </div>
           <div class="col-md-12 b">
-            <b>ACLARACION:</b> {{ item.entrega.apellido }},
-            {{ item.entrega.nombre }}
+            <b>EMPRESA:</b> {{ items[0].compra.proveedor.nombre }}
           </div>
-          <div class="col-md-12 b"><b>DNI:</b> {{ item.entrega.norDni }}</div>
           <div class="col-md-12 b">
-            <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
+            <b>RESPONSABLE:</b> ___________________________
           </div>
           <div class="col-md-12 text-center"><b>-ENTREGUE CONFORME-</b></div>
         </div>

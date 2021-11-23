@@ -1,58 +1,53 @@
-<div class="row">
-  <div class="col-md-12">
-    <h2><b>DETALLAR COMPRA</b></h2>
-    <hr />
-    <div class="row">
-      <div class="col-md-12">
-        <span>
-          <b
-            ><em><u>DETALLE DE LA COMPRA:</u></em>
-          </b>
-        </span>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-3">
-            <label for=""> <b>Expte.:</b></label>
-            {{ compra.nroExpediente }}
-          </div>
-          <div class="col-md-3">
-            <label for=""> <b>Fecha Compra:</b></label>
-            {{ compra.fecha | date: "dd/MM/yyyy" }}
-          </div>
-          <div class="col-md-3">
-            <label for=""> <b>Nro. Factura:</b></label>
-            {{ compra.nroFactura }}
-          </div>
-          <div class="col-md-3">
-            <label for=""> <b>Proveedor:</b></label>
-            {{ compra.proveedor.nombre }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for=""> <b>Tipo compra:</b></label>
-            {{ tipoCompra(compra.tipoCompra) }}
-          </div>
-          <div class="col-md-4">
-            <label for=""> <b>Licitación:</b></label>
-            {{ compra.fechaLicitacion | date: "dd/MM/yyyy" }}
-          </div>
-          <div class="col-md-4">
-            <label for=""> <b>Orden de compra:</b></label>
-            {{ compra.ordenCompraNum }}
-          </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><b>DETALLAR COMPRA</b></h2>
+      <hr />
+      <div class="row">
+        <div class="col-md-12">
+          <span>
+            <b
+              ><em><u>DETALLE DE LA COMPRA:</u></em>
+            </b>
+          </span>
         </div>
       </div>
-    </div>
-    <!-- #f="ngForm"
-      (ngSubmit)="doAction(f)"
-      ngNativeValidate
-      class="was-validated" -->
-
-    <form>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <label for=""> <b>Expte.:</b></label>
+              {{ compra.nroExpediente }}
+            </div>
+            <div class="col-md-3">
+              <label for=""> <b>Fecha Compra:</b></label>
+              {{ compra.fecha | date: "dd/MM/yyyy" }}
+            </div>
+            <div class="col-md-3">
+              <label for=""> <b>Nro. Factura:</b></label>
+              {{ compra.nroFactura }}
+            </div>
+            <div class="col-md-3">
+              <label for=""> <b>Proveedor:</b></label>
+              {{ compra.proveedor.nombre }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for=""> <b>Tipo compra:</b></label>
+              {{ tipoCompra(compra.tipoCompra) }}
+            </div>
+            <div class="col-md-4">
+              <label for=""> <b>Licitación:</b></label>
+              {{ compra.fechaLicitacion | date: "dd/MM/yyyy" }}
+            </div>
+            <div class="col-md-4">
+              <label for=""> <b>Orden de compra:</b></label>
+              {{ compra.ordenCompraNum }}
+            </div>
+          </div>
+        </div>
+      </div>
       <hr />
       <div class="row">
         <div class="col-md-12">
@@ -64,209 +59,256 @@
         </div>
       </div>
       <br />
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <!-- tipoequipo -->
+            <div class="form-group">
+              <app-combo-tipo-equipo
+                [dibujar]="item.tipoEquipo"
+                (emity)="selecciontipoEquipo($event)"
+              ></app-combo-tipo-equipo>
+            </div>
+          </td>
+          <td>
+            <!-- modelo -->
+            <div class="form-group">
+              <app-combo-modelo-equipo
+                [dibujar]="item.modelo"
+                (emity)="seleccionmodelo($event)"
+              ></app-combo-modelo-equipo>
+            </div>
+          </td>
+          <td>
+            <!-- cantidad compradas -->
+            <div class="form-group">
+              <label for="">Agregue cantidad</label>
+              <input
+                class="form-control"
+                type="number"
+                oninvalid="setCustomValidity('El campo es obligatorio')"
+                oninput="setCustomValidity('')"
+                minlength="1"
+                id="cantidadCompra"
+                name="cantidadCompra"
+                placeholder="Compradas"
+                [(ngModel)]="item.cantidadCompra"
+                required
+              />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <button
+                id="boton"
+                type="button"
+                title="Guardar"
+                placement="top"
+                (click)="addRow()"
+                show-delay="10"
+                class="btn btn-warning btn-sm"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <table id="tabla" class="table">
+      <thead class="text-center table-primary">
+        <tr>
+          <th>#</th>
+          <th>Tipo Equipo</th>
+          <th>Marca-Modelo</th>
+          <th>Comprados</th>
+          <th>Recibidos</th>
+          <th>Faltantes</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of items" class="text-center {{ colores(i) }}">
+          <td>{{ i.id }}</td>
+          <td>{{ i.tipoEquipo.nombre }}</td>
+          <td>{{ i.modelo.marca.nombre }} - {{ i.modelo.nombre }}</td>
+          <td>{{ i.cantidadCompra }}</td>
+          <td>{{ i.cantidadIngreso }}</td>
+          <td>{{ faltantes(i) }}</td>
+
+          <!-- editar y guardar -->
+          <ng-container
+            *ngIf="i.id > 0; then mostrar; else noMostrar"
+          ></ng-container>
+
+          <ng-template #mostrar>
+            <!-- muestra el eliminar -->
+            <td>
+              <button
+                type="button"
+                title="Eliminar"
+                placement="top"
+                show-delay="10"
+                (click)="preDelete(i)"
+                class="btn btn-danger btn-sm btn-redondo"
+              >
+                <i class="far fa-trash-alt"></i>
+              </button>
+              &nbsp;
+              <button
+                *ngIf="faltantes(i) > 0"
+                type="button"
+                title="Recibir equipos"
+                placement="top"
+                (click)="select(i)"
+                show-delay="10"
+                data-toggle="modal"
+                data-target="#modelId"
+                class="btn btn-primary btn-sm btn-redondo"
+              >
+                <i class="fas fa-luggage-cart"></i>
+              </button>
+            </td>
+          </ng-template>
+          <ng-template #noMostrar>
+            <!-- saca de la lista -->
+            <td>
+              <button
+                type="button"
+                title="Eliminar de la lista"
+                placement="top"
+                show-delay="10"
+                (click)="deleteRow(i)"
+                class="btn btn-info btn-sm btn-redondo"
+              >
+                <i class="fas fa-calendar-times"></i>
+              </button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    *ngIf="items.length === 0"
+    class="alert alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Salir</span>
+    </button>
+    <strong>No hay datos</strong>
+  </div>
+  <hr />
+  <div class="form-group">
+    <button
+      (click)="doAction()"
+      type="button"
+      [disabled]="procesando"
+      name="btn"
+      class="btn btn-primary btn-lg btn-block float-left"
+    >
+      Aceptar
+    </button>
+    &nbsp;
+    <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+      <i class="fas fa-arrow-left"></i> Volver
+    </a>
+  </div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modelId"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Recepción de equipos</h5>
+        <button
+          #close
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form
         #f="ngForm"
-        (ngSubmit)="guardar(f)"
+        (ngSubmit)="doEditEntrega()"
         ngNativeValidate
         class="was-validated"
       >
-        <div class="row">
-          <table id="tabla" class="table">
-            <thead class="text-center">
-              <tr>
-                <th>Tipo Equipo</th>
-                <th>Marca-Modelo</th>
-                <th>Cantidad</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <!-- tipoequipo -->
-                  <div class="form-group">
-                    <app-combo-tipo-equipo
-                      [dibujar]="item.tipo_equipo"
-                      (emity)="selecciontipoEquipo($event)"
-                    ></app-combo-tipo-equipo>
-                  </div>
-                </td>
-                <td>
-                  <!-- modelo -->
-                  <div class="form-group">
-                    <app-combo-modelo-equipo
-                      [dibujar]="item.modelo"
-                      (emity)="seleccionmodelo($event)"
-                    ></app-combo-modelo-equipo>
-                  </div>
-                </td>
-                <td>
-                  <!-- cantidad compradas -->
-                  <div class="form-group">
-                    <label for="">Agregue cantidad de compra</label>
-                    <input
-                      class="form-control"
-                      type="number"
-                      oninvalid="setCustomValidity('El campo es obligatorio')"
-                      oninput="setCustomValidity('')"
-                      minlength="1"
-                      id="cantidad_compra"
-                      name="cantidad_compra"
-                      placeholder="Compradas"
-                      [(ngModel)]="item.cantidad_compra"
-                      required
-                    />
-                  </div>
-                </td>
-                <td>
-                  <div class="form-group">
-                    <button
-                      id="boton"
-                      type="submit"
-                      title="Guardar"
-                      placement="top"
-                      show-delay="10"
-                      class="btn btn-warning btn-sm"
-                    >
-                      <i class="fas fa-archive"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr *ngFor="let i of items" class="text-center">
-                <td>{{ i.tipo_equipo.nombre }}</td>
-                <td>{{ i.modelo.marca.nombre }} - {{ i.modelo.nombre }}</td>
+        <div class="modal-body" *ngIf="itm">
+          <!-- fecha alta equipo -->
+          <div class="row">
+            <div class="col-md-12">
+              <label for="" class="lbl lbl-success" style="font-size: 24px">
+                {{ itm?.modelo?.marca?.nombre }}
+              </label>
+              &nbsp;
+              <label for="" class="lbl lbl-success" style="font-size: 24px">
+                {{ itm?.modelo?.nombre }}
+              </label>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group md-12">
+                <label for="title">Fecha Recepción</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="fechaRecepcion"
+                  name="fechaRecepcion"
+                  [(ngModel)]="itm.fechaRecepcion"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Cantidad Ingreso</label>
+                <input
+                  class="form-control"
+                  type="number"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="cantidadIngreso"
+                  name="cantidadIngreso"
+                  placeholder="Cantidad Ingreso"
+                  [(ngModel)]="itm.cantidadIngreso"
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-                <!-- editar y guardar -->
-                <ng-container
-                  *ngIf="i.editar; then mostrar; else noMostrar"
-                ></ng-container>
-
-                <ng-template #mostrar>
-                  <td>
-                    <input
-                      class="text-center"
-                      type="number"
-                      id="cantidad"
-                      name="cantidad"
-                      [(ngModel)]="i.cantidad_compra"
-                    />
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                      title="Guardar"
-                      placement="top"
-                      show-delay="10"
-                      (click)="guardarboton(i)"
-                      class="btn btn-secondary btn-sm btn-redondo"
-                    >
-                      <i class="fas fa-check-circle"></i>
-                    </button>
-                    &nbsp;
-                    <button
-                      type="button"
-                      title="Cancelar"
-                      placement="top"
-                      show-delay="10"
-                      (click)="cancelar(i)"
-                      class="btn btn-info btn-sm btn-redondo"
-                    >
-                      <i class="far fa-window-close"></i>
-                    </button>
-                  </td>
-                </ng-template>
-                <ng-template #noMostrar>
-                  <td>{{ i.cantidad_compra }}</td>
-                  <td>
-                    <button
-                      type="button"
-                      title="Modificar"
-                      placement="top"
-                      show-delay="10"
-                      (click)="modificar(i)"
-                      class="btn btn-success btn-sm btn-redondo"
-                    >
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    &nbsp;
-
-                    <ng-container
-                      *ngIf="item.id; then thenTemplate; else elseTemplate"
-                    ></ng-container>
-                    <ng-template #thenTemplate>
-                      <button
-                        type="button"
-                        title="Eliminar"
-                        placement="top"
-                        show-delay="10"
-                        (click)="preDelete(item)"
-                        class="btn btn-warning btn-sm btn-redondo"
-                      >
-                        <i class="fas fa-calendar-times"></i>
-                      </button>
-                      &nbsp;
-                      <button
-                        type="button"
-                        title="Eliminar"
-                        placement="top"
-                        show-delay="10"
-                        (click)="modificar(item)"
-                        class="btn btn-warning btn-sm btn-redondo"
-                      >
-                        <i class="fas fa-calendar-times"></i>
-                      </button>
-                    </ng-template>
-                    <ng-template #elseTemplate>
-                      <button
-                        type="button"
-                        title="Eliminar"
-                        placement="top"
-                        show-delay="10"
-                        (click)="eliminar(i)"
-                        class="btn btn-danger btn-sm btn-redondo"
-                      >
-                        <i class="fas fa-calendar-times"></i>
-                      </button>
-                      &nbsp;
-                      <button
-                        type="button"
-                        title="Modificar"
-                        placement="top"
-                        show-delay="10"
-                        (click)="modificar(i)"
-                        class="btn btn-success btn-sm btn-redondo"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </ng-template>
-                  </td>
-                </ng-template>
-              </tr>
-            </tbody>
-          </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
         </div>
       </form>
-      <hr />
-      <div class="form-group">
-        <button
-          (click)="doAction()"
-          type="button"
-          [disabled]="procesando"
-          name="btn"
-          class="btn btn-primary btn-lg btn-block float-left"
-        >
-          Aceptar
-          <ng-container *ngIf="getProceso(); then mostrar"></ng-container>
-          <ng-template #mostrar>
-            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-          </ng-template>
-        </button>
-        &nbsp;
-        <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
-          <i class="fas fa-arrow-left"></i> Volver
-        </a>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

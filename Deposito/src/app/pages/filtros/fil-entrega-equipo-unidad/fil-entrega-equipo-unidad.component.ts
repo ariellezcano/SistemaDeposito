@@ -67,6 +67,8 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
         this.search +
         "%' or c.equipo.idPolicial like '%" +
         this.search +
+        "%' or c.equipo.tipoEquipo.nombre like '%" +
+        this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
         .doCriteria(
