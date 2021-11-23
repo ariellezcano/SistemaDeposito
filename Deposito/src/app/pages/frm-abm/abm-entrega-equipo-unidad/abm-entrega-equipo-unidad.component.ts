@@ -30,9 +30,7 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
 
   @Output()
   cancelado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-  
 
-  
   /*
    * control de operaciones a realizar
    */
@@ -66,14 +64,14 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
-      
+
           this.item.fechaEntrega = moment(this.item.fechaEntrega).format(
             'YYYY-MM-DD'
           );
-          
-          if(this.item.movilPol != undefined){
+
+          if (this.item.movilPol != undefined) {
             this.visible = true;
-          }else{
+          } else {
             this.visible = false;
           }
         }
@@ -87,6 +85,9 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
 
   doAction(f: NgForm) {
     /* validar */
+    this.item.fechaEntrega = moment(
+      this.item.fechaEntrega + ' ' + moment(new Date()).format('HH:mm:ss')
+    ).toDate();
     if (this.item.id > 0) {
       this.doEdit();
     } else {
@@ -97,7 +98,7 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
   async doEdit() {
     try {
       this.procesando = true;
-      if(this.visible){
+      if (this.visible) {
         this.item.movilPol = this.item.movilPol.id;
       }
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
@@ -122,15 +123,16 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       this.item.entrega.id = JSON.parse(
         '' + UturuncoUtils.getSession('personal')
       ).id;
+      this;
       this.procesando = true;
-      if(this.visible){
+      if (this.visible) {
         this.item.movilPol = this.item.movilPol.id;
       }
-      console.log("entregas creadas:", this.item);
+      console.log('entregas creadas:', this.item);
       const res = await this.wsdl.doInsert(this.item).then();
-      
+
       this.procesando = false;
-        
+
       const result = JSON.parse(JSON.stringify(res));
 
       if (result.status == 200) {
@@ -181,17 +183,11 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
   }
 
   vehiculoE(event: Vehiculo) {
-      console.log("evento movil",event)
-        this.item.movilPol = event;
+    console.log('evento movil', event);
+    this.item.movilPol = event;
   }
-  
 
-  
   getProceso() {
     return this.procesando;
   }
-
-
-
-
 }

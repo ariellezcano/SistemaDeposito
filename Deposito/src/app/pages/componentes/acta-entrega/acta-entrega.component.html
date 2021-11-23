@@ -44,15 +44,15 @@
           En la División Desarrollo de Sistemas, dependiente del Departamento
           Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la ciudad
           de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
-          {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a:
+          {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a
           <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b
           >, a quién seguidamente se procede a hacer entrega en carácter de
           <b>{{ instrumento(item.tipoEntrega) }}</b
           >, destinado al funcionamiento técnico de la unidad
           <b>{{ item.unidad.nombre | uppercase }}</b> del equipo que se detalla
-          a continuación: <b>{{ item.equipo.tipoEquipo.nombre }}</b
-          >, marca: <b>{{ item.equipo.modelo.marca.nombre }}</b
-          >, modelo: <b>{{ item.equipo.modelo.nombre }}</b
+          a continuación <b>{{ item.equipo.tipoEquipo.nombre }}</b
+          >, marca <b>{{ item.equipo.modelo.marca.nombre }}</b
+          >, modelo <b>{{ item.equipo.modelo.nombre }}</b
           >, serie n° <b>{{ item.equipo.nroSerie }}</b
           >, con su correspondiente
           <b>{{ item.observaciones | uppercase }}{{ v | uppercase }}</b
@@ -80,7 +80,7 @@
           </div>
           <div class="col-md-12 b"><b>DNI:</b> {{ item.recibe.norDni }}</div>
           <div class="col-md-12 b">
-            <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
+            <b>JERARQUIA:</b>________________________________
           </div>
           <div class="col-md-12 text-center"><b>-RECIBI CONFORME-</b></div>
         </div>
@@ -101,7 +101,7 @@
           </div>
           <div class="col-md-12 b"><b>DNI:</b> {{ item.entrega.norDni }}</div>
           <div class="col-md-12 b">
-            <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
+            <b>JERARQUIA:</b>_______________________________
           </div>
           <div class="col-md-12 text-center"><b>-ENTREGUE CONFORME-</b></div>
         </div>

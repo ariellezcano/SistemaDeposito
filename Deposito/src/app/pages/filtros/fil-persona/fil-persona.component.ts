@@ -46,6 +46,8 @@ export class FilPersonaComponent implements OnInit {
       this.criterio +
       "%' or c.credencialNro like '%" +
       this.criterio +
+      "%' or CONCAT(c.persona.apellido,' ', c.persona.nombre) like '%" +
+      this.criterio +
       "%') AND c.activo=true";
     console.log('persona enviada', crit);
     let data = await this.wsdl
@@ -53,7 +55,6 @@ export class FilPersonaComponent implements OnInit {
       .then();
     console.log('persona encontrada', data);
     const result = JSON.parse(JSON.stringify(data));
-    console.log('persona result', data);
 
     if (result.status === 200) {
       this.items = result.data;

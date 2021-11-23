@@ -6,7 +6,7 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 @Component({
   selector: 'app-fil-orden-compra',
   templateUrl: './fil-orden-compra.component.html',
-  styleUrls: ['./fil-orden-compra.component.scss']
+  styleUrls: ['./fil-orden-compra.component.scss'],
 })
 export class FilOrdenCompraComponent implements OnInit {
   @Output()
@@ -67,11 +67,18 @@ export class FilOrdenCompraComponent implements OnInit {
         this.search +
         "%') AND c.activo=true";
       let data = await this.wsdl
-        .doCriteria(crit, false, null, 'ORDER BY c.nroExpediente ASC', this.page, this.limit)
+        .doCriteria(
+          crit,
+          false,
+          null,
+          'ORDER BY c.nroExpediente ASC',
+          this.page,
+          this.limit
+        )
         .then();
 
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado de la busqueda", result)
+      console.log('resultado de la busqueda', result);
       if (result.status == 200) {
         this.filter.emit(result.data);
 
@@ -96,5 +103,4 @@ export class FilOrdenCompraComponent implements OnInit {
       this.cargando = false;
     }
   }
-
 }

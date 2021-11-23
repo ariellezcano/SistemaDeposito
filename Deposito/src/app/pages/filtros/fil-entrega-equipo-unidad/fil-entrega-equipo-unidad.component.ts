@@ -75,7 +75,7 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
           crit,
           false,
           null,
-          'ORDER BY c.fechaEntrega Desc',
+          'ORDER BY c.id Desc',
           this.page,
           this.limit
         )

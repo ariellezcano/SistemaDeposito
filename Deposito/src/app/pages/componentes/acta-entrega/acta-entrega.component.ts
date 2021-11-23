@@ -115,116 +115,120 @@ export class ActaEntregaComponent implements OnInit {
   }
 
   fecha(fecha: Date) {
-    console.log(fecha);
-    var meses = [
-      'Enero',
-      'Febrero',
-      'Marzo',
-      'Abril',
-      'Mayo',
-      'Junio',
-      'Julio',
-      'Agosto',
-      'Septiembre',
-      'Octubre',
-      'Noviembre',
-      'Diciembre',
-    ];
-    // var horas = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
-    var minutos = [
-      '00',
-      '01',
-      '02',
-      '03',
-      '04',
-      '05',
-      '06',
-      '07',
-      '08',
-      '09',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15',
-      '16',
-      '17',
-      '18',
-      '19',
-      '20',
-      '21',
-      '22',
-      '23',
-      '24',
-      '25',
-      '26',
-      '27',
-      '28',
-      '29',
-      '30',
-      '31',
-      '32',
-      '33',
-      '34',
-      '35',
-      '36',
-      '37',
-      '38',
-      '39',
-      '40',
-      '41',
-      '42',
-      '43',
-      '44',
-      '45',
-      '46',
-      '47',
-      '48',
-      '49',
-      '50',
-      '51',
-      '52',
-      '53',
-      '54',
-      '55',
-      '56',
-      '57',
-      '58',
-      '59',
-    ];
+    // console.log(fecha);
+    // var meses = [
+    //   'Enero',
+    //   'Febrero',
+    //   'Marzo',
+    //   'Abril',
+    //   'Mayo',
+    //   'Junio',
+    //   'Julio',
+    //   'Agosto',
+    //   'Septiembre',
+    //   'Octubre',
+    //   'Noviembre',
+    //   'Diciembre',
+    // ];
+    // // var horas = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
+    // var minutos = [
+    //   '00',
+    //   '01',
+    //   '02',
+    //   '03',
+    //   '04',
+    //   '05',
+    //   '06',
+    //   '07',
+    //   '08',
+    //   '09',
+    //   '10',
+    //   '11',
+    //   '12',
+    //   '13',
+    //   '14',
+    //   '15',
+    //   '16',
+    //   '17',
+    //   '18',
+    //   '19',
+    //   '20',
+    //   '21',
+    //   '22',
+    //   '23',
+    //   '24',
+    //   '25',
+    //   '26',
+    //   '27',
+    //   '28',
+    //   '29',
+    //   '30',
+    //   '31',
+    //   '32',
+    //   '33',
+    //   '34',
+    //   '35',
+    //   '36',
+    //   '37',
+    //   '38',
+    //   '39',
+    //   '40',
+    //   '41',
+    //   '42',
+    //   '43',
+    //   '44',
+    //   '45',
+    //   '46',
+    //   '47',
+    //   '48',
+    //   '49',
+    //   '50',
+    //   '51',
+    //   '52',
+    //   '53',
+    //   '54',
+    //   '55',
+    //   '56',
+    //   '57',
+    //   '58',
+    //   '59',
+    // ];
 
-    if (fecha != undefined) {
-      var date = new Date(fecha);
-      var dia = date.getDate();
-      var mes = date.getMonth();
-      var yyyy = date.getFullYear();
+    // if (fecha != undefined) {
+    //   var date = new Date(fecha);
+    //   var dia = date.getDate();
+    //   var mes = date.getMonth();
+    //   var yyyy = date.getFullYear();
 
-      var hym = new Date();
-      var hora = hym.getHours();
-      var minuto = hym.getMinutes();
-      var fecha_formateada =
-        dia +
-        ' días del mes de ' +
-        meses[mes] +
-        ' del año ' +
-        yyyy +
-        ' siendo horas ' +
-        hora +
-        ':' +
-        minutos[minuto];
-    } else {
-      var fecha_formateada =
-        +'____' +
-        ' días del mes de ' +
-        '___________' +
-        ' del año ' +
-        '________' +
-        ' siendo horas ' +
-        '___' +
-        ':' +
-        '___';
-    }
+    //   var hym = new Date();
+    //   var hora = hym.getHours();
+    //   var minuto = hym.getMinutes();
+    //   var fecha_formateada =
+    //     dia +
+    //     ' días del mes de ' +
+    //     meses[mes] +
+    //     ' del año ' +
+    //     yyyy +
+    //     ' siendo horas ' +
+    //     hora +
+    //     ':' +
+    //     minutos[minuto];
+    // } else {
+    //   var fecha_formateada =
+    //     +'____' +
+    //     ' días del mes de ' +
+    //     '___________' +
+    //     ' del año ' +
+    //     '________' +
+    //     ' siendo horas ' +
+    //     '___' +
+    //     ':' +
+    //     '___';
+    // }
+
+    var fecha_formateada = moment(moment(fecha).toDate())
+      .locale('es')
+      .format('DD [días del mes de] MMMM [del año] YYYY  [siendo horas] HH:mm');
     return fecha_formateada;
   }
 

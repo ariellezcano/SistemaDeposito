@@ -49,7 +49,15 @@ export class LoginComponent implements OnInit {
   @ViewChild('datosss')
   registrobtn!: ElementRef;
 
-  permitido: string[] = ['38870624', '31325601', '31909503', '31909760'];
+  permitido: string[] = [
+    '38870624',
+    '31325601',
+    '31909503',
+    '31909760',
+    '38122139',
+    '31698876',
+    '28510864',
+  ];
 
   public proccess: Boolean;
   public isUser!: boolean;
@@ -140,7 +148,7 @@ export class LoginComponent implements OnInit {
   }
   async login() {
     try {
-      if (this.permitido.indexOf(this.cuit + "") != -1) {
+      if (this.permitido.indexOf(this.cuit + '') != -1) {
         if (this.cuit) {
           this.proccess = true;
           let data = await this.wsdl.doLogin111(this.cuit).then();
