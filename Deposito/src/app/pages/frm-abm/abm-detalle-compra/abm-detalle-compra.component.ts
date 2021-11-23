@@ -16,6 +16,7 @@ import {
   Modelo,
   OrdenCompra,
   Persona,
+  Proveedor,
   TipoEquipo,
 } from 'src/app/modelo/index.models';
 import {
@@ -44,6 +45,7 @@ export class AbmDetalleCompraComponent implements OnInit {
   /*
    * control de operaciones a realizar
    */
+  detalle = 'principal/detallecompra';
 
   procesando!: Boolean;
 
@@ -282,6 +284,11 @@ export class AbmDetalleCompraComponent implements OnInit {
     this.item.tipoEquipo = event;
   }
 
+  seleccionProveedor(event: Proveedor) {
+    this.item.proveedor = event;
+    console.log('soy el papa', this.item.proveedor);
+  }
+
   getProceso() {
     return this.procesando;
   }
@@ -355,5 +362,8 @@ export class AbmDetalleCompraComponent implements OnInit {
     }
 
     return color;
+  }
+  linkearFaltante(id?: Number) {
+    this.router.navigateByUrl(this.detalle + '/reporte/' + id);
   }
 }

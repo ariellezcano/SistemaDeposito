@@ -15,21 +15,17 @@
       <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for=""> <b>Expte.:</b></label>
               {{ compra.nroExpediente }}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for=""> <b>Fecha Compra:</b></label>
               {{ compra.fecha | date: "dd/MM/yyyy" }}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for=""> <b>Nro. Factura:</b></label>
               {{ compra.nroFactura }}
-            </div>
-            <div class="col-md-3">
-              <label for=""> <b>Proveedor:</b></label>
-              {{ compra.proveedor.nombre }}
             </div>
           </div>
           <div class="row">
@@ -84,6 +80,15 @@
             </div>
           </td>
           <td>
+            <!-- proveedor -->
+            <div class="form-group">
+              <app-combo-proveedor
+                [dibujar]="item.proveedor"
+                (emity)="seleccionProveedor($event)"
+              ></app-combo-proveedor>
+            </div>
+          </td>
+          <td>
             <!-- cantidad compradas -->
             <div class="form-group">
               <label for="">Agregue cantidad</label>
@@ -125,9 +130,9 @@
     <table id="tabla" class="table">
       <thead class="text-center table-primary">
         <tr>
-          <th>#</th>
           <th>Tipo Equipo</th>
           <th>Marca-Modelo</th>
+          <th>Proveedor</th>
           <th>Comprados</th>
           <th>Recibidos</th>
           <th>Faltantes</th>
@@ -136,9 +141,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let i of items" class="text-center {{ colores(i) }}">
-          <td>{{ i.id }}</td>
           <td>{{ i.tipoEquipo.nombre }}</td>
           <td>{{ i.modelo.marca.nombre }} - {{ i.modelo.nombre }}</td>
+          <td>{{ i.proveedor.nombre }}</td>
           <td>{{ i.cantidadCompra }}</td>
           <td>{{ i.cantidadIngreso }}</td>
           <td>{{ faltantes(i) }}</td>
@@ -174,6 +179,17 @@
                 class="btn btn-primary btn-sm btn-redondo"
               >
                 <i class="fas fa-luggage-cart"></i>
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                title="Reporte de Compra"
+                (click)="linkearFaltante(i.id)"
+                placement="top"
+                show-delay="10"
+                class="btn btn-info btn-sm"
+              >
+                <i class="fa fa-th-list" aria-hidden="true"></i>
               </button>
             </td>
           </ng-template>

@@ -59,17 +59,11 @@ export class ReporteFaltanteComponent implements OnInit {
   async findID() {
     try {
       if (this.id > 0) {
-        let data = await this.wsdlc.doFind(this.id).then();
+        let data = await this.wsdlD.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
-          this.compra = res.data;
-          console.log('compro ', res.data);
-          this.obtenerDetalle();
-
-          // if (this.item.fecha_recepcion != undefined)
-          //   this.item.fecha_recepcion = moment(
-          //     this.item.fecha_recepcion
-          //   ).format('YYYY-MM-DD');
+          this.item = res.data;
+          console.log('findID', this.item);
         }
       } else {
         this.item = new DetalleCompra();
@@ -78,25 +72,14 @@ export class ReporteFaltanteComponent implements OnInit {
       UturuncoUtils.showToas('Error inesperado', 'error');
     }
   }
-  //enlista el detalle de compra en la tabla del abm y lo guarda en la lista de detalle
-  async obtenerDetalle() {
-    //alert('llego');
-    this.compra.id = this.id;
-    try {
-      let criteria = '(c.compra.id =' + this.compra.id + ') AND c.activo=true';
-      let data = await this.wsdlD
-        .doCriteria(criteria, false, null, 'ORDER BY c.id Desc', 1, 1000)
-        .then();
-      const result = JSON.parse(JSON.stringify(data));
-      console.log('ariel lezcano reuslt', result);
-      if (result.status == 200) {
-        this.items = result.data;
-        //alert('ape' + this.items[0].personalRecibe.apellido);
-        console.log('detalle', this.items);
-      } else {
-        this.items = [];
-      }
-    } catch (error) {}
+  retornarPersona(item: DetalleCompra) {
+    this.item = item;
+    let valor = '';
+    if (item.personalRecibe != undefined) {
+      return item.personalRecibe.apellido + ', ' + item.personalRecibe.nombre;
+    } else {
+      return (valor = '__________________________________________');
+    }
   }
 
   // async buscar(id: any) {

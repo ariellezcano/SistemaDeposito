@@ -59,7 +59,7 @@ export class FilOrdenCompraComponent implements OnInit {
       let c = this.search;
       // criteria, one, populate, sort, page, limit
       const crit =
-        "(c.proveedor.nombre like '%" +
+        "(c.observacion like '%" +
         this.search +
         "%' or c.ordenCompraNum like '%" +
         this.search +

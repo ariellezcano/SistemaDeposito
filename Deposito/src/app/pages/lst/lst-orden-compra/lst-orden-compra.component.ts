@@ -27,6 +27,7 @@ export class LstOrdenCOmpraComponent implements OnInit {
   fil!: FilOrdenCompraComponent;
   @ViewChild('close')
   cerrar!: ElementRef;
+
   entity = 'Ordenes de Compras';
   entidad = 'principal/ordenCompra';
   detalle = 'principal/detallecompra';

@@ -11,7 +11,7 @@ export class OrdenCompra {
   nroFactura!: string; //agregadonuevo
   ordenPago!: string; //agregadonuevo
   fechaPago!: any;
-  proveedor: Proveedor;
+  //proveedor: Proveedor;
   fechaInvitacion: any; //agregue nuevo
   fechaLicitacion: any; //agregue nuevo
   fechaAdjudicacion: any; //Agregue nuevo
@@ -23,7 +23,6 @@ export class OrdenCompra {
   activo: Boolean;
 
   constructor() {
-    this.proveedor = new Proveedor();
     this.fecha = new Date(); //fechacompra
     this.usuario = new Persona();
     this.activo = true;

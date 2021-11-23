@@ -45,7 +45,7 @@
                 <td>{{ item.modelo.nombre | uppercase }}</td>
                 <td>{{ item.cantidadCompra }}</td>
                 <td>{{ item.cantidadIngreso }}</td>
-                <td>{{ item.compra.proveedor.nombre | uppercase }}</td>
+                <td>{{ item.proveedor.nombre | uppercase }}</td>
                 <!-- <td class="{{colores(item.estado.id)}}" ><em><b style="font-size: 15px;">{{ item.estado.nombre }}</b></em></td> -->
                 <!-- <td>{{ tipoAdquisicion(item.tipoAlta)|uppercase }}</td> -->
                 <td *ngIf="!exportar">

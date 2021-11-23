@@ -1,3 +1,4 @@
+import { Proveedor } from '../index.models';
 import { Modelo } from './modelo';
 import { OrdenCompra } from './ordenCompra';
 import { Persona } from './persona';
@@ -12,10 +13,12 @@ export class DetalleCompra {
   fechaRecepcion!: any;
   modelo: Modelo; //ya esta
   tipoEquipo: TipoEquipo; //ya esta
+  proveedor: Proveedor;
   //editar: boolean;
   activo: Boolean;
 
   constructor() {
+    this.proveedor = new Proveedor();
     this.tipoEquipo = new TipoEquipo();
     this.modelo = new Modelo();
     // this.personalRecibe = new Persona();

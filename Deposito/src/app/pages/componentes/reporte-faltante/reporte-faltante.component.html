@@ -33,7 +33,7 @@
     <div id="padding" class="row">
       <div class="col-md-12 text-center">
         <h4>
-          <u><b>ACTA DE ENTREGA</b></u>
+          <u><b>ACTA DE RECEPCION</b></u>
         </h4>
       </div>
     </div>
@@ -44,12 +44,10 @@
           En la División Desarrollo de Sistemas, dependiente del Departamento
           Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la Ciudad
           de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
-          {{ fecha(compra.fecha) }}, se hace presente el sr/a:
-          ___________________________, quién seguidamente hace entrega al sr/a:
-          <b
-            >{{ items[0].personalRecibe.apellido }},
-            {{ items[0].personalRecibe.nombre }}</b
-          >
+          {{ fecha(item.compra.fecha) }}, se hace presente el Señor/a:
+          __________________________________________, quién seguidamente hace
+          entrega al Señor/a:
+          <b>{{ retornarPersona(item) }}</b>
           la cantidad de equipamiento que se detalla a continuación:
           <br />
           <table class="table">
@@ -63,7 +61,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of items" class="text-center">
+              <tr class="text-center">
                 <td>{{ item.tipoEquipo.nombre }}</td>
                 <td>
                   {{ item.modelo.marca.nombre }} -
@@ -78,9 +76,9 @@
             </tbody>
           </table>
           correspondiente a
-          <b>{{ instrumento(items[0].compra.tipoCompra) }}</b> nro.
-          <b> {{ items[0]?.compra?.nroLicitacion }}</b>
-          <b>{{ items[0]?.compra?.nroPreadjudicacion }}</b
+          <b>{{ instrumento(item.compra.tipoCompra) }}</b> nro.
+          <b> {{ item?.compra?.nroLicitacion }}</b>
+          <b>{{ item?.compra?.nroPreadjudicacion }}</b
           >. Es todo, no siendo para más se da por finalizado el presente acto,
           previa integra lectura efectuadas por las partes, quienes para
           constancia legal firman al pie.
@@ -93,18 +91,18 @@
     <br />
     <br />
     <br />
-    <div class="row">
+    <div class="row" *ngIf="item.personalRecibe.id">
       <div class="col-md-4">
         <div class="row">
           <div class="col-md-12 b">
             <b>FIRMA:</b> ____________________________________
           </div>
           <div class="col-md-12 b">
-            <b>ACLARACION:</b> {{ items[0].personalRecibe.apellido }},
-            {{ items[0].personalRecibe.nombre }}
+            <b>ACLARACION:</b> {{ item.personalRecibe?.apellido }},
+            {{ item.personalRecibe?.nombre }}
           </div>
           <div class="col-md-12 b">
-            <b>DNI:</b> {{ items[0].personalRecibe.norDni }}
+            <b>DNI:</b> {{ item.personalRecibe?.norDni }}
           </div>
           <div class="col-md-12 b">
             <b>JERARQUIA:</b>_______________<b>Pza.</b>_____
@@ -123,7 +121,7 @@
             <b>FIRMA:</b>____________________________________
           </div>
           <div class="col-md-12 b">
-            <b>EMPRESA:</b> {{ items[0].compra.proveedor.nombre }}
+            <b>EMPRESA:</b> {{ item.proveedor.nombre }}
           </div>
           <div class="col-md-12 b">
             <b>RESPONSABLE:</b> ___________________________

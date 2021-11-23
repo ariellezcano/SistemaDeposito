@@ -69,7 +69,7 @@
             minlength="4"
             id="nroPreadjudicacion"
             name="nroPreadjudicacion"
-            placeholder="Nro. de Preadjudicacion"
+            placeholder="Nro. de Preadjudicación"
             [(ngModel)]="item.nroPreadjudicacion"
           />
         </div>
@@ -85,7 +85,7 @@
             minlength="4"
             id="notaPreadjudicacion"
             name="notaPreadjudicacion"
-            placeholder="Nota de Preadjudicacion"
+            placeholder="Nota de Preadjudicación"
             [(ngModel)]="item.notaPreadjudicacion"
           />
         </div>
@@ -122,68 +122,6 @@
         </div>
 
         <div class="col-md-4">
-          <!-- fecha compra -->
-          <label id="label">Fecha compra</label>
-          <div class="input-group mb-4">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input
-                  name="checked"
-                  id="checked"
-                  type="checkbox"
-                  [(ngModel)]="checked"
-                />
-              </div>
-            </div>
-            <input *ngIf="checked"
-              id="fecha"
-              name="fecha"
-              
-              [(ngModel)]="item.fecha"
-              type="date"
-              class="form-control"
-            />
-          </div>
-        </div>
-
-        <!-- Proveedor -->
-
-        <div class="col-lg-4">
-          <app-combo-proveedor
-            [dibujar]="item.proveedor"
-            (emity)="seleccionProveedor($event)"
-          ></app-combo-proveedor>
-        </div>
-
-        <!-- select tipo alta -->
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <!-- fecha compra -->
-          <label id="label">Fecha de pago de compra</label>
-          <div class="input-group mb-4">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input
-                  name="checkedfechaPago"
-                  id="checkedfechaPago"
-                  type="checkbox"
-                  [(ngModel)]="checkedfechaPago"
-                />
-              </div>
-            </div>
-            <input *ngIf="checkedfechaPago"
-              id="fechaPago"
-              name="fechaPago"
-              
-              [(ngModel)]="item.fechaPago"
-              type="date"
-              class="form-control"
-            />
-          </div>
-        </div>
-
-        <div class="form-group col-md-4">
           <label for="title">Tipo de compra</label>
           <select
             class="form-control"
@@ -200,6 +138,60 @@
             <option value="LPr">Licitación Privada</option>
             <option value="LPu">Licitación Pública</option>
           </select>
+        </div>
+      </div>
+
+      <!-- select tipo alta -->
+
+      <div class="row">
+        <div class="col-md-4">
+          <!-- fecha compra -->
+          <label id="label">Fecha de pago de compra</label>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  name="checkedfechaPago"
+                  id="checkedfechaPago"
+                  type="checkbox"
+                  [(ngModel)]="checkedfechaPago"
+                />
+              </div>
+            </div>
+            <input
+              *ngIf="checkedfechaPago"
+              id="fechaPago"
+              name="fechaPago"
+              [(ngModel)]="item.fechaPago"
+              type="date"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <!-- fecha compra -->
+          <label id="label">Fecha compra</label>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  name="checked"
+                  id="checked"
+                  type="checkbox"
+                  [(ngModel)]="checked"
+                />
+              </div>
+            </div>
+            <input
+              *ngIf="checked"
+              id="fecha"
+              name="fecha"
+              [(ngModel)]="item.fecha"
+              type="date"
+              class="form-control"
+            />
+          </div>
         </div>
         <!-- estado de compra -->
         <!-- <div class="form-group col-md-4">
@@ -234,7 +226,7 @@
               </div>
             </div>
             <input
-            *ngIf="checkedInvitacion"
+              *ngIf="checkedInvitacion"
               id="fechaInvitacion"
               name="fechaInvitacion"
               [(ngModel)]="item.fechaInvitacion"
@@ -243,11 +235,9 @@
             />
           </div>
         </div>
-
       </div>
 
       <div class="row">
-        
         <div class="col-md-6">
           <!-- fecha Licitación -->
           <label id="label">Fecha de Licitación</label>
@@ -262,7 +252,8 @@
                 />
               </div>
             </div>
-            <input *ngIf="checkedlicitacion"
+            <input
+              *ngIf="checkedlicitacion"
               id="fechaLicitacion"
               name="fechaLicitacion"
               [(ngModel)]="item.fechaLicitacion"
@@ -285,7 +276,8 @@
                 />
               </div>
             </div>
-            <input *ngIf="checkedadjudicacion"
+            <input
+              *ngIf="checkedadjudicacion"
               id="fechaAdjudicacion"
               name="fechaAdjudicacion"
               [(ngModel)]="item.fechaAdjudicacion"
@@ -295,7 +287,7 @@
           </div>
         </div>
       </div>
-        <br>
+      <br />
       <div class="row">
         <!-- Observaciones -->
         <div class="form-group col-md-12">
