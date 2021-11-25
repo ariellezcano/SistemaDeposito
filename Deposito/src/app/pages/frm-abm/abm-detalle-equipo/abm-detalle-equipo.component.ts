@@ -76,8 +76,7 @@ export class AbmDetalleEquipoComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.detallecompra = res.data;
-
-          //this.obtenerDetalle();
+          this.obtenerDetalle();
         }
       } else {
         this.item = new DetalleEquipos();
@@ -87,20 +86,20 @@ export class AbmDetalleEquipoComponent implements OnInit {
     }
   }
   //enlista el detalle de compra en la tabla del abm y lo guarda en la lista de detalle
-  // async obtenerDetalle() {
-  //   try {
-  //     let criteria = '(c.compra.id =' + this.compra.id + ') AND c.activo=true';
-  //     let data = await this.wsdl
-  //       .doCriteria(criteria, false, null, 'ORDER BY c.id Desc', 1, 1000)
-  //       .then();
-  //     const result = JSON.parse(JSON.stringify(data));
-  //     if (result.status == 200) {
-  //       this.items = result.data;
-  //     } else {
-  //       this.items = [];
-  //     }
-  //   } catch (error) {}
-  // }
+  async obtenerDetalle() {
+    try {
+      let criteria = '(c.detalle.id =' + this.detallecompra.id + ')';
+      let data = await this.wsdl
+        .doCriteria(criteria, false, null, 'ORDER BY c.id Desc', 1, 1000)
+        .then();
+      const result = JSON.parse(JSON.stringify(data));
+      if (result.status == 200) {
+        this.items = result.data;
+      } else {
+        this.items = [];
+      }
+    } catch (error) {}
+  }
 
   //validar los campos del registro
   doAction() {
@@ -110,8 +109,8 @@ export class AbmDetalleEquipoComponent implements OnInit {
       if (e.id == undefined) {
         this.item = new DetalleEquipos();
         this.item = e;
-        console.log('items', this.item);
-        //this.doCreate();
+        //console.log('items', this.item);
+        this.doCreate();
       }
     });
     //console.log('items', this.item);

@@ -30,12 +30,12 @@ export class AbmOrdenCompraComponent implements OnInit {
   item: OrdenCompra;
 
   disabled = false;
-  checked: boolean = false;
-  checkedInvitacion: boolean = false;
-  checkedlicitacion: boolean = false;
-  checkedadjudicacion: boolean = false;
+  checked: boolean = true;
+  checkedInvitacion: boolean = true;
+  checkedlicitacion: boolean = true;
+  checkedadjudicacion: boolean = true;
   //checkedfechacompra: boolean=false;
-  checkedfechaPago: boolean = false;
+  checkedfechaPago: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
