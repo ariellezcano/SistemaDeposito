@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {PagesComponent} from './pages.component';
-import {HttpClientModule} from '@angular/common/http'
+import { PagesComponent } from './pages.component';
+import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SidebarComponent } from './compartido/sidebar/sidebar.component';
@@ -52,72 +52,65 @@ import { FilDetalleCompraComponent } from './filtros/fil-detalle-compra/fil-deta
 import { AbmDetalleCompraComponent } from './frm-abm/abm-detalle-compra/abm-detalle-compra.component';
 import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.component';
 import { ReporteFaltanteComponent } from './componentes/reporte-faltante/reporte-faltante.component';
+import { AbmDetalleEquipoComponent } from './frm-abm/abm-detalle-equipo/abm-detalle-equipo.component';
 
 @NgModule({
-    declarations:[
-        PagesComponent,
-        SidebarComponent,
-        NavComponent,
-        FooterComponent,
-        WgCargandoComponent,
-        WgPaginateComponent,
-        LstMarcaComponent,
-        AbmMarcaComponent,
-        AbmModeloComponent,
-        ComboModeloComponent,
-        AbmProveedorComponent,
-        AbmEquipoComponent,
-        ComboProveedorComponent,
-        ComboEstadoComponent,
-        ComboModeloEquipoComponent,
-        ComboTipoEquipoComponent,
-        FilMarcaComponent,
-        LstModeloComponent,
-        FilModeloComponent,
-        FilTipoEquipoComponent,
-        LstTipoEquipoComponent,
-        AbmTipoEquipoComponent,
-        AbmEstadoEquipoComponent,
-        LstEstadoEquipoComponent,
-        FilEstadoEquipoComponent,
-        FilProveedorComponent,
-        LstProveedorComponent,
-        LstEquipoComponent,
-        FilEquipoComponent,
-        LstEntregaEquipoUnidadComponent,
-        AbmEntregaEquipoUnidadComponent,
-        FilEntregaEquipoUnidadComponent,
-        FiltrounidadComponent,
-        FiltroEquipoComponent,
-        FilPersonaComponent,
-        FilMovilComponent,
-        ReportesComponent,
-        LstHitorialEquipoComponent,
-        FilHistorialEquipoComponent,
-        ActaEntregaComponent,
-        GraficoComponent,
-        LstOrdenCOmpraComponent,
-        FilOrdenCompraComponent,
-        AbmOrdenCompraComponent,
-        LstDetalleCompraComponent,
-        FilDetalleCompraComponent,
-        AbmDetalleCompraComponent,
-        ComboCompraComponent,
-        ReporteFaltanteComponent,
-    ], 
-    exports: [
-    ],
-    imports:[
-        BrowserModule,
-        FormsModule,
-        HttpClientModule, 
-        PagesRoutingModule
-    ],
-    providers: [],
-    bootstrap:[PagesComponent],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-    ]
-
+  declarations: [
+    PagesComponent,
+    SidebarComponent,
+    NavComponent,
+    FooterComponent,
+    WgCargandoComponent,
+    WgPaginateComponent,
+    LstMarcaComponent,
+    AbmMarcaComponent,
+    AbmModeloComponent,
+    ComboModeloComponent,
+    AbmProveedorComponent,
+    AbmEquipoComponent,
+    ComboProveedorComponent,
+    ComboEstadoComponent,
+    ComboModeloEquipoComponent,
+    ComboTipoEquipoComponent,
+    FilMarcaComponent,
+    LstModeloComponent,
+    FilModeloComponent,
+    FilTipoEquipoComponent,
+    LstTipoEquipoComponent,
+    AbmTipoEquipoComponent,
+    AbmEstadoEquipoComponent,
+    LstEstadoEquipoComponent,
+    FilEstadoEquipoComponent,
+    FilProveedorComponent,
+    LstProveedorComponent,
+    LstEquipoComponent,
+    FilEquipoComponent,
+    LstEntregaEquipoUnidadComponent,
+    AbmEntregaEquipoUnidadComponent,
+    FilEntregaEquipoUnidadComponent,
+    FiltrounidadComponent,
+    FiltroEquipoComponent,
+    FilPersonaComponent,
+    FilMovilComponent,
+    ReportesComponent,
+    LstHitorialEquipoComponent,
+    FilHistorialEquipoComponent,
+    ActaEntregaComponent,
+    GraficoComponent,
+    LstOrdenCOmpraComponent,
+    FilOrdenCompraComponent,
+    AbmOrdenCompraComponent,
+    LstDetalleCompraComponent,
+    FilDetalleCompraComponent,
+    AbmDetalleCompraComponent,
+    ComboCompraComponent,
+    ReporteFaltanteComponent,
+    AbmDetalleEquipoComponent,
+  ],
+  exports: [],
+  imports: [BrowserModule, FormsModule, HttpClientModule, PagesRoutingModule],
+  providers: [],
+  bootstrap: [PagesComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PagesModule { }
+export class PagesModule {}

@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <h2><b>DETALLAR EQUIPOS</b></h2>
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <span>
+              <b
+                ><em><u>DETALLE DE LA COMPRA:</u></em>
+              </b>
+            </span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label for=""> <b>Tipo de Equipo</b></label>
+                {{ detallecompra.tipoEquipo.nombre }}
+              </div>
+              <div class="col-md-4">
+                <label for=""> <b>Cantidad Compradas:</b></label>
+                {{ detallecompra.cantidadCompra }}
+              </div>
+              <div class="col-md-4">
+                <label for=""> <b>Cantidad Ingreso:</b></label>
+                {{ detallecompra.cantidadIngreso }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <span>
+        <b
+          ><em><u>DETALLE DE EQUIPOS A AGREGAR:</u></em>
+        </b>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            <div class="form-group">
+              <app-filtro-equipo
+                [dibujar]="item.equipo"
+                (resultado)="equiposEncontrados($event)"
+              ></app-filtro-equipo>
+            </div>
+          </th>
+          <th>
+            <div class="form-group">
+              <button
+                id="boton"
+                type="button"
+                title="Guardar"
+                placement="top"
+                (click)="addRow()"
+                show-delay="10"
+                class="btn btn-warning btn-sm"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <table class="table text-center">
+      <thead id="color">
+        <tr>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Serie n°</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items" class="text-center {{ colores(item) }}">
+          <td>{{ item.equipo.modelo.marca.nombre | uppercase }}</td>
+          <td>{{ item.equipo.modelo.nombre | uppercase }}</td>
+          <td>{{ item?.equipo?.nroSerie }}</td>
+          <ng-container
+            *ngIf="item.id > 0; then mostrar; else noMostrar"
+          ></ng-container>
+          <ng-template #mostrar>
+            <!-- muestra el eliminar -->
+            <td>
+              <button
+                type="button"
+                title="Eliminar"
+                placement="top"
+                show-delay="10"
+                (click)="preDelete(item)"
+                class="btn btn-danger btn-sm btn-redondo"
+              >
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </td>
+          </ng-template>
+          <ng-template #noMostrar>
+            <!-- saca de la lista -->
+            <td>
+              <button
+                type="button"
+                title="Eliminar de la lista"
+                placement="top"
+                show-delay="10"
+                (click)="deleteRow(item)"
+                class="btn btn-info btn-sm btn-redondo"
+              >
+                <i class="fas fa-calendar-times"></i>
+              </button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    *ngIf="items.length === 0"
+    class="alert alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Salir</span>
+    </button>
+    <strong>No hay datos</strong>
+  </div>
+  <hr />
+  <div class="form-group">
+    <button
+      (click)="doAction()"
+      type="button"
+      [disabled]="procesando"
+      name="btn"
+      class="btn btn-primary btn-lg btn-block float-left"
+    >
+      Aceptar
+    </button>
+    &nbsp;
+    <a (click)="back()" #cerrar class="btn btn-info btn-lg btn-block">
+      <i class="fas fa-arrow-left"></i> Volver
+    </a>
+  </div>
+</div>

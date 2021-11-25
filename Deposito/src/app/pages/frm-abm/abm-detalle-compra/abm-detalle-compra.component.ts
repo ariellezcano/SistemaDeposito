@@ -46,6 +46,7 @@ export class AbmDetalleCompraComponent implements OnInit {
    * control de operaciones a realizar
    */
   detalle = 'principal/detallecompra';
+  detalleEq = 'principal/detalleequipo';
 
   procesando!: Boolean;
 
@@ -365,5 +366,8 @@ export class AbmDetalleCompraComponent implements OnInit {
   }
   linkearFaltante(id?: Number) {
     this.router.navigateByUrl(this.detalle + '/reporte/' + id);
+  }
+  linkearDetalleEquipo(id?: Number) {
+    this.router.navigateByUrl(this.detalleEq + '/abm/' + id);
   }
 }
