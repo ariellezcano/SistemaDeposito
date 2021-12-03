@@ -29,6 +29,6 @@ export class Equipo {
     this.tipoEquipo = new TipoEquipo();
     this.fechaAlta = new Date();
     this.activo = true;
-    this.fechaAsiganacion = new Date();
+    //this.fechaAsiganacion = new Date();
   }
 }

@@ -56,6 +56,7 @@ export class AbmEquipoComponent implements OnInit {
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
           this.item = res.data;
+
           console.log(this.item);
           this.item.fechaAlta = moment(this.item.fechaAlta).format(
             'YYYY-MM-DD'
@@ -83,13 +84,15 @@ export class AbmEquipoComponent implements OnInit {
       this.procesando = true;
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
       const result = JSON.parse(JSON.stringify(res));
+      console.log('resul', result);
       if (result.status == 200) {
-        UturuncoUtils.showToas('Se actualizado correctamente', 'success');
+        UturuncoUtils.showToas('Se actualizó correctamente', 'success');
         this.back();
         this.finalizado.emit(true);
       } else if (result.status == 666) {
         // logout app o refresh token
       } else {
+        alert('estoy aca');
         UturuncoUtils.showToas(result.msg, 'error');
       }
     } catch (error: any) {
@@ -102,7 +105,7 @@ export class AbmEquipoComponent implements OnInit {
     try {
       this.procesando = true;
       this.item.unidad.id = 1;
-      // this.item.unidad.regional.id = 1;
+
       this.item.situacion = 'A Asignar';
       console.log('datos', this.item);
       const res = await this.wsdl.doInsert(this.item).then();

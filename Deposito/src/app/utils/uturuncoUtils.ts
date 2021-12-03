@@ -6,7 +6,7 @@ export class UturuncoUtils {
     localStorage.setItem(key, data);
   }
 
-  public static getSession(key: string | any) {
+  public static getSession(key: any) {
     return localStorage.getItem(key);
   }
 
@@ -62,57 +62,53 @@ export class UturuncoUtils {
   }
 
   static devolucionTE(valor: string) {
-
-    let d = ""
+    let d = '';
     switch (valor) {
       case 'PP':
         d = 'PRESTAMO PROVISORIO';
         break;
       case 'PC':
-        d =  'PROVISION CON CARGO';
+        d = 'PROVISION CON CARGO';
         break;
       case 'SE':
-        d =  'ORDEN DE SERVICIO EXTERNO';
+        d = 'ORDEN DE SERVICIO EXTERNO';
         break;
       case 'RE':
-        d =  'ENTREGA POR RELEVAMIENTO';
+        d = 'ENTREGA POR RELEVAMIENTO';
         break;
-    
     }
     return d;
   }
- static exportTableToExcel(tableID: any, filename = '') {
+  static exportTableToExcel(tableID: any, filename = '') {
+    return new Promise((resolve) => {
+      var downloadLink;
+      var dataType = 'application/vnd.ms-excel';
+      var navigator: any;
 
-  return new Promise( resolve => {
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var navigator: any;
+      var tableSelect: any = document.getElementById(tableID);
+      console.log(tableSelect);
+      var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-    var tableSelect: any = document.getElementById(tableID);
-    console.log(tableSelect);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+      // Specify file name
+      filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
 
-    // Specify file name
-    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+      // Create download link element
+      downloadLink = document.createElement('a');
 
-    // Create download link element
-    downloadLink = document.createElement('a');
+      document.body.appendChild(downloadLink);
 
-    document.body.appendChild(downloadLink);
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
 
-    // Create a link to the file
-    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+      // Setting the file name
+      downloadLink.download = filename;
 
-    // Setting the file name
-    downloadLink.download = filename;
-
-    //triggering the function
-    downloadLink.click();
-    resolve(true)
-  } );
+      //triggering the function
+      downloadLink.click();
+      resolve(true);
+    });
   }
   static delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-
 }

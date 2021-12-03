@@ -123,7 +123,6 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
       this.item.entrega.id = JSON.parse(
         '' + UturuncoUtils.getSession('personal')
       ).id;
-      this;
       this.procesando = true;
       if (this.visible) {
         this.item.movilPol = this.item.movilPol.id;

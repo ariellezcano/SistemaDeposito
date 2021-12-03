@@ -151,7 +151,7 @@ export class LstEquipoComponent implements OnInit {
   }
 
   //para exportar datos a excel
- async exportTableToExcel(tableID: any, filename = '') {
+  async exportTableToExcel(tableID: any, filename = '') {
     this.exportar = true;
     await UturuncoUtils.delay(300);
     await UturuncoUtils.exportTableToExcel(tableID, filename).then();

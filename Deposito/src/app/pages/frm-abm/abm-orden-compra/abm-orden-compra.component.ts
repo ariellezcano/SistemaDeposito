@@ -62,12 +62,12 @@ export class AbmOrdenCompraComponent implements OnInit {
             this.item.fechaOrdenCompra
           ).format('YYYY-MM-DD');
 
-          if (this.item.fechaPago != undefined) {
-            this.checkedfechaPago = true;
-            this.item.fechaPago = moment(this.item.fechaPago).format(
-              'YYYY-MM-DD'
-            );
-          }
+          // if (this.item.fechaPago != undefined) {
+          //   this.checkedfechaPago = true;
+          //   this.item.fechaPago = moment(this.item.fechaPago).format(
+          //     'YYYY-MM-DD'
+          //   );
+          // }
           if (this.item.fecha != undefined) {
             this.checked = true;
             this.item.fecha = moment(this.item.fecha).format('YYYY-MM-DD');

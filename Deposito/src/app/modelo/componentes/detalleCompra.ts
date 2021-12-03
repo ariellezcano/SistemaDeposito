@@ -14,15 +14,18 @@ export class DetalleCompra {
   modelo: Modelo; //ya esta
   tipoEquipo: TipoEquipo; //ya esta
   proveedor: Proveedor;
-  //editar: boolean;
+  ordenCompraNum!: string; //agregado nuevo
+  ordenPago!: string;
+  fechaOrdenPago: any;
+  fechaPago: any;
+  nroFactura!: string;
   activo: Boolean;
 
   constructor() {
     this.proveedor = new Proveedor();
     this.tipoEquipo = new TipoEquipo();
     this.modelo = new Modelo();
-    // this.personalRecibe = new Persona();
+    //this.personalRecibe = new Persona();
     this.activo = true;
-    //this.editar = false;
   }
 }

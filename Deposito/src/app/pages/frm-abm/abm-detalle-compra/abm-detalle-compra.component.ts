@@ -33,18 +33,14 @@ import Swal from 'sweetalert2';
 })
 export class AbmDetalleCompraComponent implements OnInit {
   @ViewChild('close') cerrar!: ElementRef;
+  @ViewChild('close1') cerrar1!: ElementRef;
 
   @Output()
   finalizado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   @Output()
   cancelado: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-  /*
-   * control de operaciones a realizar
-   */
-  /*
-   * control de operaciones a realizar
-   */
+
   detalle = 'principal/detallecompra';
   detalleEq = 'principal/detalleequipo';
 
@@ -74,6 +70,7 @@ export class AbmDetalleCompraComponent implements OnInit {
     this.item = new DetalleCompra();
     this.items = [];
     this.dt = new DetalleCompra();
+    this.itm = new DetalleCompra();
   }
 
   ngOnInit() {
@@ -87,15 +84,10 @@ export class AbmDetalleCompraComponent implements OnInit {
       if (this.id > 0) {
         let data = await this.wsdlc.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
-        if (res.status == 200) {
+        if (res.status === 200) {
           this.compra = res.data;
 
           this.obtenerDetalle();
-
-          // if (this.item.fecha_recepcion != undefined)
-          //   this.item.fecha_recepcion = moment(
-          //     this.item.fecha_recepcion
-          //   ).format('YYYY-MM-DD');
         }
       } else {
         this.item = new DetalleCompra();
@@ -114,6 +106,7 @@ export class AbmDetalleCompraComponent implements OnInit {
       const result = JSON.parse(JSON.stringify(data));
       if (result.status == 200) {
         this.items = result.data;
+        console.log('fecha', this.item.fechaOrdenPago);
       } else {
         this.items = [];
       }
@@ -126,12 +119,13 @@ export class AbmDetalleCompraComponent implements OnInit {
     for (let index = 0; index < this.items.length; index++) {
       this.dt = new DetalleCompra();
       this.dt = this.items[index];
-
       if (this.dt.id == undefined) {
         this.item = new DetalleCompra();
         this.item = this.dt;
+        //console.log('detallecOMPRA + DT', this.item);
         this.item.compra = new OrdenCompra();
         this.item.compra.id = this.id;
+        //console.log('compra', this.item.compra.id);
 
         this.doCreate();
       }
@@ -144,7 +138,7 @@ export class AbmDetalleCompraComponent implements OnInit {
       this.procesando = true;
 
       this.item.cantidadIngreso = 0;
-
+      console.log('DETALLE', this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false;
       const result = JSON.parse(JSON.stringify(res));
@@ -191,20 +185,15 @@ export class AbmDetalleCompraComponent implements OnInit {
     try {
       this.procesando = true;
       this.itm.personalRecibe = new Persona();
-
       this.itm.personalRecibe.id = JSON.parse(
-        '' + UturuncoUtils.getSession('personal')
+        '' + localStorage.getItem('personal')
       ).id;
-
-      if (this.faltantes(this.itm) < 0) {
-        UturuncoUtils.showToas('No recibir mas de lo comprado', 'info');
-        return;
-      }
-
       const res = await this.wsdl.doUpdate(this.itm, this.itm.id).then();
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
         UturuncoUtils.showToas('Se actualizó correctamente', 'success');
+        this.finalizado.emit(true);
+        this.back();
         this.cerrar.nativeElement.click();
       } else if (result.status == 666) {
         // logout app o refresh token
@@ -213,6 +202,30 @@ export class AbmDetalleCompraComponent implements OnInit {
       }
     } catch (error: any) {
       UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+      console.log('error', error);
+    } finally {
+      this.procesando = false;
+    }
+  }
+  async doEditEntrega1() {
+    try {
+      this.procesando = true;
+      console.log('itm', this.itm);
+      const res = await this.wsdl.doUpdate(this.itm, this.itm.id).then();
+      const result = JSON.parse(JSON.stringify(res));
+      if (result.status == 200) {
+        UturuncoUtils.showToas('Se actualizó correctamente', 'success');
+        this.finalizado.emit(true);
+        this.back();
+        this.cerrar1.nativeElement.click();
+      } else if (result.status == 666) {
+        // logout app o refresh token
+      } else {
+        UturuncoUtils.showToas(result.msg, 'error');
+      }
+    } catch (error: any) {
+      UturuncoUtils.showToas('Excepción: ' + error.message, 'error');
+      console.log('error', error);
     } finally {
       this.procesando = false;
     }
@@ -243,6 +256,15 @@ export class AbmDetalleCompraComponent implements OnInit {
   select(item: DetalleCompra) {
     this.itm = new DetalleCompra();
     this.itm = item;
+
+    if (this.itm.fechaOrdenPago != undefined) {
+      this.itm.fechaOrdenPago = moment(this.itm.fechaOrdenPago).format(
+        'YYYY-MM-DD'
+      );
+    }
+    if (this.itm.fechaPago != undefined) {
+      this.itm.fechaPago = moment(this.itm.fechaPago).format('YYYY-MM-DD');
+    }
   }
 
   // para ver cuantos equipos faltan en entregar

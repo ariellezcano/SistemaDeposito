@@ -29,23 +29,25 @@
           >
             <thead class="table-light">
               <tr>
+                <th>Nro. Expte.</th>
                 <th>Orden Compra</th>
-                <th>Licitación</th>
-                <th>Fecha Compra</th>
-                <th>Fecha Pago</th>
+                <th>Fecha Pedido</th>
+                <th>Fecha Invitación</th>
+                <th>Fecha Apertura</th>
                 <th>Tipo Compra</th>
-                <th>Observacion</th>
+                <th>Observaciones</th>
                 <th *ngIf="!exportar">Acción</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of items">
-                <td>{{ item.ordenCompraNum }}</td>
-                <td>{{ item.nroLicitacion }}</td>
-                <td>{{ item.fechaOrdenCompra | date: "dd/MM/yyyy" }}</td>
-                <td>{{ item?.fechaPago | date: "dd/MM/yyyy" }}</td>
-                <td>{{ tipoCompra(item.tipoCompra) }}</td>
-                <td>{{ item.observacion }}</td>
+                <td>{{ item?.nroExpediente }}</td>
+                <td>{{ item?.ordenCompraNum | date: "dd/MM/yyyy" }}</td>
+                <td>{{ item?.fecha | date: "dd/MM/yyyy" }}</td>
+                <td>{{ item?.fechaInvitacion | date: "dd/MM/yyyy" }}</td>
+                <td>{{ item?.fechaOrdenCompra | date: "dd/MM/yyyy" }}</td>
+                <td>{{ tipoCompra(item?.tipoCompra) }}</td>
+                <td>{{ item?.observacion }}</td>
                 <td *ngIf="!exportar">
                   <button
                     type="button"

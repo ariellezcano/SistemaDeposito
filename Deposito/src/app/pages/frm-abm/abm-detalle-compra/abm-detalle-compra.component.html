@@ -20,27 +20,47 @@
               {{ compra.nroExpediente }}
             </div>
             <div class="col-md-4">
-              <label for=""> <b>Fecha Compra:</b></label>
+              <label for=""> <b>Fecha Pedido:</b></label>
               {{ compra.fecha | date: "dd/MM/yyyy" }}
             </div>
-            <div class="col-md-4">
-              <label for=""> <b>Nro. Factura:</b></label>
-              {{ compra.nroFactura }}
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-4">
               <label for=""> <b>Tipo compra:</b></label>
               {{ tipoCompra(compra.tipoCompra) }}
             </div>
-            <div class="col-md-4">
-              <label for=""> <b>Licitación:</b></label>
-              {{ compra.fechaLicitacion | date: "dd/MM/yyyy" }}
-            </div>
+          </div>
+          <div class="row">
             <div class="col-md-4">
               <label for=""> <b>Orden de compra:</b></label>
               {{ compra.ordenCompraNum }}
             </div>
+            <div class="col-md-4">
+              <label for=""> <b>Fecha Invitación:</b></label>
+              {{ compra.fechaInvitacion | date: "dd/MM/yyyy" }}
+            </div>
+            <div class="col-md-4">
+              <label for=""> <b>Fecha Apertura:</b></label>
+              {{ compra.fechaOrdenCompra | date: "dd/MM/yyyy" }}
+            </div>
+          </div>
+          <ng-container
+            *ngIf="compra.fechaAdjudicacion != undefined; mostrarpre"
+          ></ng-container>
+          <ng-container
+            *ngIf="compra.fechaLicitacion != undefined; mostrar"
+          ></ng-container>
+          <div class="row">
+            <ng-template #mostrarpre>
+              <div class="col-md-6">
+                <label for=""> <b>Fecha Preadjudicación:</b></label>
+                {{ compra?.fechaAdjudicacion | date: "dd/MM/yyyy" }}
+              </div>
+            </ng-template>
+            <ng-template #mostrar>
+              <div class="col-md-6">
+                <label for=""> <b>Fecha Not. de Preadjudicación:</b></label>
+                {{ compra?.fechaLicitacion | date: "dd/MM/yyyy" }}
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -146,8 +166,8 @@
           <td>{{ i.proveedor.nombre }}</td>
           <td>{{ i.cantidadCompra }}</td>
           <td>{{ i.cantidadIngreso }}</td>
-          <td>{{ faltantes(i) }}</td>
 
+          <td>{{ faltantes(i) }}</td>
           <!-- editar y guardar -->
           <ng-container
             *ngIf="i.id > 0; then mostrar; else noMostrar"
@@ -179,6 +199,19 @@
                 class="btn btn-primary btn-sm btn-redondo"
               >
                 <i class="fas fa-luggage-cart"></i>
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                title="Fechas"
+                placement="top"
+                (click)="select(i)"
+                show-delay="10"
+                data-toggle="modal"
+                data-target="#modelId1"
+                class="btn btn-success btn-sm btn-redondo"
+              >
+                <i class="fa fa-calendar" aria-hidden="true"></i>
               </button>
               &nbsp;
               <button
@@ -323,6 +356,137 @@
                   placeholder="Cantidad Ingreso"
                   [(ngModel)]="itm.cantidadIngreso"
                   required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal para agregar fechas a cada registro -->
+<div
+  class="modal fade"
+  id="modelId1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalle</h5>
+        <button
+          #close1
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form
+        #f="ngForm"
+        (ngSubmit)="doEditEntrega1()"
+        ngNativeValidate
+        class="was-validated"
+      >
+        <div class="modal-body" *ngIf="itm">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="" class="lbl lbl-success" style="font-size: 24px">
+                <legend style="color: crimson">Proveedor:</legend>
+                {{ itm?.proveedor?.nombre }}
+              </label>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Número Orden de Compra</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="ordenCompraNum"
+                  name="ordenCompraNum"
+                  placeholder="Orden de Compra"
+                  [(ngModel)]="itm.ordenCompraNum"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Número Orden de Pago</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="ordenpago"
+                  name="ordenpago"
+                  placeholder="Orden de Pago"
+                  [(ngModel)]="itm.ordenPago"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Número Factura</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="nroFactura"
+                  name="nroFactura"
+                  placeholder="Número de factura"
+                  [(ngModel)]="itm.nroFactura"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group md-12">
+                <label for="title">Fecha Orden de Pago</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="fechaOrdenPago"
+                  name="fechaOrdenPago"
+                  [(ngModel)]="itm.fechaOrdenPago"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group md-12">
+                <label for="title">Fecha de Pago</label>
+                <input
+                  class="form-control"
+                  type="date"
+                  oninvalid="setCustomValidity('El campo es obligatorio')"
+                  oninput="setCustomValidity('')"
+                  id="fechaPago"
+                  name="fechaPago"
+                  [(ngModel)]="itm.fechaPago"
                 />
               </div>
             </div>
