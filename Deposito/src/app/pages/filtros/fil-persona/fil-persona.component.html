@@ -6,6 +6,8 @@
     class="form-control mr-sm-2"
     type="text"
     placeholder="Buscar"
+    required
+    matTooltip="El campo es requerido"
   />
   <button
     (click)="buscar()"
@@ -28,8 +30,8 @@
   >
     <option *ngFor="let item of items" [ngValue]="item">
       <b
-        >{{ item.persona?.norDni }} - {{ item.persona?.apellido }},
-        {{ item.persona?.nombre }}</b
+        >{{ item?.persona?.norDni }} - {{ item?.persona?.apellido }},
+        {{ item?.persona?.nombre }}</b
       >
     </option>
   </select>

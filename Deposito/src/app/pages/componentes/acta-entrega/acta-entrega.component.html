@@ -45,8 +45,17 @@
           Comunicaciones e Informática, sito en Av. 25 de Mayo 1420 de la ciudad
           de Resistencia, Provincia del Chaco, Departamento San Fernando, a los
           {{ fecha(item.fechaEntrega) }}, compadece a despacho el Señor/a
-          <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b
-          >, a quién seguidamente se procede a hacer entrega en carácter de
+          <ng-container
+            *ngIf="item.recibe.id == 8042; then mostrar; else noMostrar"
+          ></ng-container>
+          <ng-template #mostrar>
+            <b>__________________________________________________</b>
+          </ng-template>
+          <ng-template #noMostrar>
+            <b>{{ item.recibe.nombre }} {{ item.recibe.apellido }}</b>
+          </ng-template>
+
+          , a quién seguidamente se procede a hacer entrega en carácter de
           <b>{{ instrumento(item.tipoEntrega) }}</b
           >, destinado al funcionamiento técnico de la unidad
           <b>{{ item.unidad.nombre | uppercase }}</b> del equipo que se detalla
@@ -74,13 +83,24 @@
           <div class="col-md-12 b">
             <b>FIRMA:</b> ____________________________________
           </div>
+          <ng-container
+            *ngIf="item.recibe.id == 8042; then Mostrar; else nomostrar"
+          ></ng-container>
+          <ng-template #Mostrar>
+            <div class="col-md-12 b">
+              <b>ACLARACION:</b> _____________________________
+            </div>
+            <div class="col-md-12 b"><b>DNI:</b> ______________________</div>
+          </ng-template>
+          <ng-template #nomostrar>
+            <div class="col-md-12 b">
+              <b>ACLARACION:</b> {{ item.recibe.apellido }},
+              {{ item.recibe.nombre }}
+            </div>
+            <div class="col-md-12 b"><b>DNI:</b> {{ item.recibe.norDni }}</div>
+          </ng-template>
           <div class="col-md-12 b">
-            <b>ACLARACION:</b> {{ item.recibe.apellido }},
-            {{ item.recibe.nombre }}
-          </div>
-          <div class="col-md-12 b"><b>DNI:</b> {{ item.recibe.norDni }}</div>
-          <div class="col-md-12 b">
-            <b>JERARQUIA:</b>________________________________
+            <b>JERARQUIA:</b>_____________________<b>Pza:</b>______
           </div>
           <div class="col-md-12 text-center"><b>-RECIBI CONFORME-</b></div>
         </div>
@@ -101,7 +121,7 @@
           </div>
           <div class="col-md-12 b"><b>DNI:</b> {{ item.entrega.norDni }}</div>
           <div class="col-md-12 b">
-            <b>JERARQUIA:</b>_______________________________
+            <b>JERARQUIA:</b>_____________________<b>Pza:</b>______
           </div>
           <div class="col-md-12 text-center"><b>-ENTREGUE CONFORME-</b></div>
         </div>

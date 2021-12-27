@@ -85,13 +85,37 @@ export class AbmEntregaEquipoUnidadComponent implements OnInit {
 
   doAction(f: NgForm) {
     /* validar */
-    this.item.fechaEntrega = moment(
-      this.item.fechaEntrega + ' ' + moment(new Date()).format('HH:mm:ss')
-    ).toDate();
-    if (this.item.id > 0) {
-      this.doEdit();
-    } else {
-      this.doCreate();
+
+    console.log('unidad', this.item.unidad.id);
+    let completo = true;
+
+    if (this.item.unidad.id == undefined) {
+      completo = false;
+      UturuncoUtils.showToas('Faltan seleccionar unidad', 'warning');
+      //Swal.fire('Faltan seleccionar unidad', 'warning');
+    }
+    if (this.item.equipo.id == undefined) {
+      completo = false;
+      UturuncoUtils.showToas('Faltan seleccionar equipo', 'warning');
+    }
+    if (this.item.recibe.id == undefined) {
+      completo = false;
+      UturuncoUtils.showToas(
+        'Faltan seleccionar persona que recibe',
+        'warning'
+      );
+    }
+
+    if (completo) {
+      this.item.fechaEntrega = moment(
+        this.item.fechaEntrega + ' ' + moment(new Date()).format('HH:mm:ss')
+      ).toDate();
+
+      if (this.item.id > 0) {
+        this.doEdit();
+      } else {
+        this.doCreate();
+      }
     }
   }
 

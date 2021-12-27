@@ -6,6 +6,7 @@
     class="form-control mr-sm-2"
     type="text"
     placeholder="Buscar"
+    required
   />
   <button
     (click)="buscar()"
@@ -28,7 +29,8 @@
     required
   >
     <option *ngFor="let item of items" [ngValue]="item">
-    [ {{ item.nroSerie }} ] - {{ item.modelo.marca.nombre }} - {{ item.modelo.nombre }} - {{ item.tipoEquipo.nombre }}
+      [ {{ item.nroSerie }} ] - {{ item.modelo.marca.nombre }} -
+      {{ item.modelo.nombre }} - {{ item.tipoEquipo.nombre }}
     </option>
   </select>
 </ng-container>
