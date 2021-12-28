@@ -28,7 +28,7 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   vehiculo: Vehiculo;
 
   procesando!: Boolean;
-
+  exportar: boolean = false;
   constructor(
     private wsdl: EntregaEquipoUnidadService,
     private router: Router,
@@ -179,32 +179,47 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     //this.resultado.emit(this.items);
   }
 
+  tipoEntrega(value: any) {
+    let valor = '';
+    switch (value) {
+      case 'PP':
+        valor = 'PRESTAMO PROVISORIO';
+        break;
+      case 'PC':
+        valor = 'PROVISION CON CARGO';
+        break;
+      default:
+        valor = 'SIN TIPO ENTREGA';
+        break;
+    }
+    return valor;
+  }
+  motivoEntrega(value: any) {
+    let valor = '';
+    switch (value) {
+      case 'SE':
+        valor = 'ORDEN DE SERVICIO EXTERNO';
+        break;
+      case 'RE':
+        valor = 'ENTREGA POR RELEVAMIENTO';
+        break;
+      case 'DS':
+        valor = 'ENTREGA POR DIRECTIVA SUPERIOR';
+        break;
+      default:
+        valor = 'SIN MOTIVO DE ENTREGA';
+        break;
+    }
+    return valor;
+  }
+
   //para exportar datos a excel
-  exportTableToExcel(tableID: any, filename = '') {
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var navigator: any;
+  async exportTableToExcel(tableID: any, filename = '') {
+    this.exportar = true;
+    await UturuncoUtils.delay(300);
+    await UturuncoUtils.exportTableToExcel(tableID, filename).then();
 
-    var tableSelect: any = document.getElementById(tableID);
-    console.log(tableSelect);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-
-    // Specify file name
-    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
-
-    // Create download link element
-    downloadLink = document.createElement('a');
-
-    document.body.appendChild(downloadLink);
-
-    // Create a link to the file
-    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-    // Setting the file name
-    downloadLink.download = filename;
-
-    //triggering the function
-    downloadLink.click();
+    this.exportar = false;
   }
 
   scroll(value: any[]) {
