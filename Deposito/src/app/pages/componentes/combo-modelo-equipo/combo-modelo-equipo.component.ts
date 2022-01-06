@@ -13,6 +13,8 @@ export class ComboModeloEquipoComponent implements OnInit {
     this.item = item;
   }
 
+  keyword = 'nombre';
+
   item: Modelo;
   items: Modelo[];
   @Output()
@@ -32,7 +34,7 @@ export class ComboModeloEquipoComponent implements OnInit {
   }
   //captura el dato del combo
 
-  capturar(event: Modelo) {
+  capturar(event: any) {
     this.item = event;
     //Swal.fire(event.nombre)
     //console.log(event.nombre)
@@ -46,15 +48,17 @@ export class ComboModeloEquipoComponent implements OnInit {
   listar() {
     this.wsdl.getList(1, 50).then((data: any) => {
       this.items = data.data;
-      this.items.sort((x: any, y: any) => {
-        if (x.nombre > y.nombre) {
-          return 1;
-        }
-        if (x.nombre < y.nombre) {
-          return -1;
-        }
-        return 0;
-      });
+      this.items.sort();
+      console.log(this.items);
+      //   this.items.sort((x: any, y: any) => {
+      //     if (x.nombre > y.nombre) {
+      //       return 1;
+      //     }
+      //     if (x.nombre < y.nombre) {
+      //       return -1;
+      //     }
+      //     return 0;
+      //   });
     });
   }
 }

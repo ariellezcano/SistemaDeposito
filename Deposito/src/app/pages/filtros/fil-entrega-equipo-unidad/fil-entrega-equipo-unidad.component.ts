@@ -27,7 +27,7 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
 
   public lastPage!: Number;
   public count!: Number;
-  public limits: Number[] = [10, 25, 50, 100, 150, 200];
+  public limits: Number[] = [10, 25, 50, 100, 150, 200, 500, 1000];
 
   setPage(page: any) {
     this.page = page;
@@ -79,7 +79,7 @@ export class FilEntregaEquipoUnidadComponent implements OnInit {
           crit,
           false,
           null,
-          'ORDER BY c.id Desc',
+          'ORDER BY c.fechaEntrega Desc',
           this.page,
           this.limit
         )

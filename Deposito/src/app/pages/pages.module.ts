@@ -53,7 +53,7 @@ import { AbmDetalleCompraComponent } from './frm-abm/abm-detalle-compra/abm-deta
 import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.component';
 import { ReporteFaltanteComponent } from './componentes/reporte-faltante/reporte-faltante.component';
 import { AbmDetalleEquipoComponent } from './frm-abm/abm-detalle-equipo/abm-detalle-equipo.component';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 @NgModule({
   declarations: [
     PagesComponent,
@@ -108,7 +108,13 @@ import { AbmDetalleEquipoComponent } from './frm-abm/abm-detalle-equipo/abm-deta
     AbmDetalleEquipoComponent,
   ],
   exports: [],
-  imports: [BrowserModule, FormsModule, HttpClientModule, PagesRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    PagesRoutingModule,
+    AutocompleteLibModule,
+  ],
   providers: [],
   bootstrap: [PagesComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

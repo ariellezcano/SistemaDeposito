@@ -9,21 +9,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/compartido/login/login.component';
 import { PagesModule } from './pages/pages.module';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     PagesModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

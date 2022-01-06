@@ -1,4 +1,4 @@
-<div class="col-lg-12">
+<!-- <div class="col-lg-12">
   <div class="control-group">
     <div class="form-group controls">
       <label>Seleccione marca - modelo</label>
@@ -12,9 +12,36 @@
         required
       >
         <option *ngFor="let item of items" [ngValue]="item">
-          [ {{item.marca.nombre}} ] {{ item.nombre }}
+          [ {{ item.marca.nombre }} ] - {{ item.nombre }}
         </option>
       </select>
+    </div>
+  </div>
+</div> -->
+<div class="col-lg-12">
+  <div class="control-group">
+    <div class="form-group controls">
+      <label>Seleccione marca - modelo</label>
+      <div class="ng-autocomplete col-md-12">
+        <ng-autocomplete
+          name="modelo"
+          [data]="items"
+          [(ngModel)]="item"
+          (ngModelChange)="capturar($event)"
+          [searchKeyword]="keyword"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+        >
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.marca.nombre + ' - ' + item.nombre"> </a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
