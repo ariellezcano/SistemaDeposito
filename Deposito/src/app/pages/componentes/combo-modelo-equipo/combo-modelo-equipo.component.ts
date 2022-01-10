@@ -46,7 +46,7 @@ export class ComboModeloEquipoComponent implements OnInit {
   }
 
   listar() {
-    this.wsdl.getList(1, 50).then((data: any) => {
+    this.wsdl.getList(1, 2000).then((data: any) => {
       this.items = data.data;
       this.items.sort();
       console.log(this.items);

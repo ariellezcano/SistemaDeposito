@@ -6,10 +6,9 @@ import { UturuncoUtils } from 'src/app/utils/uturuncoUtils';
 @Component({
   selector: 'app-fil-equipo',
   templateUrl: './fil-equipo.component.html',
-  styleUrls: ['./fil-equipo.component.scss']
+  styleUrls: ['./fil-equipo.component.scss'],
 })
 export class FilEquipoComponent implements OnInit {
-
   @Output()
   filter: EventEmitter<Equipo[]> = new EventEmitter<Equipo[]>();
 
@@ -26,7 +25,7 @@ export class FilEquipoComponent implements OnInit {
 
   public lastPage!: Number;
   public count!: Number;
-  public limits: Number[] = [5, 10, 25, 50, 100, 150, 200];
+  public limits: Number[] = [5, 10, 25, 50, 100, 150, 200, 500, 1000];
 
   setPage(page: any) {
     this.page = page;
@@ -70,13 +69,22 @@ export class FilEquipoComponent implements OnInit {
         this.search +
         "%' or c.estado.nombre like '%" +
         this.search +
+        "%' or c.tipoEquipo.nombre like '%" +
+        this.search +
         "%' ) AND c.activo=true";
       let data = await this.wsdl
-        .doCriteria(crit, false, null, 'ORDER BY c.nroSerie ASC', this.page, this.limit)
+        .doCriteria(
+          crit,
+          false,
+          null,
+          'ORDER BY c.tipoEquipo.nombre ASC',
+          this.page,
+          this.limit
+        )
         .then();
 
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado de la busqueda", result)
+      console.log('resultado de la busqueda', result);
       if (result.status == 200) {
         this.filter.emit(result.data);
 
@@ -101,5 +109,4 @@ export class FilEquipoComponent implements OnInit {
       this.procesando = false;
     }
   }
-
 }

@@ -92,7 +92,8 @@ thead tr th {
 .table-responsive {
   height: 400px;
   overflow: scroll;
-  overflow-x: hidden;
+  //overflow-x: hidden;
+  overflow-x: auto;
 }
 
 .btn-secondary {

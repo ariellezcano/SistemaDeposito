@@ -24,6 +24,8 @@
       <label>Seleccione marca - modelo</label>
       <div class="ng-autocomplete col-md-12">
         <ng-autocomplete
+          id="autocomplete"
+          required
           name="modelo"
           [data]="items"
           [(ngModel)]="item"
