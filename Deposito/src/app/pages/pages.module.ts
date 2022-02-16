@@ -54,6 +54,7 @@ import { ComboCompraComponent } from './componentes/combo-compra/combo-compra.co
 import { ReporteFaltanteComponent } from './componentes/reporte-faltante/reporte-faltante.component';
 import { AbmDetalleEquipoComponent } from './frm-abm/abm-detalle-equipo/abm-detalle-equipo.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { FilAsignacionAvanzadoComponent } from './filtros/fil-asignacion-avanzado/fil-asignacion-avanzado.component';
 @NgModule({
   declarations: [
     PagesComponent,
@@ -106,6 +107,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     ComboCompraComponent,
     ReporteFaltanteComponent,
     AbmDetalleEquipoComponent,
+    FilAsignacionAvanzadoComponent,
   ],
   exports: [],
   imports: [

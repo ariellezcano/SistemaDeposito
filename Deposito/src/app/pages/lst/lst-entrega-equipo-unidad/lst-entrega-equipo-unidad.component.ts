@@ -121,6 +121,10 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
     this.items = event;
   }
 
+  encontradosfil(event: EntregaEquipoUnidades[]) {
+    this.items = event;
+  }
+
   linkear(id?: Number) {
     this.router.navigateByUrl(this.entidad.toLowerCase() + '/abm/' + id);
   }

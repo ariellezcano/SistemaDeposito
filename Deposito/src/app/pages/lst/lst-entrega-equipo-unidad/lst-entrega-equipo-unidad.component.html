@@ -19,10 +19,17 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
           </a>
         </div>
-
-        <app-fil-entrega-equipo-unidad (filter)="doFound($event)">
-        </app-fil-entrega-equipo-unidad>
-
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <app-fil-asignacion-avanzado
+              (resultado)="encontradosfil($event)"
+            ></app-fil-asignacion-avanzado>
+            <!-- <app-fil-entrega-equipo-unidad (filter)="doFound($event)">
+  </app-fil-entrega-equipo-unidad> -->
+          </div>
+        </div>
+        <br />
         <div class="row {{ scroll(items) }}">
           <table
             id="tablaEquipos"

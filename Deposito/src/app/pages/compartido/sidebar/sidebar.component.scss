@@ -1,5 +1,9 @@
 @import "_variables.scss";
 
+.logo {
+  background-color: #009dae;
+}
+
 .wrapper {
   position: relative;
   top: 0;
@@ -137,7 +141,6 @@
       }
     }
 
-
     p {
       margin: 0;
       line-height: 30px;
@@ -266,7 +269,6 @@
     // @include icon-gradient($default-color);
     z-index: 3;
   }
-
 }
 
 .visible-on-sidebar-regular {
@@ -364,8 +366,18 @@
 }
 //scroll
 .table-responsive {
-  height:400px;
-  overflow:scroll;
+  height: 400px;
+  overflow: scroll;
   overflow-x: hidden;
-  
+}
+#texto {
+  font-size: 11px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+p {
+  font-size: 11px;
+  font-family: "Arial";
+  font-weight: bold;
 }

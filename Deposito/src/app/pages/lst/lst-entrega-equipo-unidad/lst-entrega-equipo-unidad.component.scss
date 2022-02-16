@@ -56,12 +56,17 @@ thead tr th {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: black;
+  background-color: #4fbdba;
   color: #ffffff !important;
 }
+
 .table-responsive {
   height: 400px;
   overflow: scroll;
   //overflow-x: hidden;
   overflow-x: auto;
+}
+table {
+  padding: 0% !important;
+  font-size: 13px !important;
 }

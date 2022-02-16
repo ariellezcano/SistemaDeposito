@@ -1,64 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/pages/compartido/sidebar/variables';
+@import "./app/pages/compartido/sidebar/variables";
 .main-panel {
-    position: relative;
-    float: right;
-    width: $sidebar-width;
-    color: black;
-    // width: 100%;
-    background-color: $light-gray;
-    background-color: #E8FFFF !important;
-  
-    //@include transition (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
-  
-    .main-content {
-      padding: 0 30px 30px;
-      min-height: calc(100vh - 123px);
-      margin-top: -30px;
-    }
+  position: relative;
+  float: right;
+  width: $sidebar-width;
+  color: black;
+  // width: 100%;
+  background-color: $light-gray;
+  background-color: #e8ffff !important;
+
+  //@include transition (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
+
+  .main-content {
+    padding: 0 30px 30px;
+    min-height: calc(100vh - 123px);
+    margin-top: -30px;
+  }
 }
-body{
-    background-color: #E8FFFF !important;
+body {
+  background-color: #e8ffff !important;
 }
-table{
-    color: black !important;
+table {
+  color: black !important;
 }
-span{
-    color: black !important;
+span {
+  color: black !important;
 }
 
-#h1sidebar{
-    color: #0A043C;
-    text-align: center !important;
-    font-family: Arial, Helvetica, sans-serif;
-    text-shadow: 0.1em 0.1em 0.2em #333;
+#h1sidebar {
+  color: #0a043c;
+  text-align: center !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  text-shadow: 0.1em 0.1em 0.2em #333;
 }
 #tr {
-    background-color: #D7E9F7 !important;
+  background-color: #d7e9f7 !important;
 }
-#footer{
-    background-color: #6976bd;
-    color: crimson;
+#footer {
+  background-color: #6976bd;
+  color: crimson;
 }
-#logopolicia{
-    height: 100% !important;
-    width: 100% !important;
-    
+#logopolicia {
+  height: 100% !important;
+  width: 100% !important;
 }
-.modal-content{
-    background-color: #D7E9F7 !important;
-    
+.modal-content {
+  background-color: #d7e9f7 !important;
 }
-.modal-title{
-    color: black;
+.modal-title {
+  color: black;
 }
 // .alert-primary {
 //     background-color: #6976bd !important;
 // }
 .btn-primary {
-    background-color: #7c83fd !important;
-    border-color: #FFF8E5;
+  background-color: #7c83fd !important;
+  border-color: #fff8e5;
 }
-h4{
-    color: black;
+h4 {
+  color: black;
 }

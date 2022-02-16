@@ -6,9 +6,11 @@
           <img src="./assets/img/logopol.png" />
         </div>
       </a>
-      <a class="simple-text logo-normal"> Dpto. Com. e Informática </a>
+      <a id="texto" class="simple-text logo-normal">
+        Dpto. Com. e Informática
+      </a>
     </div>
-    <div class="sidebar-wrapper {{scroll(menuItems)}}">
+    <div class="sidebar-wrapper {{ scroll(menuItems) }}">
       <ul class="nav">
         <li
           routerLinkActive="active"
@@ -19,7 +21,8 @@
             <i class="now-ui-icons {{ menuItem.icon }}"></i>
             <p>
               <i class="fas fa-angle-double-right"></i>
-              {{ menuItem.title }}</p>
+              {{ menuItem.title }}
+            </p>
           </a>
         </li>
       </ul>
