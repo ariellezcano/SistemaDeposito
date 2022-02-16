@@ -1,0 +1,265 @@
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#micollapse"
+          aria-expanded="false"
+          aria-controls="micollapse"
+        >
+          Filtro de búsqueda múltiple
+        </button>
+      </h2>
+    </div>
+
+    <div
+      id="micollapse"
+      class="collapse show"
+      aria-labelledby="headingOne"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <form id="fil" class="col-md-12 row">
+          <div class="col-md-3 text-center">
+            <label id="label">Unidad</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input
+                    onclick="cajaunidad.disabled = !this.checked"
+                    name="checkUnidad"
+                    id="checkUnidad"
+                    [(ngModel)]="this.checkUnidad"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </div>
+              </div>
+              <input
+                id="cajaunidad"
+                name="cajaunidad"
+                disabled="disabled"
+                [(ngModel)]="this.cajaunidad"
+                type="text"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <label id="label">Marca</label>
+            <div class="input-group mb-6">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input
+                    onclick="cajamarca.disabled = !this.checked"
+                    name="checkmarca"
+                    id="checkmarca"
+                    [(ngModel)]="this.checkmarca"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </div>
+              </div>
+              <input
+                id="cajamarca"
+                name="cajamarca"
+                disabled="disabled"
+                [(ngModel)]="this.cajamarca"
+                type="text"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <label id="label">Modelo</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input
+                    onclick="cajamodelo.disabled = !this.checked"
+                    name="checkmodelo"
+                    id="checkmodelo"
+                    [(ngModel)]="this.checkmodelo"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </div>
+              </div>
+              <input
+                id="cajamodelo"
+                name="cajamodelo"
+                disabled="disabled"
+                [(ngModel)]="this.cajamodelo"
+                type="text"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <label id="label">Tipo de equipo</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input
+                    onclick="cajatipoEquipo.disabled = !this.checked"
+                    name="checktipoEquipo"
+                    id="checktipoEquipo"
+                    [(ngModel)]="this.checktipoEquipo"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </div>
+              </div>
+              <input
+                id="cajatipoEquipo"
+                name="cajatipoEquipo"
+                disabled="disabled"
+                [(ngModel)]="this.cajatipoEquipo"
+                type="text"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-3"></div>
+          <div class="col-md-6 text-center">
+            <label id="label">Entre Fechas</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input
+                    name="checkano"
+                    id="checkano"
+                    [(ngModel)]="this.checkano"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </div>
+              </div>
+              <input
+                *ngIf="checkano"
+                id="cajaano1"
+                name="cajaano1"
+                [(ngModel)]="this.cajaano1"
+                type="date"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+              &nbsp;
+              <input
+                *ngIf="checkano"
+                id="cajaano2"
+                name="cajaano2"
+                [(ngModel)]="this.cajaano2"
+                type="date"
+                class="form-control"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- combobox  -->
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 text-center">
+    <a
+      class="label label-primary"
+      data-toggle="collapse"
+      href="#callapseGrupoFil"
+      role="button"
+      aria-expanded="false"
+      aria-controls="callapseGrupoFil"
+    >
+      Seleccione cantidad
+    </a>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<!-- Select  -->
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <!-- (change)="filtradomultiple()" -->
+    <select class="form-control" name="limit" id="limit" [(ngModel)]="limit">
+      <option *ngFor="let c of limits" [ngValue]="c">
+        {{ c }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<br />
+<!-- Paginado  -->
+<div id="paginado" class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a (click)="pase(1)" class="page-link" href="javascript:void(0)">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="pase(anterior)"
+            class="page-link"
+            href="javascript:void(0)"
+          >
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+            Previo
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)">{{ actual }}</a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="pase(siguiente)"
+            class="page-link"
+            href="javascript:void(0)"
+          >
+            Siguiente
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a (click)="pase(final)" class="page-link" href="javascript:void(0)">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<!-- filtro -->
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <button
+      (click)="filtradomultiple()"
+      class="btn btn-primary btn-lg btn-block"
+      type="submit"
+    >
+      Buscar
+    </button>
+  </div>
+  <div class="col-md-3"></div>
+</div>
