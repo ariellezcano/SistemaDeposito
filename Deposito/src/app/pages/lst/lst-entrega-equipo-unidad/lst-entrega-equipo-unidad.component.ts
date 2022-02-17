@@ -227,7 +227,6 @@ export class LstEntregaEquipoUnidadComponent implements OnInit {
   }
 
   scroll(value: any[]) {
-    console.log('valor', value);
     const valor = '';
     if (value.length > 5) {
       const valor = 'table-responsive';

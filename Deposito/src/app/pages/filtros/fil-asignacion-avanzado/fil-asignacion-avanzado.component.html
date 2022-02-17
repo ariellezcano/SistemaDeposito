@@ -1,13 +1,13 @@
 <div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
+  <div class="card alert alert-danger">
+    <div class="card-header alert alert-secondary" id="headingOne">
       <h2 class="mb-0">
         <button
           class="btn btn-link"
           type="button"
           data-toggle="collapse"
           data-target="#micollapse"
-          aria-expanded="false"
+          aria-expanded="true"
           aria-controls="micollapse"
         >
           Filtro de búsqueda múltiple
@@ -21,7 +21,7 @@
       aria-labelledby="headingOne"
       data-parent="#accordionExample"
     >
-      <div class="card-body">
+      <div class="card-body text-center">
         <form id="fil" class="col-md-12 row">
           <div class="col-md-3 text-center">
             <label id="label">Unidad</label>
@@ -128,8 +128,8 @@
             </div>
           </div>
 
-          <div class="col-md-3"></div>
-          <div class="col-md-6 text-center">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 text-center">
             <label id="label">Entre Fechas</label>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -164,17 +164,14 @@
               />
             </div>
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-2"></div>
         </form>
       </div>
     </div>
   </div>
 </div>
 
-<!-- combobox  -->
-
 <div class="row">
-  <div class="col-md-4"></div>
   <div class="col-md-4 text-center">
     <a
       class="label label-primary"
@@ -188,11 +185,13 @@
     </a>
   </div>
   <div class="col-md-4"></div>
-</div>
-<!-- Select  -->
-<div class="row">
   <div class="col-md-4"></div>
-  <div class="col-md-4">
+</div>
+
+<div class="row">
+  <div class="col-md-4 text-center">
+    <!-- Select  -->
+
     <!-- (change)="filtradomultiple()" -->
     <select class="form-control" name="limit" id="limit" [(ngModel)]="limit">
       <option *ngFor="let c of limits" [ngValue]="c">
@@ -200,13 +199,8 @@
       </option>
     </select>
   </div>
-  <div class="col-md-4"></div>
-</div>
-<br />
-<!-- Paginado  -->
-<div id="paginado" class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-5">
+    <!-- Paginado  -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
@@ -245,21 +239,13 @@
       </ul>
     </nav>
   </div>
-  <div class="col-md-3"></div>
-</div>
-
-<!-- filtro -->
-
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div id="posicionbtn" class="col-md-3">
     <button
       (click)="filtradomultiple()"
-      class="btn btn-primary btn-lg btn-block"
+      class="btn btn-outline-info"
       type="submit"
     >
       Buscar
     </button>
   </div>
-  <div class="col-md-3"></div>
 </div>

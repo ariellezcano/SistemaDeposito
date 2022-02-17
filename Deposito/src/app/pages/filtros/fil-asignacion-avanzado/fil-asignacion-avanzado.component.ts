@@ -18,10 +18,9 @@ export class FilAsignacionAvanzadoComponent implements OnInit {
   siguiente!: number;
   anterior!: number;
   actual!: number;
-  public limits: Number[] = [10, 50, 100, 250, 500, 1000];
+  public limits: number[] = [10, 50, 100, 250, 500, 1000];
 
   //
-  collapse: boolean;
 
   //
   thfiltradounidad!: Boolean;
@@ -40,15 +39,6 @@ export class FilAsignacionAvanzadoComponent implements OnInit {
   >();
   //resultado = new EventEmitter<Asignacion[]>();
 
-  constructor(private wsdl: EntregaEquipoUnidadService) {
-    this.checkUnidad = false;
-    this.checkano = false;
-    this.checkmarca = false;
-    this.checkmodelo = false;
-    this.checktipoEquipo = false;
-    this.collapse = false;
-  }
-
   checkUnidad!: boolean;
   cajaunidad!: string;
   checkmarca!: boolean;
@@ -61,9 +51,18 @@ export class FilAsignacionAvanzadoComponent implements OnInit {
   checktipoEquipo!: boolean;
   cajatipoEquipo!: string;
 
+  constructor(private wsdl: EntregaEquipoUnidadService) {
+    this.checkUnidad = false;
+    this.checkano = false;
+    this.checkmarca = false;
+    this.checkmodelo = false;
+    this.checktipoEquipo = false;
+  }
+
   ngOnInit() {
     this.limit = 10;
     this.page = 1;
+    this.filtradomultiple();
   }
 
   //Busqueda avanzada
@@ -73,7 +72,6 @@ export class FilAsignacionAvanzadoComponent implements OnInit {
       //Creado
       !this.checkUnidad &&
       !this.checkano &&
-      !this.checkestado &&
       !this.checkmodelo &&
       !this.checkmarca &&
       !this.checktipoEquipo
