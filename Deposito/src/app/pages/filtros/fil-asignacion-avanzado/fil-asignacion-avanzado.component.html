@@ -192,8 +192,14 @@
   <div class="col-md-4 text-center">
     <!-- Select  -->
 
-    <!-- (change)="filtradomultiple()" -->
-    <select class="form-control" name="limit" id="limit" [(ngModel)]="limit">
+    <!--  -->
+    <select
+      (change)="filtradomultiple()"
+      class="form-control"
+      name="limit"
+      id="limit"
+      [(ngModel)]="limit"
+    >
       <option *ngFor="let c of limits" [ngValue]="c">
         {{ c }}
       </option>
