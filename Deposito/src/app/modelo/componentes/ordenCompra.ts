@@ -15,13 +15,6 @@ export class OrdenCompra {
   observacion!: string; //agregue nuevo
   activo: Boolean;
 
-  // nroLicitacion!: string; //agregadonuevo
-  // nroPreadjudicacion!: string; //agregadonuevo
-  // notaPreadjudicacion!: string; //agregadonuevo
-  // nroFactura!: string; //agregadonuevo
-  // ordenPago!: string; //agregadonuevo
-  // fechaPago!: any;
-
   constructor() {
     this.fecha = new Date(); //fechacompra
     this.usuario = new Persona();

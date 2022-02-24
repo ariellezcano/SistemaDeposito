@@ -57,6 +57,7 @@ export class AbmOrdenCompraComponent implements OnInit {
         let data = await this.wsdl.doFind(this.id).then();
         let res = JSON.parse(JSON.stringify(data));
         if (res.status == 200) {
+          this.item = new OrdenCompra();
           this.item = res.data;
           this.item.fechaOrdenCompra = moment(
             this.item.fechaOrdenCompra
@@ -110,8 +111,10 @@ export class AbmOrdenCompraComponent implements OnInit {
 
   async doEdit() {
     try {
+      this.item.activo = true;
       this.procesando = true;
       const res = await this.wsdl.doUpdate(this.item, this.item.id).then();
+
       const result = JSON.parse(JSON.stringify(res));
       if (result.status == 200) {
         UturuncoUtils.showToas('Se actualizado correctamente', 'success');
