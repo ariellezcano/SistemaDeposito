@@ -118,15 +118,15 @@
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <input
-                  name="checkedadjudicacion"
-                  id="checkedadjudicacion"
+                  name="checkedfechacompra"
+                  id="checkedfechacompra"
                   type="checkbox"
-                  [(ngModel)]="checkedadjudicacion"
+                  [(ngModel)]="checkedfechacompra"
                 />
               </div>
             </div>
             <input
-              *ngIf="checked"
+              *ngIf="checkedfechacompra"
               id="fechaOrdenCompra"
               name="fechaOrdenCompra"
               [(ngModel)]="item.fechaOrdenCompra"

@@ -34,8 +34,7 @@ export class AbmOrdenCompraComponent implements OnInit {
   checkedInvitacion: boolean = true;
   checkedlicitacion: boolean = true;
   checkedadjudicacion: boolean = true;
-  //checkedfechacompra: boolean=false;
-  checkedfechaPago: boolean = true;
+  checkedfechacompra: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,16 +58,14 @@ export class AbmOrdenCompraComponent implements OnInit {
         if (res.status == 200) {
           this.item = new OrdenCompra();
           this.item = res.data;
-          this.item.fechaOrdenCompra = moment(
-            this.item.fechaOrdenCompra
-          ).format('YYYY-MM-DD');
 
-          // if (this.item.fechaPago != undefined) {
-          //   this.checkedfechaPago = true;
-          //   this.item.fechaPago = moment(this.item.fechaPago).format(
-          //     'YYYY-MM-DD'
-          //   );
-          // }
+          //fecha de apertura
+          if (this.item.fechaOrdenCompra != undefined) {
+            this.checkedfechacompra = true;
+            this.item.fechaOrdenCompra = moment(
+              this.item.fechaOrdenCompra
+            ).format('YYYY-MM-DD');
+          }
           if (this.item.fecha != undefined) {
             this.checked = true;
             this.item.fecha = moment(this.item.fecha).format('YYYY-MM-DD');
@@ -136,14 +133,13 @@ export class AbmOrdenCompraComponent implements OnInit {
       this.item.usuario.id = JSON.parse(
         '' + UturuncoUtils.getSession('personal')
       ).id;
-      this.item.fechaOrdenCompra = moment(this.item.fechaOrdenCompra).format(
-        'YYYY-MM-DD'
-      );
+      //fecha de apertura
+      // this.item.fechaOrdenCompra = moment(this.item.fechaOrdenCompra).format(
+      //   'YYYY-MM-DD'
+      // );
       this.procesando = true;
-      console.log('datos', this.item);
       const res = await this.wsdl.doInsert(this.item).then();
       this.procesando = false;
-      console.log('datos', res);
       const result = JSON.parse(JSON.stringify(res));
 
       if (result.status == 200) {
@@ -165,10 +161,6 @@ export class AbmOrdenCompraComponent implements OnInit {
     this.router.navigateByUrl(this.entity);
   }
 
-  // seleccionProveedor(event: Proveedor) {
-  //   this.item.proveedor = event;
-  //   console.log('soy el papa', this.item.proveedor);
-  // }
   getProceso() {
     return this.procesando;
   }

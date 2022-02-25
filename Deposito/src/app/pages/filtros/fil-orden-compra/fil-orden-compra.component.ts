@@ -25,7 +25,7 @@ export class FilOrdenCompraComponent implements OnInit {
 
   public lastPage!: Number;
   public count!: Number;
-  public limits: Number[] = [5, 10, 25, 50, 100, 150, 200];
+  public limits: Number[] = [15, 25, 50, 100, 150, 200];
 
   setPage(page: any) {
     this.page = page;
@@ -34,7 +34,7 @@ export class FilOrdenCompraComponent implements OnInit {
 
   constructor(private wsdl: OrdenCompraService) {
     this.procesando = false;
-    this.limit = 5;
+    this.limit = 15;
     this.page = 1;
   }
 
@@ -51,7 +51,7 @@ export class FilOrdenCompraComponent implements OnInit {
       }
       let d = this.oldSearch !== this.search;
       if (d) {
-        this.limit = 5;
+        this.limit = 15;
         this.page = 1;
         this.oldSearch = this.search;
       }
